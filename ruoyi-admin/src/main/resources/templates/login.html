@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>登录若依系统</title>
-    <meta name="description" content="若依后台管理框架">
+    <title>若依</title>
+    <meta name="description" content="　若依　情報管理システム">
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
     <link href="../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
     <style type="text/css">label.error { position:inherit;  }</style>
     <script>
-        if(window.top!==window.self){alert('未登录或登录超时。请重新登录');window.top.location=window.location};
+        if(window.top!==window.self){alert('未ログインまたはセッションがタイムアウトしました。再度ログインしてください。');window.top.location=window.location};
     </script>
 </head>
 <body class="signin">
@@ -29,7 +29,7 @@
                         <h1><img alt="[ 若依 ]" src="../static/ruoyi.png" th:src="@{/ruoyi.png}"></h1>
                     </div>
                     <div class="m-b"></div>
-                    <h4>欢迎使用 <strong>若依 后台管理系统</strong></h4>
+                    <h4 th:text="#{user.login.welcome} + #{user.login.project_name}"></h4>
                     <ul class="m-b">
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> SpringBoot</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Mybatis</li>
@@ -37,40 +37,39 @@
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Thymeleaf</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> Bootstrap</li>
                     </ul>
-                    <strong th:if="${isAllowRegister}">还没有账号？ <a th:href="@{/register}">立即注册&raquo;</a></strong>
+                     <strong th:if="${isAllowRegister}"><a class="no-margins" th:text="#{user.login.sign_up} + ："></a><a th:href="@{/register}"></a></strong>
                 </div>
             </div>
             <div class="col-sm-5">
                 <form id="signupForm" autocomplete="off">
-                    <h4 class="no-margins">登录：</h4>
-                    <p class="m-t-md">你若不离不弃，我必生死相依</p>
-                    <input type="text"     name="username" class="form-control uname"     placeholder="用户名" value="admin"    />
-                    <input type="password" name="password" class="form-control pword"     placeholder="密码"   value="admin123" />
-					<div class="row m-t" th:if="${captchaEnabled==true}">
-						<div class="col-xs-6">
-						    <input type="text" name="validateCode" class="form-control code" placeholder="验证码" maxlength="5" />
-						</div>
-						<div class="col-xs-6">
-							<a href="javascript:void(0);" title="点击更换验证码">
-								<img th:src="@{/captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
-							</a>
-						</div>
-					</div>
+                    <h3 class="no-margins" th:text="#{user.login.submit} + ："></h3>
+                    <input type="text"     name="username" class="form-control uname" th:placeholder="#{user.login.username}" value="admin"    />
+                    <input type="password" name="password" class="form-control pword" th:placeholder="#{user.login.password}" value="admin123" />
+                    <div class="row m-t" th:if="${captchaEnabled==true}">
+                        <div class="col-xs-6">
+                            <input type="text" name="validateCode" class="form-control code" th:placeholder="#{user.login.code}" maxlength="5" />
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="javascript:void(0);" title="検証コードを変更するにはクリック">
+                                <img th:src="@{/captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
+                            </a>
+                        </div>
+                    </div>
                     <div class="checkbox-custom" th:if="${isRemembered}" th:classappend="${captchaEnabled==false} ? 'm-t'">
-				        <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme">记住我</label>
-				    </div>
-                    <button class="btn btn-success btn-block" id="btnSubmit" data-loading="正在验证登录，请稍候...">登录</button>
+                        <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme" th:text="#{user.login.remember}"></label>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btnSubmit" data-loading="ログインを確認中です。お待ちください..." th:text="#{user.login.submit}"></button>
                 </form>
             </div>
         </div>
         <div class="signup-footer">
             <div class="pull-left">
                 Copyright © 2018-2023 ruoyi.vip All Rights Reserved. <br>
+                Copyright © 2024-2024 ncsoft.ne.jp All Rights Reserved. <br>
             </div>
         </div>
     </div>
 <script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
-<!--[if lte IE 8]><script>window.location.href=ctx+'html/ie.html';</script><![endif]-->
 <!-- 全局js -->
 <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 <script src="../static/ajax/libs/validate/jquery.validate.min.js" th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
