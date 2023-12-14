@@ -1,6 +1,7 @@
 package com.ruoyi.framework.config;
 
 import java.util.Locale;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -22,7 +23,9 @@ public class I18nConfig implements WebMvcConfigurer
     {
         SessionLocaleResolver slr = new SessionLocaleResolver();
         // 默认语言
-        slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+//        slr.setDefaultLocale(Locale.SIMPLIFIED_CHINESE);
+        slr.setDefaultLocale(Locale.JAPANESE);
+
         return slr;
     }
 
