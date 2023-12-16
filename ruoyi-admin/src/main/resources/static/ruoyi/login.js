@@ -33,9 +33,9 @@ function login() {
             if (r.code == web_status.SUCCESS) {
                 location.href = ctx + 'index';
             } else {
-            	$('.imgcode').click();
-            	$(".code").val("");
-            	$.modal.msg(r.msg);
+                $('.imgcode').click();
+                $(".code").val("");
+                $.modal.msg(r.msg);
             }
             $.modal.closeLoading();
         }
@@ -55,10 +55,10 @@ function validateRule() {
         },
         messages: {
             username: {
-                required: icon + "请输入您的用户名",
+                required: icon + "ユーザー名を入力してください",
             },
             password: {
-                required: icon + "请输入您的密码",
+                required: icon + "パスワードを入力してください",
             }
         }
     })
@@ -66,9 +66,9 @@ function validateRule() {
 
 function validateKickout() {
     if (getParam("kickout") == 1) {
-        layer.alert("<font color='red'>您已在别处登录，请您修改密码或重新登录</font>", {
+        layer.alert("<font color='red'>他の場所でログインされています。パスワードを変更するか、再ログインしてください。</font>", {
             icon: 0,
-            title: "系统提示"
+            title: "システムメッセージ"
         },
         function(index) {
             //关闭弹窗

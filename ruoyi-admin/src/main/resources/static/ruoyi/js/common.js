@@ -1,6 +1,6 @@
 /**
  * 通用方法封装处理
- * Copyright (c) 2019 ruoyi 
+ * Copyright (c) 2019 ruoyi
  */
 
 var startLayDate;
@@ -8,7 +8,7 @@ var endLayDate;
 var isScrollToTop = parent.isScrollToTop;
 
 $(function() {
-	
+
     //  layer扩展皮肤
     if (window.layer !== undefined) {
         layer.config({
@@ -16,12 +16,12 @@ $(function() {
             skin: 'layer-ext-moon'
         });
     }
-	
+
     // 回到顶部绑定
     if ($.fn.toTop !== undefined) {
         $('#scroll-up').toTop();
     }
-	
+
     // select2复选框事件绑定
     if ($.fn.select2 !== undefined) {
         $.fn.select2.defaults.set( "theme", "bootstrap" );
@@ -31,7 +31,7 @@ $(function() {
             })
         })
     }
-	
+
     // iCheck单选框及复选框事件绑定
     if ($.fn.iCheck !== undefined) {
         $(".check-box:not(.noicheck),.radio-box:not(.noicheck)").each(function() {
@@ -41,14 +41,14 @@ $(function() {
             })
         })
     }
-	
+
     // 取消回车自动提交表单
     $(document).on("keypress", ":input:not(textarea):not([type=submit])", function(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
         }
     });
-	 
+
     // laydate 时间控件绑定
     if ($(".select-time").length > 0) {
        layui.use('laydate', function() {
@@ -94,7 +94,7 @@ $(function() {
             });
         });
     }
-	
+
     // laydate time-input 时间控件绑定
     if ($(".time-input").length > 0) {
         layui.use('laydate', function () {
@@ -142,7 +142,7 @@ $(function() {
             });
         });
     }
-	
+
     // tree 关键字搜索绑定
     if ($("#keyword").length > 0) {
         $("#keyword").bind("focus", function focusKey(e) {
@@ -156,7 +156,7 @@ $(function() {
             $.tree.searchNode(e);
         }).bind("input propertychange", $.tree.searchNode);
     }
-	
+
     // tree表格树 展开/折叠
     var expandFlag;
     $("#expandAllBtn").click(function() {
@@ -169,7 +169,7 @@ $(function() {
         }
         expandFlag = expandFlag ? false: true;
     })
-	
+
     // 按下ESC按钮关闭弹层
     $('body', document).on('keyup', function(e) {
         if (e.which === 27) {
@@ -232,23 +232,23 @@ var refreshItem = function(){
 
 /** 关闭选项卡 */
 var closeItem = function(dataId){
-	var topWindow = $(window.parent.document);
-	if ($.common.isNotEmpty(dataId)) {
-	    window.parent.$.modal.closeLoading();
-	    // 根据dataId关闭指定选项卡
-	    $('.menuTab[data-id="' + dataId + '"]', topWindow).remove();
-	    // 移除相应tab对应的内容区
-	    $('.mainContent .RuoYi_iframe[data-id="' + dataId + '"]', topWindow).remove();
-	    return;
-	}
-	var panelUrl = window.frameElement.getAttribute('data-panel');
-	$('.page-tabs-content .active i', topWindow).click();
-	if ($.common.isNotEmpty(panelUrl)) {
-	    $('.menuTab[data-id="' + panelUrl + '"]', topWindow).addClass('active').siblings('.menuTab').removeClass('active');
-	    $('.mainContent .RuoYi_iframe', topWindow).each(function() {
-	        if ($(this).data('id') == panelUrl) {
-	            openToCurrentTab(this);
-	            return false;
+    var topWindow = $(window.parent.document);
+    if ($.common.isNotEmpty(dataId)) {
+        window.parent.$.modal.closeLoading();
+        // 根据dataId关闭指定选项卡
+        $('.menuTab[data-id="' + dataId + '"]', topWindow).remove();
+        // 移除相应tab对应的内容区
+        $('.mainContent .RuoYi_iframe[data-id="' + dataId + '"]', topWindow).remove();
+        return;
+    }
+    var panelUrl = window.frameElement.getAttribute('data-panel');
+    $('.page-tabs-content .active i', topWindow).click();
+    if ($.common.isNotEmpty(panelUrl)) {
+        $('.menuTab[data-id="' + panelUrl + '"]', topWindow).addClass('active').siblings('.menuTab').removeClass('active');
+        $('.mainContent .RuoYi_iframe', topWindow).each(function() {
+            if ($(this).data('id') == panelUrl) {
+                openToCurrentTab(this);
+                return false;
             }
         });
     }
@@ -295,8 +295,8 @@ function createMenuItem(dataUrl, menuName, isRefresh) {
         } else {
             $('.mainContent', topWindow).find('iframe.RuoYi_iframe').css({"visibility": "hidden", "position": "absolute"}).parents('.mainContent').append(str1);
         }
-        
-        window.parent.$.modal.loading("数据加载中，请稍候...");
+
+        window.parent.$.modal.loading("データを読み込んでいます。お待ちください...");
         $('.mainContent iframe:visible', topWindow).on('load', function() {
             window.parent.$.modal.closeLoading();
         });
@@ -310,11 +310,11 @@ function createMenuItem(dataUrl, menuName, isRefresh) {
 
 // 刷新iframe
 function refreshTab() {
-	var topWindow = $(window.parent.document);
-	var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
-	var target = $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow);
+    var topWindow = $(window.parent.document);
+    var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
+    var target = $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow);
     var url = target.attr('src');
-	target.attr('src', url).ready();
+    target.attr('src', url).ready();
 }
 
 // 滚动到指定选项卡
@@ -356,11 +356,11 @@ function calSumWidth(elements) {
 
 // 返回当前激活的Tab页面关联的iframe的Windows对象
 function activeWindow() {
-	var topWindow = $(window.parent.document);
-	var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
-	if (!currentId) {
-		return window.parent;
-	}
+    var topWindow = $(window.parent.document);
+    var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-id');
+    if (!currentId) {
+        return window.parent;
+    }
     return $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow)[0].contentWindow;
 }
 
@@ -376,22 +376,22 @@ function openToCurrentTab(obj) {
 function checkpwd(chrtype, password) {
     if (chrtype == 1) {
         if (!$.common.numValid(password)) {
-            $.modal.alertWarning("密码只能为0-9数字");
+            $.modal.alertWarning("パスワードは0から9までの数字のみです。");
             return false;
         }
     } else if (chrtype == 2) {
         if (!$.common.enValid(password)) {
-            $.modal.alertWarning("密码只能为a-z和A-Z字母");
+            $.modal.alertWarning("パスワードはaからzおよびAからZのアルファベットのみです。");
             return false;
         }
     } else if (chrtype == 3) {
         if (!$.common.enNumValid(password)) {
-            $.modal.alertWarning("密码必须包含字母以及数字");
+            $.modal.alertWarning("パスワードには文字と数字が含まれる必要があります。");
             return false;
         }
     } else if (chrtype == 4) {
         if (!$.common.charValid(password)) {
-            $.modal.alertWarning("密码必须包含字母、数字、以及特殊符号<font color='red'>~!@#$%^&*()-=_+</font>");
+            $.modal.alertWarning("パスワードには文字、数字、および特殊記号が必要です。<font color='red'>~!@#$%^&*()-=_+</font>");
             return false;
         }
     }
@@ -414,14 +414,14 @@ function endOfTime(date) {
 
 /** 重置日期/年月日 */
 function resetDate() {
-	if ($.common.isNotEmpty(startLayDate) && $.common.isNotEmpty(endLayDate)) {
-	    endLayDate.config.min.year = '';
-	    endLayDate.config.min.month = '';
-	    endLayDate.config.min.date = '';
-	    startLayDate.config.max.year = '2099';
-	    startLayDate.config.max.month = '12';
-	    startLayDate.config.max.date = '31';
-	}
+    if ($.common.isNotEmpty(startLayDate) && $.common.isNotEmpty(endLayDate)) {
+        endLayDate.config.min.year = '';
+        endLayDate.config.min.month = '';
+        endLayDate.config.min.date = '';
+        startLayDate.config.max.year = '2099';
+        startLayDate.config.max.month = '12';
+        startLayDate.config.max.date = '31';
+    }
 }
 
 // 日志打印封装处理
@@ -459,65 +459,65 @@ var storage = {
 // 主子表操作封装处理
 var sub = {
     editRow: function() {
-    	var dataColumns = [];
-		for (var columnIndex = 0; columnIndex < table.options.columns.length; columnIndex++) {
-    		if (table.options.columns[columnIndex].visible != false) {
-    			dataColumns.push(table.options.columns[columnIndex]);
-    		}
-    	}
-		var params = new Array();
-		var data = $("#" + table.options.id).bootstrapTable('getData');
-    	var count = data.length;
-    	for (var dataIndex = 0; dataIndex < count; dataIndex++) {
-    	    var columns = $('#' + table.options.id + ' tr[data-index="' + dataIndex + '"] td:visible');
-    	    var obj = new Object();
-    	    for (var i = 0; i < columns.length; i++) {
-    	        var inputValue = $(columns[i]).find('input');
-    	        var selectValue = $(columns[i]).find('select');
-    	        var textareaValue = $(columns[i]).find('textarea');
-    	        var key = dataColumns[i].field;
-    	        if ($.common.isNotEmpty(inputValue.val())) {
-    	            obj[key] = inputValue.val();
-    	        } else if ($.common.isNotEmpty(selectValue.val())) {
-    	            obj[key] = selectValue.val();
-    	        } else if ($.common.isNotEmpty(textareaValue.val())) {
-    	            obj[key] = textareaValue.val();
-    	        } else {
-    	            if (key == "index" && $.common.isNotEmpty(data[dataIndex].index)) {
-    	                obj[key] = data[dataIndex].index;
-    	            } else {
-    	                obj[key] = "";
-    	            }
-    	        }
-    	    }
-    	    var item = data[dataIndex];
-    	    var extendObj = $.extend({}, item, obj);
-    	    params.push({ index: dataIndex, row: extendObj });
-    	}
-    	$("#" + table.options.id).bootstrapTable("updateRow", params);
+        var dataColumns = [];
+        for (var columnIndex = 0; columnIndex < table.options.columns.length; columnIndex++) {
+            if (table.options.columns[columnIndex].visible != false) {
+                dataColumns.push(table.options.columns[columnIndex]);
+            }
+        }
+        var params = new Array();
+        var data = $("#" + table.options.id).bootstrapTable('getData');
+        var count = data.length;
+        for (var dataIndex = 0; dataIndex < count; dataIndex++) {
+            var columns = $('#' + table.options.id + ' tr[data-index="' + dataIndex + '"] td:visible');
+            var obj = new Object();
+            for (var i = 0; i < columns.length; i++) {
+                var inputValue = $(columns[i]).find('input');
+                var selectValue = $(columns[i]).find('select');
+                var textareaValue = $(columns[i]).find('textarea');
+                var key = dataColumns[i].field;
+                if ($.common.isNotEmpty(inputValue.val())) {
+                    obj[key] = inputValue.val();
+                } else if ($.common.isNotEmpty(selectValue.val())) {
+                    obj[key] = selectValue.val();
+                } else if ($.common.isNotEmpty(textareaValue.val())) {
+                    obj[key] = textareaValue.val();
+                } else {
+                    if (key == "index" && $.common.isNotEmpty(data[dataIndex].index)) {
+                        obj[key] = data[dataIndex].index;
+                    } else {
+                        obj[key] = "";
+                    }
+                }
+            }
+            var item = data[dataIndex];
+            var extendObj = $.extend({}, item, obj);
+            params.push({ index: dataIndex, row: extendObj });
+        }
+        $("#" + table.options.id).bootstrapTable("updateRow", params);
     },
     delRow: function(column) {
-    	sub.editRow();
-    	var subColumn = $.common.isEmpty(column) ? "index" : column;
-    	var ids = $.table.selectColumns(subColumn);
+        sub.editRow();
+        var subColumn = $.common.isEmpty(column) ? "index" : column;
+        var ids = $.table.selectColumns(subColumn);
         if (ids.length == 0) {
-            $.modal.alertWarning("请至少选择一条记录");
+            $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
             return;
         }
         $("#" + table.options.id).bootstrapTable('remove', { field: subColumn, values: ids });
     },
     delRowByIndex: function(value, tableId) {
-    	var currentId = $.common.isEmpty(tableId) ? table.options.id : tableId;
-    	sub.editRow();
+        var currentId = $.common.isEmpty(tableId) ? table.options.id : tableId;
+        sub.editRow();
         $("#" + currentId).bootstrapTable('remove', { field: "index", values: [value] });
         sub.editRow();
     },
     addRow: function(row, tableId) {
-    	var currentId = $.common.isEmpty(tableId) ? table.options.id : tableId;
-    	table.set(currentId);
-    	var count = $("#" + currentId).bootstrapTable('getData').length;
-    	sub.editRow();
-    	$("#" + currentId).bootstrapTable('insertRow', { index: count + 1, row: row });
+        var currentId = $.common.isEmpty(tableId) ? table.options.id : tableId;
+        table.set(currentId);
+        var count = $("#" + currentId).bootstrapTable('getData').length;
+        sub.editRow();
+        $("#" + currentId).bootstrapTable('insertRow', { index: count + 1, row: row });
     }
 };
 
@@ -542,51 +542,51 @@ function loadJs(file, headElem) {
 
 // 禁止后退键（Backspace）
 window.onload = function() {
-	document.getElementsByTagName("body")[0].onkeydown = function() {
-		// 获取事件对象  
-		var elem = event.relatedTarget || event.srcElement || event.target || event.currentTarget;
-		// 判断按键为backSpace键  
-		if (event.keyCode == 8) {
-			// 判断是否需要阻止按下键盘的事件默认传递  
-			var name = elem.nodeName;
-			var className = elem.className;
-			// 屏蔽特定的样式名称
-			if (className.indexOf('note-editable') != -1)
-			{
-				return true;
-			}
-			if (name != 'INPUT' && name != 'TEXTAREA') {
-				return _stopIt(event);
-			}
-			var type_e = elem.type.toUpperCase();
-			if (name == 'INPUT' && (type_e != 'TEXT' && type_e != 'TEXTAREA' && type_e != 'PASSWORD' && type_e != 'FILE' && type_e != 'SEARCH' && type_e != 'NUMBER' && type_e != 'EMAIL' && type_e != 'URL')) {
-				return _stopIt(event);
-			}
-			if (name == 'INPUT' && (elem.readOnly == true || elem.disabled == true)) {
-				return _stopIt(event);
-			}
-		}
-	};
+    document.getElementsByTagName("body")[0].onkeydown = function() {
+        // 获取事件对象
+        var elem = event.relatedTarget || event.srcElement || event.target || event.currentTarget;
+        // 判断按键为backSpace键
+        if (event.keyCode == 8) {
+            // 判断是否需要阻止按下键盘的事件默认传递
+            var name = elem.nodeName;
+            var className = elem.className;
+            // 屏蔽特定的样式名称
+            if (className.indexOf('note-editable') != -1)
+            {
+                return true;
+            }
+            if (name != 'INPUT' && name != 'TEXTAREA') {
+                return _stopIt(event);
+            }
+            var type_e = elem.type.toUpperCase();
+            if (name == 'INPUT' && (type_e != 'TEXT' && type_e != 'TEXTAREA' && type_e != 'PASSWORD' && type_e != 'FILE' && type_e != 'SEARCH' && type_e != 'NUMBER' && type_e != 'EMAIL' && type_e != 'URL')) {
+                return _stopIt(event);
+            }
+            if (name == 'INPUT' && (elem.readOnly == true || elem.disabled == true)) {
+                return _stopIt(event);
+            }
+        }
+    };
 };
 function _stopIt(e) {
-	if (e.returnValue) {
-		e.returnValue = false;
-	}
-	if (e.preventDefault) {
-		e.preventDefault();
-	}
-	return false;
+    if (e.returnValue) {
+        e.returnValue = false;
+    }
+    if (e.preventDefault) {
+        e.preventDefault();
+    }
+    return false;
 }
 
 /** 设置全局ajax处理 */
 $.ajaxSetup({
     complete: function(XMLHttpRequest, textStatus) {
         if (textStatus == 'timeout') {
-            $.modal.alertWarning("服务器超时，请稍后再试！");
+            $.modal.alertWarning("サーバータイムアウト、後でもう一度お試しください。");
             $.modal.enable();
             $.modal.closeLoading();
         } else if (textStatus == "parsererror" || textStatus == "error") {
-            $.modal.alertWarning("服务器错误，请联系管理员！");
+            $.modal.alertWarning("サーバーエラーが発生しました。管理者に連絡してください。");
             $.modal.enable();
             $.modal.closeLoading();
         }

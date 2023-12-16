@@ -9,7 +9,7 @@ $(function() {
 
 $.validator.setDefaults({
     submitHandler: function() {
-    	register();
+        register();
     }
 });
 
@@ -28,20 +28,20 @@ function register() {
         },
         success: function(r) {
             if (r.code == web_status.SUCCESS) {
-            	layer.alert("<font color='red'>恭喜你，您的账号 " + username + " 注册成功！</font>", {
-            	    icon: 1,
-            	    title: "系统提示"
-            	},
-            	function(index) {
-            	    //关闭弹窗
-            	    layer.close(index);
-            	    location.href = ctx + 'login';
-            	});
+                layer.alert("<font color='red'>おめでとうございます、アカウント " + username + " の登録が完了しました。</font>", {
+                    icon: 1,
+                    title: "システムメッセージ"
+                },
+                function(index) {
+                    //关闭弹窗
+                    layer.close(index);
+                    location.href = ctx + 'login';
+                });
             } else {
-            	$.modal.closeLoading();
-            	$('.imgcode').click();
-            	$(".code").val("");
-            	$.modal.msg(r.msg);
+                $.modal.closeLoading();
+                $('.imgcode').click();
+                $(".code").val("");
+                $.modal.msg(r.msg);
             }
         }
     });
@@ -66,16 +66,16 @@ function validateRule() {
         },
         messages: {
             username: {
-                required: icon + "请输入您的用户名",
-                minlength: icon + "用户名不能小于2个字符"
+                required: icon + "ユーザー名を入力してください。",
+                minlength: icon + "ユーザー名は2文字以上である必要があります。"
             },
             password: {
-            	required: icon + "请输入您的密码",
-                minlength: icon + "密码不能小于5个字符",
+                required: icon + "パスワードを入力してください。",
+                minlength: icon + "パスワードは5文字以上である必要があります。",
             },
             confirmPassword: {
-                required: icon + "请再次输入您的密码",
-                equalTo: icon + "两次密码输入不一致"
+                required: icon + "もう一度パスワードを入力してください。",
+                equalTo: icon + "2回のパスワード入力が一致しません。"
             }
         }
     })

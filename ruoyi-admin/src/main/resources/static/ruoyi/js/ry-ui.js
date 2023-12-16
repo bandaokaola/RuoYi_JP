@@ -96,7 +96,7 @@ var table = {
                     pagination: options.pagination,                     // 是否显示分页（*）
                     paginationLoop: options.paginationLoop,             // 是否启用分页条无限循环的功能
                     pageNumber: 1,                                      // 初始化加载第一页，默认第一页
-                    pageSize: options.pageSize,                         // 每页的记录行数（*） 
+                    pageSize: options.pageSize,                         // 每页的记录行数（*）
                     pageList: options.pageList,                         // 可供选择的每页的行数（*）
                     firstLoad: options.firstLoad,                       // 是否首次请求加载数据，对于数据较大可以配置false
                     escape: options.escape,                             // 转义HTML字符串
@@ -157,7 +157,7 @@ var table = {
             // 获取实例ID，如存在多个返回#id1,#id2 delimeter分隔符
             getOptionsIds: function(separator) {
                 var _separator = $.common.isEmpty(separator) ? "," : separator;
-                var optionsIds = "";  
+                var optionsIds = "";
                 $.each(table.config, function(key, value){
                     optionsIds += "#" + key + _separator;
                 });
@@ -175,7 +175,7 @@ var table = {
                     isAsc:          params.order
                 };
                 var currentId = $.common.isEmpty(table.options.formId) ? $('form').attr('id') : table.options.formId;
-                return $.extend(curParams, $.common.formToJSON(currentId)); 
+                return $.extend(curParams, $.common.formToJSON(currentId));
             },
             // 请求获取数据后处理回调函数
             responseHandler: function(res) {
@@ -275,9 +275,9 @@ var table = {
                         document.execCommand("copy");
                     } else if ($.common.equals("open", target)) {
                         top.layer.alert(input.val(), {
-                            title: "信息内容",
+                            title: "情報の内容",
                             shadeClose: true,
-                            btn: ['确认'],
+                            btn: ['確認'],
                             btnclass: ['btn btn-primary'],
                         });
                     }
@@ -374,13 +374,13 @@ var table = {
             // 导出数据
             exportExcel: function(formId) {
                 table.set();
-                $.modal.confirm("确定导出所有" + table.options.modalName + "吗？", function() {
+                $.modal.confirm("すべて" + table.options.modalName + "をエクスポートしますか？", function() {
                     var currentId = $.common.isEmpty(formId) ? $('form').attr('id') : formId;
                     var params = $("#" + table.options.id).bootstrapTable('getOptions');
                     var dataParam = $("#" + currentId).serializeArray();
                     dataParam.push({ "name": "orderByColumn", "value": params.sortName });
                     dataParam.push({ "name": "isAsc", "value": params.sortOrder });
-                    $.modal.loading("正在导出数据，请稍候...");
+                    $.modal.loading("データをエクスポートしています。お待ちください...");
                     $.post(table.options.exportUrl, dataParam, function(result) {
                         if (result.code == web_status.SUCCESS) {
                             window.location.href = ctx + "common/download?fileName=" + encodeURI(result.msg) + "&delete=" + true;
@@ -418,15 +418,15 @@ var table = {
                     //不固定
                     maxmin: true,
                     shade: 0.3,
-                    title: '导入' + table.options.modalName + '数据',
+                    title: 'インポート' + table.options.modalName + 'データ',
                     content: $('#' + currentId).html(),
-                    btn: ['<i class="fa fa-check"></i> 导入', '<i class="fa fa-remove"></i> 取消'],
+                    btn: ['<i class="fa fa-check"></i> インポート', '<i class="fa fa-remove"></i> キャンセル'],
                     // 弹层外区域关闭
                     shadeClose: true,
                     btn1: function(index, layero){
                         var file = layero.find('#file').val();
                         if (file == '' || (!$.common.endWith(file, '.xls') && !$.common.endWith(file, '.xlsx'))) {
-                            $.modal.msgWarning("请选择后缀为 “xls”或“xlsx”的文件。");
+                            $.modal.msgWarning("「xls」または「xlsx」の拡張子のファイルを選択してください。");
                             return false;
                         }
                         var index = top.layer.load(2, {shade: false});
@@ -441,12 +441,12 @@ var table = {
                             type: 'POST',
                             success: function (result) {
                                 if (result.code == web_status.SUCCESS) {
-                                	$.modal.close(index);
+                                    $.modal.close(index);
                                     $.modal.closeAll();
                                     $.modal.alertSuccess(result.msg);
                                     $.table.refresh();
                                 } else if (result.code == web_status.WARNING) {
-                                	$.modal.close(index);
+                                    $.modal.close(index);
                                     $.modal.enable();
                                     $.modal.alertWarning(result.msg)
                                 } else {
@@ -456,7 +456,7 @@ var table = {
                                 }
                             },
                             complete: function () {
-                            	layero.find('#file').val('');
+                                layero.find('#file').val('');
                             }
                         });
                     }
@@ -751,9 +751,9 @@ var table = {
             // 消息提示
             msg: function(content, type) {
                 if (type != undefined) {
-                	top.layer.msg(content, { icon: $.modal.icon(type), time: 1000, shift: 5 });
+                    top.layer.msg(content, { icon: $.modal.icon(type), time: 1000, shift: 5 });
                 } else {
-                	top.layer.msg(content);
+                    top.layer.msg(content);
                 }
             },
             // 错误消息
@@ -772,8 +772,8 @@ var table = {
             alert: function(content, type) {
                 top.layer.alert(content, {
                     icon: $.modal.icon(type),
-                    title: "系统提示",
-                    btn: ['确认'],
+                    title: "システムメッセージ",
+                    btn: ['確認'],
                     btnclass: ['btn btn-primary'],
                 });
             },
@@ -802,7 +802,7 @@ var table = {
             },
             // 消息提示成功并刷新父窗体
             msgSuccessReload: function(msg) {
-            	$.modal.msgReload(msg, modal_status.SUCCESS);
+                $.modal.msgReload(msg, modal_status.SUCCESS);
             },
             // 获取iframe页的DOM
             getChildFrame: function (index) {
@@ -830,8 +830,8 @@ var table = {
             confirm: function (content, callBack) {
                 top.layer.confirm(content, {
                     icon: 3,
-                    title: "系统提示",
-                    btn: ['确认', '取消']
+                    title: "システムメッセージ",
+                    btn: ['確認', 'キャンセル']
                 }, function (index) {
                     $.modal.close(index);
                     callBack(true);
@@ -871,7 +871,7 @@ var table = {
                     shade: 0.3,
                     title: title,
                     content: url,
-                    btn: ['确定', '关闭'],
+                    btn: ['確認', '閉じる'],
                     // 弹层外区域关闭
                     shadeClose: true,
                     yes: callback,
@@ -885,11 +885,11 @@ var table = {
             },
             // 弹出层指定参数选项
             openOptions: function (options) {
-                var _url = $.common.isEmpty(options.url) ? "/404.html" : options.url; 
-                var _title = $.common.isEmpty(options.title) ? "系统窗口" : options.title; 
-                var _width = $.common.isEmpty(options.width) ? "800" : options.width; 
+                var _url = $.common.isEmpty(options.url) ? "/404.html" : options.url;
+                var _title = $.common.isEmpty(options.title) ? "システムウィンドウ" : options.title;
+                var _width = $.common.isEmpty(options.width) ? "800" : options.width;
                 var _height = $.common.isEmpty(options.height) ? ($(window).height() - 50) : options.height;
-                var _btn = ['<i class="fa fa-check"></i> 确认', '<i class="fa fa-close"></i> 关闭'];
+                var _btn = ['<i class="fa fa-check"></i> 確認', '<i class="fa fa-close"></i> 閉じる'];
                 // 如果是移动端，就使用自适应大小弹窗
                 if ($.common.isMobile()) {
                     _width = 'auto';
@@ -963,7 +963,7 @@ var table = {
                     shade: 0.3,
                     title: title,
                     content: url,
-                    btn: ['确定', '关闭'],
+                    btn: ['確認', '閉じる'],
                     // 弹层外区域关闭
                     shadeClose: true,
                     yes: function(index, layero) {
@@ -1048,7 +1048,7 @@ var table = {
                     dataType: dataType,
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("処理中です。お待ちください...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1072,7 +1072,7 @@ var table = {
                 table.set();
                 var _url = $.operate.detailUrl(id);
                 var options = {
-                    title: table.options.modalName + "详细",
+                    title: table.options.modalName + "詳細",
                     width: width,
                     height: height,
                     url: _url,
@@ -1086,7 +1086,7 @@ var table = {
             // 详细信息，以tab页展现
             detailTab: function(id) {
                 table.set();
-                $.modal.openTab("详细" + table.options.modalName, $.operate.detailUrl(id));
+                $.modal.openTab("詳細" + table.options.modalName, $.operate.detailUrl(id));
             },
             // 详细访问地址
             detailUrl: function(id) {
@@ -1096,7 +1096,7 @@ var table = {
                 } else {
                     var id = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
                     if (id.length == 0) {
-                        $.modal.alertWarning("请至少选择一条记录");
+                        $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                         return;
                     }
                     url = table.options.detailUrl.replace("{id}", id);
@@ -1106,7 +1106,7 @@ var table = {
             // 删除信息
             remove: function(id) {
                 table.set();
-                $.modal.confirm("确定删除该条" + table.options.modalName + "信息吗？", function() {
+                $.modal.confirm("この情報" + table.options.modalName + "を削除しますか？", function() {
                     var url = $.common.isEmpty(id) ? table.options.removeUrl : table.options.removeUrl.replace("{id}", id);
                     if (table.options.type == table_type.bootstrapTreeTable) {
                         $.operate.get(url);
@@ -1121,7 +1121,7 @@ var table = {
                 table.set();
                 var rows = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
                 if (rows.length == 0) {
-                    $.modal.alertWarning("请至少选择一条记录");
+                    $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                     return;
                 }
                 $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
@@ -1164,7 +1164,7 @@ var table = {
                 if ($.common.isEmpty(id) && table.options.type == table_type.bootstrapTreeTable) {
                     var row = $("#" + table.options.id).bootstrapTreeTable('getSelections')[0];
                     if ($.common.isEmpty(row)) {
-                        $.modal.alertWarning("请至少选择一条记录");
+                        $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                         return;
                     }
                     var url = table.options.updateUrl.replace("{id}", row[table.options.uniqueId]);
@@ -1188,7 +1188,7 @@ var table = {
                     if (table.options.type == table_type.bootstrapTreeTable) {
                         var row = $("#" + table.options.id).bootstrapTreeTable('getSelections')[0];
                         if ($.common.isEmpty(row)) {
-                            $.modal.alertWarning("请至少选择一条记录");
+                            $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                             return;
                         }
                         url = table.options.updateUrl.replace("{id}", row[table.options.uniqueId]);
@@ -1207,7 +1207,7 @@ var table = {
                 } else {
                     var id = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
                     if (id.length == 0) {
-                        $.modal.alertWarning("请至少选择一条记录");
+                        $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                         return;
                     }
                     url = table.options.updateUrl.replace("{id}", id);
@@ -1218,7 +1218,7 @@ var table = {
             view: function(id){
                 table.set();
                 var url = table.options.viewUrl.replace("{id}", id);
-                $.modal.popupRight(table.options.modalName + "信息详情", url);
+                $.modal.popupRight(table.options.modalName + "詳細情報", url);
             },
             // 保存信息 刷新表格
             save: function(url, data, callback) {
@@ -1228,7 +1228,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("処理中です。お待ちください...");
                         $.modal.disable();
                     },
                     success: function(result) {
@@ -1248,7 +1248,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("処理中です。お待ちください...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1274,7 +1274,7 @@ var table = {
                     dataType: "json",
                     data: data,
                     beforeSend: function () {
-                        $.modal.loading("正在处理中，请稍候...");
+                        $.modal.loading("処理中です。お待ちください...");
                     },
                     success: function(result) {
                         if (typeof callback == "function") {
@@ -1318,7 +1318,7 @@ var table = {
                 if (result.code == web_status.SUCCESS) {
                     var parent = activeWindow();
                     if ($.common.isEmpty(parent.table)) {
-                    	$.modal.msgSuccessReload(result.msg);
+                        $.modal.msgSuccessReload(result.msg);
                     } else if (parent.table.options.type == table_type.bootstrapTable) {
                         $.modal.close();
                         parent.$.modal.msgSuccess(result.msg);
@@ -1343,8 +1343,8 @@ var table = {
                     var currentId = $('.page-tabs-content', topWindow).find('.active').attr('data-panel');
                     var topWindow = $('.RuoYi_iframe[data-id="' + currentId + '"]', topWindow)[0];
                     if ($.common.isNotEmpty(topWindow) && $.common.isNotEmpty(currentId)) {
-                    	var $contentWindow = topWindow.contentWindow;
-                    	$contentWindow.$.modal.msgSuccess(result.msg);
+                        var $contentWindow = topWindow.contentWindow;
+                        $contentWindow.$.modal.msgSuccess(result.msg);
                         $contentWindow.$(".layui-layer-padding").removeAttr("style");
                         if ($contentWindow.table.options.type == table_type.bootstrapTable) {
                             $contentWindow.$.table.refresh();
@@ -1520,16 +1520,16 @@ var table = {
             notAllowParents: function(_tree) {
                 var nodes = _tree.getSelectedNodes();
                 if (nodes.length == 0){
-                    $.modal.msgError("请选择节点后提交");
+                    $.modal.msgError("ノードを選択してから送信してください。");
                     return false;
                 }
                 for (var i = 0; i < nodes.length; i++) {
                     if (nodes[i].level == 0) {
-                        $.modal.msgError("不能选择根节点（" + nodes[i].name + "）");
+                        $.modal.msgError("ルートノードは選択できません。（" + nodes[i].name + "）");
                         return false;
                     }
                     if (nodes[i].isParent) {
-                        $.modal.msgError("不能选择父节点（" + nodes[i].name + "）");
+                        $.modal.msgError("親ノードは選択できません。（" + nodes[i].name + "）");
                         return false;
                     }
                 }
@@ -1540,7 +1540,7 @@ var table = {
                 var nodes = _tree.getSelectedNodes();
                 for (var i = 0; i < nodes.length; i++) {
                     if (!nodes[i].isParent) {
-                        $.modal.msgError("不能选择最后层级节点（" + nodes[i].name + "）");
+                        $.modal.msgError("最下層のノードは選択できません。（" + nodes[i].name + "）");
                         return false;
                     }
                 }
