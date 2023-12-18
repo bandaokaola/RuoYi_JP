@@ -2,6 +2,7 @@ package com.ruoyi.common.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.alibaba.fastjson.JSONObject;
 import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.constant.Constants;
@@ -9,7 +10,7 @@ import com.ruoyi.common.utils.http.HttpUtils;
 
 /**
  * 获取地址类
- * 
+ *
  * @author ruoyi
  */
 public class AddressUtils
@@ -27,7 +28,7 @@ public class AddressUtils
         // 内网不查询
         if (IpUtils.internalIp(ip))
         {
-            return "内网IP";
+            return "プライベートIPアドレス";
         }
         if (RuoYiConfig.isAddressEnabled())
         {
@@ -36,7 +37,7 @@ public class AddressUtils
                 String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
                 if (StringUtils.isEmpty(rspStr))
                 {
-                    log.error("获取地理位置异常 {}", ip);
+                    log.error("グローバルIPアドレス取得異常 {}", ip);
                     return UNKNOWN;
                 }
                 JSONObject obj = JSONObject.parseObject(rspStr);
@@ -46,7 +47,7 @@ public class AddressUtils
             }
             catch (Exception e)
             {
-                log.error("获取地理位置异常 {}", e);
+                log.error("グローバルIPアドレス取得異常 {}", e);
             }
         }
         return UNKNOWN;
