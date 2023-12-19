@@ -1,6 +1,7 @@
 package com.ruoyi.web.controller.monitor;
 
 import java.util.List;
+
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
@@ -24,7 +26,7 @@ import com.ruoyi.system.service.ISysUserOnlineService;
 
 /**
  * 在线用户监控
- * 
+ *
  * @author ruoyi
  */
 @Controller
@@ -57,7 +59,7 @@ public class SysUserOnlineController extends BaseController
     }
 
     @RequiresPermissions(value = { "monitor:online:batchForceLogout", "monitor:online:forceLogout" }, logical = Logical.OR)
-    @Log(title = "在线用户", businessType = BusinessType.FORCE)
+    @Log(title = "オンラインユーザー", businessType = BusinessType.FORCE)
     @PostMapping("/batchForceLogout")
     @ResponseBody
     public AjaxResult batchForceLogout(String ids)
@@ -67,16 +69,16 @@ public class SysUserOnlineController extends BaseController
             SysUserOnline online = userOnlineService.selectOnlineById(sessionId);
             if (online == null)
             {
-                return error("用户已下线");
+                return error("ユーザーは既にログアウトしました。");
             }
             OnlineSession onlineSession = (OnlineSession) onlineSessionDAO.readSession(online.getSessionId());
             if (onlineSession == null)
             {
-                return error("用户已下线");
+                return error("ユーザーは既にログアウトしました。");
             }
             if (sessionId.equals(ShiroUtils.getSessionId()))
             {
-                return error("当前登录用户无法强退");
+                return error("現在ログインしているユーザーは強制ログアウトできません。");
             }
             onlineSessionDAO.delete(onlineSession);
             online.setStatus(OnlineStatus.off_line);
