@@ -2,8 +2,10 @@ package com.ruoyi.web.controller.common;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.config.ServerConfig;
 import com.ruoyi.common.constant.Constants;
@@ -24,7 +27,7 @@ import com.ruoyi.common.utils.file.FileUtils;
 
 /**
  * 通用请求处理
- * 
+ *
  * @author ruoyi
  */
 @Controller
@@ -40,7 +43,7 @@ public class CommonController
 
     /**
      * 通用下载请求
-     * 
+     *
      * @param fileName 文件名称
      * @param delete 是否删除
      */
@@ -51,7 +54,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(fileName))
             {
-                throw new Exception(StringUtils.format("文件名称({})非法，不允许下载。 ", fileName));
+                throw new Exception(StringUtils.format("ファイル名({})が無効で、ダウンロードは許可されません。", fileName));
             }
             String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
             String filePath = RuoYiConfig.getDownloadPath() + fileName;
@@ -66,7 +69,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error("ファイルのダウンロードに失敗しました。", e);
         }
     }
 
@@ -146,7 +149,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(resource))
             {
-                throw new Exception(StringUtils.format("资源文件({})非法，不允许下载。 ", resource));
+                throw new Exception(StringUtils.format("リソースファイル({})が無効で、ダウンロードは許可されません。", resource));
             }
             // 本地资源路径
             String localPath = RuoYiConfig.getProfile();
@@ -160,7 +163,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("下载文件失败", e);
+            log.error("ファイルのダウンロードに失敗しました。", e);
         }
     }
 }
