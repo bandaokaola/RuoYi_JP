@@ -18,7 +18,7 @@ create table sys_dept (
   update_by         varchar(64)     default ''                 comment '更新者',
   update_time       datetime                                   comment '更新日時',
   primary key (dept_id)
-) engine=innodb auto_increment=200 comment = '部門テーブル';
+) engine=innodb auto_increment=200 comment = '部門テーブル' CHARSET = 'utf8';
 
 -- ----------------------------
 -- 初期化-部門テーブルデータ
@@ -62,7 +62,7 @@ create table sys_user (
   update_time       datetime                                   comment '更新時間',
   remark            varchar(500)    default null               comment '備考',
   primary key (user_id)
-) engine=innodb auto_increment=100 comment = 'ユーザー情報テーブル';
+) engine=innodb auto_increment=100 comment = 'ユーザー情報テーブル' CHARSET = 'utf8';
 
 -- ----------------------------
 -- 初期化-ユーザー情報テーブルデータ
@@ -88,7 +88,7 @@ create table sys_post
   update_time   datetime                                   comment '更新時間',
   remark        varchar(500)    default null               comment '備考',
   primary key (post_id)
-) engine=innodb comment = '職位情報テーブル';
+) engine=innodb comment = '職位情報テーブル' CHARSET = 'utf8';
 
 -- ----------------------------
 -- 初期化-職位情報テーブルデータ
@@ -117,7 +117,7 @@ create table sys_role (
   update_time       datetime                                   comment '更新時間',
   remark            varchar(500)    default null               comment '備考',
   primary key (role_id)
-) engine=innodb auto_increment=100 comment = '役割情報テーブル';
+) engine=innodb auto_increment=100 comment = '役割情報テーブル' CHARSET = 'utf8';
 
 -- ----------------------------
 -- 初期化-役割情報テーブルデータ
@@ -148,7 +148,7 @@ create table sys_menu (
   update_time       datetime                                   comment '更新時間',
   remark            varchar(500)    default ''                 comment '備考',
   primary key (menu_id)
-) engine=innodb auto_increment=2000 comment = 'メニュー権限テーブル';
+) engine=innodb auto_increment=2000 comment = 'メニュー権限テーブル' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化-メニュー情報テーブルデータ
@@ -264,7 +264,7 @@ create table sys_user_role (
   user_id   bigint(20) not null comment 'ユーザーID',
   role_id   bigint(20) not null comment 'ロールID',
   primary key(user_id, role_id)
-) engine=innodb comment = 'ユーザーとロールの関連テーブル';
+) engine=innodb comment = 'ユーザーとロールの関連テーブル' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化-ユーザーとロールの関連テーブルのデータ
@@ -281,7 +281,7 @@ create table sys_role_menu (
   role_id   bigint(20) not null comment 'ロールID',
   menu_id   bigint(20) not null comment 'メニューID',
   primary key(role_id, menu_id)
-) engine=innodb comment = 'ロールとメニューの関連テーブル';
+) engine=innodb comment = 'ロールとメニューの関連テーブル' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化-ロールとメニューの関連テーブルのデータ
@@ -380,7 +380,7 @@ create table sys_role_dept (
   role_id   bigint(20) not null comment 'ロールID',
   dept_id   bigint(20) not null comment '部署ID',
   primary key(role_id, dept_id)
-) engine=innodb comment = 'ロールと部署の関連テーブル';
+) engine=innodb comment = 'ロールと部署の関連テーブル' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化-ロールと部署の関連テーブルのデータ
@@ -398,7 +398,7 @@ create table sys_user_post
   user_id   bigint(20) not null comment 'ユーザーID',
   post_id   bigint(20) not null comment 'ポストID',
   primary key (user_id, post_id)
-) engine=innodb comment = 'ユーザーとポストの関連テーブル';
+) engine=innodb comment = 'ユーザーとポストの関連テーブル' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化-ユーザーとポストの関連テーブルのデータ
@@ -433,7 +433,7 @@ create table sys_oper_log (
   key idx_sys_oper_log_bt (business_type),
   key idx_sys_oper_log_s  (status),
   key idx_sys_oper_log_ot (oper_time)
-) engine=innodb auto_increment=100 comment = '操作ログ記録';
+) engine=innodb auto_increment=100 comment = '操作ログ記録' CHARSET='utf8';
 
 
 -- ----------------------------
@@ -453,7 +453,7 @@ create table sys_dict_type
   remark           varchar(500)    default null               comment '備考',
   primary key (dict_id),
   unique (dict_type)
-) engine=innodb auto_increment=100 comment = '辞書タイプテーブル';
+) engine=innodb auto_increment=100 comment = '辞書タイプテーブル' CHARSET='utf8';
 
 insert into sys_dict_type values(1,  'ユーザー性別', 'sys_user_sex',        '0', 'admin', sysdate(), '', null, 'ユーザー性別リスト');
 insert into sys_dict_type values(2,  'メニューステータス', 'sys_show_hide',       '0', 'admin', sysdate(), '', null, 'メニューステータスリスト');
@@ -488,7 +488,7 @@ create table sys_dict_data
   update_time      datetime                                   comment '更新日時',
   remark           varchar(500)    default null               comment '備考',
   primary key (dict_code)
-) engine=innodb auto_increment=100 comment = '辞書データテーブル';
+) engine=innodb auto_increment=100 comment = '辞書データテーブル' CHARSET='utf8';
 
 insert into sys_dict_data values(1,  1,  '男',       '0',       'sys_user_sex',        '',   '',        'Y', '0', 'admin', sysdate(), '', null, '性別男');
 insert into sys_dict_data values(2,  2,  '女',       '1',       'sys_user_sex',        '',   '',        'N', '0', 'admin', sysdate(), '', null, '性別女');
@@ -537,7 +537,7 @@ create table sys_config (
   update_time       datetime                                   comment '更新日時',
   remark            varchar(500)    default null               comment '備考',
   primary key (config_id)
-) engine=innodb auto_increment=100 comment = 'パラメータ設定テーブル';
+) engine=innodb auto_increment=100 comment = 'パラメータ設定テーブル' CHARSET='utf8';
 
 insert into sys_config values(1,  'メインフレームページ-デフォルトのスキンスタイル名',     'sys.index.skinName',               'skin-blue',     'Y', 'admin', sysdate(), '', null, '青 skin-blue、緑 skin-green、紫 skin-purple、赤 skin-red、黄 skin-yellow');
 insert into sys_config values(2,  'ユーザー管理-アカウント初期パスワード',         'sys.user.initPassword',            '123456',        'Y', 'admin', sysdate(), '', null, '初期化パスワード 123456');
@@ -569,7 +569,7 @@ create table sys_logininfor (
   primary key (info_id),
   key idx_sys_logininfor_s  (status),
   key idx_sys_logininfor_lt (login_time)
-) engine=innodb auto_increment=100 comment = 'システムアクセス記録';
+) engine=innodb auto_increment=100 comment = 'システムアクセス記録' CHARSET='utf8';
 
 
 -- ----------------------------
@@ -589,7 +589,7 @@ create table sys_user_online (
   last_access_time  datetime                                comment 'セッション最終アクセス時間',
   expire_time       int(5)        default 0                 comment 'タイムアウト時間、単位は分',
   primary key (sessionId)
-) engine=innodb comment = 'オンラインユーザー記録';
+) engine=innodb comment = 'オンラインユーザー記録' CHARSET='utf8';
 
 
 -- ----------------------------
@@ -611,7 +611,7 @@ create table sys_job (
   update_time         datetime                                 comment '更新日時',
   remark              varchar(500)  default ''                 comment '備考情報',
   primary key (job_id, job_name, job_group)
-) engine=innodb auto_increment=100 comment = '定期実行タスクスケジュールテーブル';
+) engine=innodb auto_increment=100 comment = '定期実行タスクスケジュールテーブル' CHARSET='utf8';
 
 insert into sys_job values(1, 'システムデフォルト（パラメータなし）', 'DEFAULT', 'ryTask.ryNoParams',        '0/10 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
 insert into sys_job values(2, 'システムデフォルト（パラメータあり）', 'DEFAULT', 'ryTask.ryParams(\'ry\')',  '0/15 * * * * ?', '3', '1', '1', 'admin', sysdate(), '', null, '');
@@ -632,7 +632,7 @@ create table sys_job_log (
   exception_info      varchar(2000)  default ''                 comment '例外情報',
   create_time         datetime                                  comment '作成日時',
   primary key (job_log_id)
-) engine=innodb comment = '定期実行タスクスケジュールログテーブル';
+) engine=innodb comment = '定期実行タスクスケジュールログテーブル' CHARSET='utf8';
 
 
 -- ----------------------------
@@ -651,7 +651,7 @@ create table sys_notice (
   update_time       datetime                                   comment '更新日時',
   remark            varchar(255)    default null               comment '備考',
   primary key (notice_id)
-) engine=innodb auto_increment=10 comment = 'お知らせ表';
+) engine=innodb auto_increment=10 comment = 'お知らせ表' CHARSET='utf8';
 
 -- ----------------------------
 -- 初期化 - お知らせ情報表 データ
@@ -686,7 +686,7 @@ create table gen_table (
   update_time          datetime                                   comment '更新日時',
   remark               varchar(500)    default null               comment '備考',
   primary key (table_id)
-) engine=innodb auto_increment=1 comment = 'コード生成ビジネステーブル';
+) engine=innodb auto_increment=1 comment = 'コード生成ビジネステーブル' CHARSET='utf8';
 
 
 -- ----------------------------
@@ -717,4 +717,4 @@ create table gen_table_column (
   update_by         varchar(64)     default ''                 comment '更新者',
   update_time       datetime                                   comment '更新日時',
   primary key (column_id)
-) engine=innodb auto_increment=1 comment = 'コード生成ビジネステーブルのフィールド';
+) engine=innodb auto_increment=1 comment = 'コード生成ビジネステーブルのフィールド' CHARSET='utf8';
