@@ -26,7 +26,7 @@ CREATE TABLE QRTZ_JOB_DETAILS (
     requests_recovery    VARCHAR(1)      NOT NULL            COMMENT '復元実行を受け入れる',
     job_data             BLOB            NULL                COMMENT '永続化ジョブオブジェクト',
     PRIMARY KEY (sched_name, job_name, job_group)
-) ENGINE=InnoDB COMMENT = 'ジョブ詳細情報テーブル' CHARSET='utf8';
+) ENGINE=InnoDB COMMENT = 'ジョブ詳細情報テーブル';
 
 -- ----------------------------
 -- 2. 設定されたトリガーの情報を保存
@@ -50,7 +50,7 @@ CREATE TABLE QRTZ_TRIGGERS (
     job_data             BLOB            NULL                COMMENT '永続化ジョブオブジェクト',
     PRIMARY KEY (sched_name, trigger_name, trigger_group),
     FOREIGN KEY (sched_name, job_name, job_group) REFERENCES QRTZ_JOB_DETAILS(sched_name, job_name, job_group)
-) ENGINE=InnoDB COMMENT = 'トリガー詳細情報テーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'トリガー詳細情報テーブル';
 
 -- ----------------------------
 -- 3. シンプルトリガーの情報を保存（繰り返し回数、間隔、および実行済み回数を含む）
@@ -64,7 +64,7 @@ CREATE TABLE QRTZ_SIMPLE_TRIGGERS (
     times_triggered      BIGINT(10)      NOT NULL            COMMENT '実行回数',
     PRIMARY KEY (sched_name, trigger_name, trigger_group),
     FOREIGN KEY (sched_name, trigger_name, trigger_group) REFERENCES QRTZ_TRIGGERS(sched_name, trigger_name, trigger_group)
-) ENGINE=InnoDB COMMENT = 'シンプルトリガー情報テーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'シンプルトリガー情報テーブル';
 
 -- ----------------------------
 -- 4. Cronトリガーの情報を保存（Cron式とタイムゾーン情報を含む）
@@ -77,7 +77,7 @@ CREATE TABLE QRTZ_CRON_TRIGGERS (
     time_zone_id         VARCHAR(80)                         COMMENT 'タイムゾーン',
     PRIMARY KEY (sched_name, trigger_name, trigger_group),
     FOREIGN KEY (sched_name, trigger_name, trigger_group) REFERENCES QRTZ_TRIGGERS(sched_name, trigger_name, trigger_group)
-) ENGINE=InnoDB COMMENT = 'Cronタイプのトリガーテーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'Cronタイプのトリガーテーブル';
 -- ----------------------------
 -- 5、 Blob型トリガーの格納（QuartzユーザーがJDBCを使用してカスタムトリガータイプを作成し、JobStoreがインスタンスの保存方法を知らない場合に使用）
 -- ---------------------------- 
@@ -88,7 +88,7 @@ CREATE TABLE QRTZ_BLOB_TRIGGERS (
     blob_data            BLOB            NULL                COMMENT '永続化トリガーオブジェクト',
     PRIMARY KEY (sched_name, trigger_name, trigger_group),
     FOREIGN KEY (sched_name, trigger_name, trigger_group) REFERENCES QRTZ_TRIGGERS(sched_name, trigger_name, trigger_group)
-) ENGINE=InnoDB COMMENT = 'Blob型トリガーテーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'Blob型トリガーテーブル';
 
 -- ----------------------------
 -- 6、 Blob型でカレンダー情報を格納，Quartzは時間範囲を指定するためにカレンダーを構成できます
@@ -98,7 +98,7 @@ CREATE TABLE QRTZ_CALENDARS (
     calendar_name        VARCHAR(200)    NOT NULL            COMMENT 'カレンダー名',
     calendar             BLOB            NOT NULL            COMMENT '永続化カレンダーオブジェクト',
     PRIMARY KEY (sched_name, calendar_name)
-) ENGINE=InnoDB COMMENT = 'カレンダー情報テーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'カレンダー情報テーブル';
 
 -- ----------------------------
 -- 7、 一時停止中のトリガーグループの情報を格納
@@ -107,7 +107,7 @@ CREATE TABLE QRTZ_PAUSED_TRIGGER_GRPS (
     sched_name           VARCHAR(120)    NOT NULL            COMMENT 'スケジュール名',
     trigger_group        VARCHAR(200)    NOT NULL            COMMENT 'qrtz_triggersテーブルtrigger_groupの外部キー',
     PRIMARY KEY (sched_name, trigger_group)
-) ENGINE=InnoDB COMMENT = '一時停止中のトリガーテーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = '一時停止中のトリガーテーブル';
 
 -- ----------------------------
 -- 8、 既にトリガーされたトリガーに関連する状態情報，および関連するジョブの実行情報を格納
@@ -127,7 +127,7 @@ CREATE TABLE QRTZ_FIRED_TRIGGERS (
     is_nonconcurrent     VARCHAR(1)      NULL                COMMENT '非同期かどうか',
     requests_recovery    VARCHAR(1)      NULL                COMMENT '復元実行を要求するかどうか',
     PRIMARY KEY (sched_name, entry_id)
-) ENGINE=InnoDB COMMENT = '発生済みトリガーテーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = '発生済みトリガーテーブル';
 
 -- ----------------------------
 -- 9、 スケジューラに関するわずかな状態情報を格納，クラスタ内で使用される場合、他のスケジューラインスタンスが見えるかもしれません
@@ -138,7 +138,7 @@ CREATE TABLE QRTZ_SCHEDULER_STATE (
     last_checkin_time    BIGINT(13)      NOT NULL            COMMENT '最終チェックイン時刻',
     checkin_interval     BIGINT(13)      NOT NULL            COMMENT 'チェックイン間隔',
     PRIMARY KEY (sched_name, instance_name)
-) ENGINE=InnoDB COMMENT = 'スケジューラ状態テーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = 'スケジューラ状態テーブル';
 
 -- ----------------------------
 -- 10、 プログラムの悲観的ロック情報を格納（悲観的ロックが使用されている場合）
@@ -147,7 +147,7 @@ CREATE TABLE QRTZ_LOCKS (
     sched_name           VARCHAR(120)    NOT NULL            COMMENT 'スケジュール名',
     lock_name            VARCHAR(40)     NOT NULL            COMMENT '悲観的ロック名',
     PRIMARY KEY (sched_name, lock_name)
-) ENGINE=InnoDB COMMENT = '悲観的ロック情報テーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = '悲観的ロック情報テーブル';
 
 -- ----------------------------
 -- 11、 Quartzクラスタの同期メカニズムの行ロックテーブル
@@ -169,6 +169,6 @@ CREATE TABLE QRTZ_SIMPROP_TRIGGERS (
     bool_prop_2          VARCHAR(1)      NULL                COMMENT 'Boolean型トリガーの第二パラメータ',
     PRIMARY KEY (sched_name, trigger_name, trigger_group),
     FOREIGN KEY (sched_name, trigger_name, trigger_group) REFERENCES QRTZ_TRIGGERS(sched_name, trigger_name, trigger_group)
-) ENGINE=InnoDB COMMENT = '同期メカニズムの行ロックテーブル' CHARSET = 'utf8';
+) ENGINE=InnoDB COMMENT = '同期メカニズムの行ロックテーブル';
 
 COMMIT;
