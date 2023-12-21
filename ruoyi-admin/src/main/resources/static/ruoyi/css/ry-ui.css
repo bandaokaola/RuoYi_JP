@@ -662,7 +662,7 @@ label {
 
 .select-list li p, .select-list li label:not(.radio-box){
     float: left;
-    width: 125px;
+    /*width: 125px;*/
     margin: 5px 0px 0px 0px;
     text-align:right;
 }
