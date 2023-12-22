@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
+
 import org.apache.poi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.utils.StringUtils;
@@ -31,7 +33,7 @@ public class ImageUtils
         }
         catch (Exception e)
         {
-            log.error("图片加载异常 {}", e);
+            log.error("画像の読み込みエラーが発生しました。 {}", e);
             return null;
         }
         finally
@@ -50,14 +52,14 @@ public class ImageUtils
         }
         catch (Exception e)
         {
-            log.error("获取图片异常 {}", e);
+            log.error("画像の取得エラーが発生しました。 {}", e);
         }
         return null;
     }
 
     /**
      * 读取文件为字节数据
-     * 
+     *
      * @param url 地址
      * @return 字节数据
      */
@@ -87,7 +89,7 @@ public class ImageUtils
         }
         catch (Exception e)
         {
-            log.error("获取文件路径异常 {}", e);
+            log.error("ファイルのパスの取得エラーが発生しました。 {}", e);
             return null;
         }
         finally

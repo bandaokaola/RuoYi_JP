@@ -2,13 +2,13 @@ package com.ruoyi.common.enums;
 
 /**
  * 用户会话
- * 
+ *
  * @author ruoyi
  */
 public enum OnlineStatus
 {
     /** 用户状态 */
-    on_line("在线"), off_line("离线");
+    on_line("オンライン"), off_line("オフライン");
 
     private final String info;
 

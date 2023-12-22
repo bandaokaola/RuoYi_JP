@@ -2,6 +2,7 @@ package com.ruoyi.common.core.domain;
 
 import java.util.HashMap;
 import java.util.Objects;
+
 import com.ruoyi.common.utils.StringUtils;
 
 /**
@@ -155,7 +156,7 @@ public class AjaxResult extends HashMap<String, Object>
      */
     public static AjaxResult error()
     {
-        return AjaxResult.error("操作失败");
+        return AjaxResult.error("操作に失敗しました。");
     }
 
     /**
