@@ -106,7 +106,7 @@ public class SysUserController extends BaseController
     public AjaxResult importTemplate()
     {
         ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
-        return util.importTemplateExcel("用户数据");
+        return util.importTemplateExcel("ユーザーデータ");
     }
 
     /**
@@ -334,7 +334,7 @@ public class SysUserController extends BaseController
     /**
      * 部門ツリーの選択
      * 
-     * @param deptId 部门ID
+     * @param deptId 部門ID
      */
     @RequiresPermissions("system:user:list")
     @GetMapping("/selectDeptTree/{deptId}")
