@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('用户详细')" />
+	<th:block th:include="include :: header('ユーザー詳細')" />
+	<link th:href="@{/css/custom/system/user/view.css?v=3.3.7}" rel="stylesheet"/>
 </head>
 <body>
     <div class="main-content">
         <form class="form-horizontal" th:object="${user}">
-            <h4 class="form-header h4">基本信息</h4>
+            <h4 class="form-header h4">基本情報</h4>
             <div class="row">
             	<div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">用户名称：</label>
+                        <label class="col-sm-4 control-label">ユーザー名：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{userName}"></p>
                         </div>
@@ -18,7 +19,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">归属部门：</label>
+                        <label class="col-sm-4 control-label">所属部門：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{dept.deptName}"></p>
                         </div>
@@ -28,7 +29,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">手机号码：</label>
+                        <label class="col-sm-4 control-label">携帯番号：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{phonenumber}"></p>
                         </div>
@@ -36,7 +37,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">邮箱：</label>
+                        <label class="col-sm-4 control-label">メール：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{email}"></p>
                         </div>
@@ -46,7 +47,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">登录账号：</label>
+                        <label class="col-sm-4 control-label">ログインアカウント：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{loginName}"></p>
                         </div>
@@ -54,7 +55,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">用户状态：</label>
+                        <label class="col-sm-4 control-label">ユーザーステータス：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{status == '0' ? '正常' : '停用'}"></p>
                         </div>
@@ -64,15 +65,15 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">岗位：</label>
+                        <label class="col-sm-4 control-label">ポジション：</label>
                         <div class="col-sm-8">
-                            <p class="form-control-plaintext">[[${#strings.defaultString(postGroup, '无岗位')}]]</p>
+                            <p class="form-control-plaintext">[[${#strings.defaultString(postGroup, 'ポジションなし')}]]</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">用户性别：</label>
+                        <label class="col-sm-4 control-label">ユーザー性別：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{@dict.getLabel('sys_user_sex', sex)}"></p>
                         </div>
@@ -82,18 +83,18 @@
             <div class="row">
             	<div class="col-sm-12">
                     <div class="form-group">
-                        <label class="col-xs-2 control-label">角色：</label>
+                        <label class="col-xs-2 control-label">ロール：</label>
                         <div class="col-xs-10">
-                            <p class="form-control-plaintext">[[${#strings.defaultString(roleGroup, '无角色')}]]</p>
+                            <p class="form-control-plaintext">[[${#strings.defaultString(roleGroup, 'ロールなし')}]]</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <h4 class="form-header h4">其他信息</h4>
+            <h4 class="form-header h4">その他の情報</h4>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">创建者：</label>
+                        <label class="col-sm-4 control-label">作成者：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{createBy}"></p>
                         </div>
@@ -101,7 +102,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">创建时间：</label>
+                        <label class="col-sm-4 control-label">作成日時：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{#dates.format(createTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </div>
@@ -119,7 +120,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">更新时间：</label>
+                        <label class="col-sm-4 control-label">更新日時：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{#dates.format(updateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </div>
@@ -129,7 +130,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">最后登录IP：</label>
+                        <label class="col-sm-4 control-label">最終ログインIP：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{loginIp}"></p>
                         </div>
@@ -137,7 +138,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">最后登录时间：</label>
+                        <label class="col-sm-4 control-label">最終ログイン日時：</label>
                         <div class="col-sm-8">
                             <p class="form-control-plaintext" th:text="*{#dates.format(loginDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
                         </div>
@@ -147,7 +148,7 @@
 	        <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <label class="col-xs-2 control-label">备注：</label>
+                        <label class="col-xs-2 control-label">備考：</label>
                         <div class="col-xs-10">
                             <p class="form-control-plaintext" th:text="*{remark}"></p>
                         </div>

@@ -1116,7 +1116,7 @@ var table = {
                     }
                 });
             },
-            // 批量删除信息
+            // 情報を一括削除
             removeAll: function() {
                 table.set();
                 var rows = $.common.isEmpty(table.options.uniqueId) ? $.table.selectFirstColumns() : $.table.selectColumns(table.options.uniqueId);
@@ -1124,7 +1124,7 @@ var table = {
                     $.modal.alertWarning("少なくとも1つのレコードを選択してください。");
                     return;
                 }
-                $.modal.confirm("确认要删除选中的" + rows.length + "条数据吗?", function() {
+                $.modal.confirm("選択された" + rows.length + "件のデータを削除しますか？", function() {
                     var url = table.options.removeUrl;
                     var data = { "ids": rows.join() };
                     $.operate.submit(url, "post", "json", data);
