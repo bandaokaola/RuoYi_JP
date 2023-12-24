@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('角色列表')" />
+	<th:block th:include="include :: header('ロールリスト')" />
 </head>
 <body class="gray-bg">
 	<div class="container-div">
@@ -11,26 +11,26 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								角色名称：<input type="text" name="roleName"/>
+								ロール名：<input type="text" name="roleName"/>
 							</li>
 							<li>
-								权限字符：<input type="text" name="roleKey"/>
+								権限キー：<input type="text" name="roleKey"/>
 							</li>
 							<li>
-								角色状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+								ロール状態：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
 									<option value="">所有</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
 							<li class="select-time">
-								<label>创建时间： </label>
-								<input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<label>作成時間：</label>
+								<input type="text" class="time-input" id="startTime" placeholder="開始時間" name="params[beginTime]"/>
 								<span>-</span>
-								<input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+								<input type="text" class="time-input" id="endTime" placeholder="終了時間" name="params[endTime]"/>
 							</li>
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-							    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;検索</a>
+							    <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;リセット</a>
 							</li>
 						</ul>
 					</div>
@@ -39,16 +39,16 @@
 		
 			<div class="btn-group-sm" id="toolbar" role="group">
 				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:role:add">
-	                <i class="fa fa-plus"></i> 新增
+	                <i class="fa fa-plus"></i> 新規追加
 	            </a>
 	            <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:role:edit">
-		            <i class="fa fa-edit"></i> 修改
+		            <i class="fa fa-edit"></i> 修正
 		        </a>
 				<a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:role:remove">
-		            <i class="fa fa-remove"></i> 删除
+		            <i class="fa fa-remove"></i> 削除
 		        </a>
 		        <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:role:export">
-		            <i class="fa fa-download"></i> 导出
+		            <i class="fa fa-download"></i> エクスポート
 		        </a>
 	        </div>
 	        
@@ -72,53 +72,53 @@
 		        removeUrl: prefix + "/remove",
 		        exportUrl: prefix + "/export",
 		        sortName: "roleSort",
-		        modalName: "角色",
+		        modalName: "ロール",
 		        columns: [{
 		            checkbox: true
 		        },
 		        {
 		            field: 'roleId',
-		            title: '角色编号'
+		            title: 'ロール番号'
 		        },
 		        {
 		            field: 'roleName',
-		            title: '角色名称',
+		            title: 'ロール名',
 		            sortable: true
 		        },
 		        {
 		            field: 'roleKey',
-		            title: '权限字符',
+		            title: '権限キー',
 		            sortable: true
 		        },
 		        {
 		            field: 'dataScope',
-		            title: '数据权限',
+		            title: 'データ権限',
 		            formatter: function(value, item, index) {
 		                if (item.dataScope == '1') {
-		                    return '<span class="badge badge-primary">全部数据权限</span>';
+		                    return '<span class="badge badge-primary">すべてのデータ権限</span>';
 		                }
 		                else if (item.dataScope == '2') {
-		                    return '<span class="badge badge-success">自定义数据权限</span>';
+		                    return '<span class="badge badge-success">カスタムデータ権限</span>';
 		                }
 		                else if (item.dataScope == '3') {
-		                    return '<span class="badge badge-info">本部门数据权限</span>';
+		                    return '<span class="badge badge-info">所属部門データ権限</span>';
 		                }
 		                else if (item.dataScope == '4') {
-		                    return '<span class="badge badge-warning">本部门及以下数据权限</span>';
+		                    return '<span class="badge badge-warning">所属部門および以下のデータ権限</span>';
 		                }
 		                else if (item.dataScope == '5') {
-		                    return '<span class="badge badge-danger">仅本人数据权限</span>';
+		                    return '<span class="badge badge-danger">個人のデータ権限のみ</span>';
 		                }
 		            }
 		        },
 		        {
 		            field: 'roleSort',
-		            title: '显示顺序',
+		            title: '表示順',
 		            sortable: true
 		        },
 		        {
 		        	visible: editFlag == 'hidden' ? false : true,
-		        	title: '角色状态',
+		        	title: 'ロール状態',
 		        	align: 'center',
 		        	formatter: function (value, row, index) {
 		        		return statusTools(row);
@@ -126,7 +126,7 @@
 		        },
 		        {
 		            field: 'createTime',
-		            title: '创建时间',
+		            title: '作成時間',
 		            sortable: true
 		        },
 		        {
@@ -151,19 +151,19 @@
 		    $.table.init(options);
 		});
 		
-		/* 角色管理-分配数据权限 */
+		/* ロール管理-データ権限割り当て */
 		function authDataScope(roleId) {
 		    var url = prefix + '/authDataScope/' + roleId;
-		    $.modal.open("分配数据权限", url);
+		    $.modal.open("データ権限割り当て", url);
 		}
 		
-		/* 角色管理-分配用户 */
+		/* ロール管理-ユーザー割り当て */
 		function authUser(roleId) {
 		    var url = prefix + '/authUser/' + roleId;
-		    $.modal.openTab("分配用户", url);
+		    $.modal.openTab("ユーザー割り当て", url);
 		}
 		
-		/* 角色状态显示 */
+		/* ロール状態表示 */
 		function statusTools(row) {
 		    if (row.status == 1) {
     			return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.roleId + '\')"></i> ';
@@ -172,16 +172,16 @@
     		}
 		}
 		
-		/* 角色管理-停用 */
+		/* ロール管理-停止 */
 		function disable(roleId) {
-			$.modal.confirm("确认要停用角色吗？", function() {
+			$.modal.confirm("ロールを停止してもよろしいですか？", function() {
 				$.operate.post(prefix + "/changeStatus", { "roleId": roleId, "status": 1 });
 		    })
 		}
 
-		/* 角色管理启用 */
+		/* ロール管理-開始 */
 		function enable(roleId) {
-			$.modal.confirm("确认要启用角色吗？", function() {
+			$.modal.confirm("ロールを開始してもよろしいですか？", function() {
 				$.operate.post(prefix + "/changeStatus", { "roleId": roleId, "status": 0 });
 		    })
 		}

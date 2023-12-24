@@ -6,112 +6,112 @@ import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.common.core.domain.entity.SysRole;
 
 /**
- * 部门管理 服务层
+ * 部門管理サービス
  * 
  * @author ruoyi
  */
 public interface ISysDeptService
 {
     /**
-     * 查询部门管理数据
+     * 部門管理データを検索
      * 
-     * @param dept 部门信息
-     * @return 部门信息集合
+     * @param dept 部門情報
+     * @return 部門情報のリスト
      */
     public List<SysDept> selectDeptList(SysDept dept);
 
     /**
-     * 查询部门管理树
+     * 部門管理ツリーを検索
      * 
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept 部門情報
+     * @return すべての部門情報
      */
     public List<Ztree> selectDeptTree(SysDept dept);
 
     /**
-     * 查询部门管理树（排除下级）
+     * 部門管理ツリーを検索（下位を除く）
      * 
-     * @param dept 部门信息
-     * @return 所有部门信息
+     * @param dept 部門情報
+     * @return すべての部門情報
      */
     public List<Ztree> selectDeptTreeExcludeChild(SysDept dept);
 
     /**
-     * 根据角色ID查询菜单
+     * ロールIDに基づいてメニューを検索
      *
-     * @param role 角色对象
-     * @return 菜单列表
+     * @param role ロールオブジェクト
+     * @return メニューリスト
      */
     public List<Ztree> roleDeptTreeData(SysRole role);
 
     /**
-     * 根据父部门ID查询下级部门数量
+     * 親部門IDに基づいて子部門の数を検索
      * 
-     * @param parentId 父部门ID
-     * @return 结果
+     * @param parentId 親部門ID
+     * @return 結果
      */
     public int selectDeptCount(Long parentId);
 
     /**
-     * 查询部门是否存在用户
+     * 部門にユーザーが存在するかどうかを検索
      * 
-     * @param deptId 部门ID
-     * @return 结果 true 存在 false 不存在
+     * @param deptId 部門ID
+     * @return 結果 true 存在する false 存在しない
      */
     public boolean checkDeptExistUser(Long deptId);
 
     /**
-     * 删除部门管理信息
+     * 部門管理情報を削除
      * 
-     * @param deptId 部门ID
-     * @return 结果
+     * @param deptId 部門ID
+     * @return 結果
      */
     public int deleteDeptById(Long deptId);
 
     /**
-     * 新增保存部门信息
+     * 部門情報を新規保存
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部門情報
+     * @return 結果
      */
     public int insertDept(SysDept dept);
 
     /**
-     * 修改保存部门信息
+     * 部門情報を修正して保存
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部門情報
+     * @return 結果
      */
     public int updateDept(SysDept dept);
 
     /**
-     * 根据部门ID查询信息
+     * 部門IDに基づいて情報を検索
      * 
-     * @param deptId 部门ID
-     * @return 部门信息
+     * @param deptId 部門ID
+     * @return 部門情報
      */
     public SysDept selectDeptById(Long deptId);
 
     /**
-     * 根据ID查询所有子部门（正常状态）
+     * IDに基づいてすべての子部門を検索（正常な状態）
      * 
-     * @param deptId 部门ID
-     * @return 子部门数
+     * @param deptId 部門ID
+     * @return 子部門数
      */
     public int selectNormalChildrenDeptById(Long deptId);
 
     /**
-     * 校验部门名称是否唯一
+     * 部門名が一意かどうかを確認
      * 
-     * @param dept 部门信息
-     * @return 结果
+     * @param dept 部門情報
+     * @return 結果
      */
     public boolean checkDeptNameUnique(SysDept dept);
 
     /**
-     * 校验部门是否有数据权限
+     * 部門にデータ権限があるかどうかを確認
      * 
-     * @param deptId 部门id
+     * @param deptId 部門id
      */
     public void checkDeptDataScope(Long deptId);
 }
