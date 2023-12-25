@@ -163,7 +163,7 @@ public class SysRoleServiceImpl implements ISysRoleService
             SysRole role = selectRoleById(roleId);
             if (countUserRoleByRoleId(roleId) > 0)
             {
-                throw new ServiceException(String.format("%1$s已分配,不能删除", role.getRoleName()));
+                throw new ServiceException(String.format("%1$sは既に割り当てられています。削除できません。", role.getRoleName()));
             }
         }
         // ロールとメニューの関連を削除
