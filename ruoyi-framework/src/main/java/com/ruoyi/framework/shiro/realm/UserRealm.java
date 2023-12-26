@@ -2,6 +2,7 @@ package com.ruoyi.framework.shiro.realm;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -20,6 +21,7 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.exception.user.CaptchaException;
 import com.ruoyi.common.exception.user.RoleBlockedException;
@@ -34,7 +36,7 @@ import com.ruoyi.system.service.ISysRoleService;
 
 /**
  * 自定义Realm 处理登录 权限
- * 
+ *
  * @author ruoyi
  */
 public class UserRealm extends AuthorizingRealm
@@ -125,7 +127,7 @@ public class UserRealm extends AuthorizingRealm
         }
         catch (Exception e)
         {
-            log.info("对用户[" + username + "]进行登录验证..验证未通过{}", e.getMessage());
+            log.info("ユーザー[" + username + "]のログイン認証を行います。認証が通りませんでした。{}", e.getMessage());
             throw new AuthenticationException(e.getMessage(), e);
         }
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
