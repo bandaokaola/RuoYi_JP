@@ -25,12 +25,12 @@ public class R<T> implements Serializable
 
     public static <T> R<T> ok()
     {
-        return restResult(null, SUCCESS, "操作成功");
+        return restResult(null, SUCCESS, "操作が成功しました。");
     }
 
     public static <T> R<T> ok(T data)
     {
-        return restResult(data, SUCCESS, "操作成功");
+        return restResult(data, SUCCESS, "操作が成功しました。");
     }
 
     public static <T> R<T> ok(T data, String msg)
@@ -50,7 +50,7 @@ public class R<T> implements Serializable
 
     public static <T> R<T> fail(T data)
     {
-        return restResult(data, FAIL, "操作失败");
+        return restResult(data, FAIL, "操作に失敗しました。");
     }
 
     public static <T> R<T> fail(T data, String msg)

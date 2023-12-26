@@ -2,6 +2,7 @@ package com.ruoyi.framework.shiro.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.constant.ShiroConstants;
 import com.ruoyi.common.constant.UserConstants;
@@ -17,7 +18,7 @@ import com.ruoyi.system.service.ISysUserService;
 
 /**
  * 注册校验方法
- * 
+ *
  * @author ruoyi
  */
 @Component
@@ -38,29 +39,29 @@ public class SysRegisterService
 
         if (ShiroConstants.CAPTCHA_ERROR.equals(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA)))
         {
-            msg = "验证码错误";
+            msg = "認証コードが間違っています。";
         }
         else if (StringUtils.isEmpty(loginName))
         {
-            msg = "用户名不能为空";
+            msg = "ユーザー名は空にできません。";
         }
         else if (StringUtils.isEmpty(password))
         {
-            msg = "用户密码不能为空";
+            msg = "ユーザーパスワードは空にできません。";
         }
         else if (password.length() < UserConstants.PASSWORD_MIN_LENGTH
                 || password.length() > UserConstants.PASSWORD_MAX_LENGTH)
         {
-            msg = "密码长度必须在5到20个字符之间";
+            msg = "パスワードの長さは5から20文字の間である必要があります。";
         }
         else if (loginName.length() < UserConstants.USERNAME_MIN_LENGTH
                 || loginName.length() > UserConstants.USERNAME_MAX_LENGTH)
         {
-            msg = "账户长度必须在2到20个字符之间";
+            msg = "アカウントの長さは2から20文字の間である必要があります。";
         }
         else if (!userService.checkLoginNameUnique(user))
         {
-            msg = "保存用户'" + loginName + "'失败，注册账号已存在";
+            msg = "ユーザー：'" + loginName + "'保存に失敗しました。登録されたアカウントは既に存在しています。";
         }
         else
         {
@@ -71,7 +72,7 @@ public class SysRegisterService
             boolean regFlag = userService.registerUser(user);
             if (!regFlag)
             {
-                msg = "注册失败,请联系系统管理人员";
+                msg = "登録に失敗しました。システム管理者にお問い合わせください。";
             }
             else
             {

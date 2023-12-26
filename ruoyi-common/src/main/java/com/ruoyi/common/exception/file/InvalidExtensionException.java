@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * 文件上传 误异常类
- * 
+ *
  * @author ruoyi
  */
 public class InvalidExtensionException extends FileUploadException
@@ -17,7 +17,7 @@ public class InvalidExtensionException extends FileUploadException
 
     public InvalidExtensionException(String[] allowedExtension, String extension, String filename)
     {
-        super("文件[" + filename + "]后缀[" + extension + "]不正确，请上传" + Arrays.toString(allowedExtension) + "格式");
+        super("ファイル[" + filename + "]の拡張子[" + extension + "]が正しくありません。" + Arrays.toString(allowedExtension) + "形式のファイルをアップロードしてください。");
         this.allowedExtension = allowedExtension;
         this.extension = extension;
         this.filename = filename;
@@ -67,7 +67,7 @@ public class InvalidExtensionException extends FileUploadException
             super(allowedExtension, extension, filename);
         }
     }
-    
+
     public static class InvalidVideoExtensionException extends InvalidExtensionException
     {
         private static final long serialVersionUID = 1L;
