@@ -9,7 +9,7 @@ create table sys_dept (
   dept_name         varchar(30)     default ''                 comment '部門名',
   order_num         int(4)          default 0                  comment '表示順序',
   leader            varchar(20)     default null               comment '責任者',
-  phone             varchar(11)     default null               comment '電話番号',
+  phone             varchar(20)     default null               comment '電話番号',
   email             varchar(50)     default null               comment 'メール',
   status            char(1)         default '0'                comment '部門の状態（0正常 1停止）',
   del_flag          char(1)         default '0'                comment '削除フラグ（0存在 2削除）',
@@ -23,16 +23,16 @@ create table sys_dept (
 -- ----------------------------
 -- 初期化-部門テーブルデータ
 -- ----------------------------
-insert into sys_dept values(100,  0,   '0',          '若依科技',   0, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(101,  100, '0,100',      '深圳総公司', 1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(102,  100, '0,100',      '長沙分公司', 2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(103,  101, '0,100,101',  '研發部門',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(104,  101, '0,100,101',  '市場部門',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(105,  101, '0,100,101',  'テスト部門',   3, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(106,  101, '0,100,101',  '財務部門',   4, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(107,  101, '0,100,101',  '運用部門',   5, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(108,  102, '0,100,102',  '市場部門',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(109,  102, '0,100,102',  '財務部門',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(100,  0,   '0',          '株式会社日中ソフト',   0, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(101,  100, '0,100',      '東京支社', 1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(102,  100, '0,100',      '上海支社', 2, '旭本软件（上海）有限公司', '86-21-51504181', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(103,  101, '0,100,101',  '研究開発部門',   1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(104,  101, '0,100,101',  '営業部門',   2, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(105,  101, '0,100,101',  'QA部門',   3, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(106,  101, '0,100,101',  '労務部門',   4, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(107,  101, '0,100,101',  '保守部門',   5, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(108,  102, '0,100,102',  '営業部門',   1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(109,  102, '0,100,102',  '労務部門',   2, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
 
 
 -- ----------------------------
