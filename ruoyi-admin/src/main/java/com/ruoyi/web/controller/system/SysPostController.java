@@ -21,7 +21,7 @@ import com.ruoyi.system.domain.SysPost;
 import com.ruoyi.system.service.ISysPostService;
 
 /**
- * 岗位信息操作处理
+ * 職位情報処理
  * 
  * @author ruoyi
  */
@@ -51,7 +51,7 @@ public class SysPostController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "岗位管理", businessType = BusinessType.EXPORT)
+    @Log(title = "職位管理", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:post:export")
     @PostMapping("/export")
     @ResponseBody
@@ -59,11 +59,11 @@ public class SysPostController extends BaseController
     {
         List<SysPost> list = postService.selectPostList(post);
         ExcelUtil<SysPost> util = new ExcelUtil<SysPost>(SysPost.class);
-        return util.exportExcel(list, "岗位数据");
+        return util.exportExcel(list, "職位データ");
     }
 
     @RequiresPermissions("system:post:remove")
-    @Log(title = "岗位管理", businessType = BusinessType.DELETE)
+    @Log(title = "職位管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -79,7 +79,7 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 新增岗位
+     * 新規職位
      */
     @GetMapping("/add")
     public String add()
@@ -88,28 +88,28 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 新增保存岗位
+     * 新規保存職位
      */
     @RequiresPermissions("system:post:add")
-    @Log(title = "岗位管理", businessType = BusinessType.INSERT)
+    @Log(title = "職位管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysPost post)
     {
         if (!postService.checkPostNameUnique(post))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("新規職位'" + post.getPostName() + "'失敗，職位名称が既に存在します");
         }
         else if (!postService.checkPostCodeUnique(post))
         {
-            return error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("新規職位'" + post.getPostName() + "'失敗，職位名称が既に存在します");
         }
         post.setCreateBy(getLoginName());
         return toAjax(postService.insertPost(post));
     }
 
     /**
-     * 修改岗位
+     * 職位編集
      */
     @RequiresPermissions("system:post:edit")
     @GetMapping("/edit/{postId}")
@@ -120,28 +120,28 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 修改保存岗位
+     * 変更保存職位
      */
     @RequiresPermissions("system:post:edit")
-    @Log(title = "岗位管理", businessType = BusinessType.UPDATE)
+    @Log(title = "職位管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysPost post)
     {
         if (!postService.checkPostNameUnique(post))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位名称已存在");
+            return error("職位'" + post.getPostName() + "'の編集失敗，職位名称が既に存在します");
         }
         else if (!postService.checkPostCodeUnique(post))
         {
-            return error("修改岗位'" + post.getPostName() + "'失败，岗位编码已存在");
+            return error("修改'" + post.getPostName() + "'の編集失敗，職位名称が既に存在します");
         }
         post.setUpdateBy(getLoginName());
         return toAjax(postService.updatePost(post));
     }
 
     /**
-     * 校验岗位名称
+     * 職位名称の検証
      */
     @PostMapping("/checkPostNameUnique")
     @ResponseBody
@@ -151,7 +151,7 @@ public class SysPostController extends BaseController
     }
 
     /**
-     * 校验岗位编码
+     * 職位コードの検証
      */
     @PostMapping("/checkPostCodeUnique")
     @ResponseBody
