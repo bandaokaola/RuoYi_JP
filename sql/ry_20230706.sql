@@ -195,7 +195,7 @@ insert into sys_menu values('1010', 'ロール削除', '101', '4', '#', '', 'F',
 insert into sys_menu values('1011', 'ロールエクスポート', '101', '5', '#', '', 'F', '0', '1', 'system:role:export', '#', 'admin', sysdate(), '', null, '');
 -- メニュー管理ボタン
 insert into sys_menu values('1012', 'メニュー検索', '102', '1', '#', '', 'F', '0', '1', 'system:menu:list', '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1013', 'ｓメニュー追加', '102', '2', '#', '', 'F', '0', '1', 'system:menu:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1013', 'メニュー追加', '102', '2', '#', '', 'F', '0', '1', 'system:menu:add', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1014', 'メニュー修正', '102', '3', '#', '', 'F', '0', '1', 'system:menu:edit', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1015', 'メニュー削除', '102', '4', '#', '', 'F', '0', '1', 'system:menu:remove', '#', 'admin', sysdate(), '', null, '');
 -- 部門管理ボタン
