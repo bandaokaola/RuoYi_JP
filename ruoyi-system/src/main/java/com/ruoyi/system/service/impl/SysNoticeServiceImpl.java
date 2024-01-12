@@ -9,7 +9,7 @@ import com.ruoyi.system.mapper.SysNoticeMapper;
 import com.ruoyi.system.service.ISysNoticeService;
 
 /**
- * 公告 服务层实现
+ * お知らせサービス層実装
  * 
  * @author ruoyi
  * @date 2018-06-25
@@ -21,10 +21,10 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     private SysNoticeMapper noticeMapper;
 
     /**
-     * 查询公告信息
+     * お知らせ情報を検索
      * 
-     * @param noticeId 公告ID
-     * @return 公告信息
+     * @param noticeId お知らせID
+     * @return お知らせ情報
      */
     @Override
     public SysNotice selectNoticeById(Long noticeId)
@@ -33,10 +33,10 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     }
 
     /**
-     * 查询公告列表
+     * お知らせリストを検索
      * 
-     * @param notice 公告信息
-     * @return 公告集合
+     * @param notice お知らせ情報
+     * @return お知らせのリスト
      */
     @Override
     public List<SysNotice> selectNoticeList(SysNotice notice)
@@ -45,10 +45,10 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     }
 
     /**
-     * 新增公告
+     * 新規お知らせ追加
      * 
-     * @param notice 公告信息
-     * @return 结果
+     * @param notice お知らせ情報
+     * @return 処理結果
      */
     @Override
     public int insertNotice(SysNotice notice)
@@ -57,10 +57,10 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     }
 
     /**
-     * 修改公告
+     * お知らせ編集
      * 
-     * @param notice 公告信息
-     * @return 结果
+     * @param notice お知らせ情報
+     * @return 処理結果
      */
     @Override
     public int updateNotice(SysNotice notice)
@@ -69,10 +69,10 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     }
 
     /**
-     * 删除公告对象
+     * お知らせ情報削除
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 削除対象のデータID
+     * @return 処理結果
      */
     @Override
     public int deleteNoticeByIds(String ids)

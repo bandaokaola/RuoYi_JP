@@ -5,55 +5,55 @@ $(document).ready(function(){
 		 		form.submit();    
 		}       
 	});  
-	//手机号码验证身份证正则合并：(^\d{15}$)|(^\d{17}([0-9]|X)$)
+	//電話番号および身分証明書の正規表現を結合：(^\d{15}$)|(^\d{17}([0-9]|X)$)
 	jQuery.validator.addMethod("isPhone",function(value,element){
 		var length = value.length;
 		var phone=/^1[3-9]\d{9}$/;
 		return this.optional(element)||(length == 11 && phone.test(value));
-	},"请填写正确的11位手机号");
-	//电话号码验证
+	},"正しい11桁の電話番号を入力してください");
+	//電話番号の検証
 	jQuery.validator.addMethod("isTel",function(value,element){
-		var tel = /^(0\d{2,3}-)?\d{7,8}$/g;//区号3,4位,号码7,8位
+		var tel = /^(0\d{2,3}-)?\d{7,8}$/g;//エリアコード3,4桁, 番号7,8桁
 		return this.optional(element) || (tel.test(value));
-	},"请填写正确的座机号码");
-	//姓名校验
+	},"正しい電話番号を入力してください");
+	//氏名の検証
 	jQuery.validator.addMethod("isName",function(value,element){
 		var name=/^[\u4e00-\u9fa5]{2,6}$/;
 		return this.optional(element) || (name.test(value));
-	},"姓名只能用汉字,长度2-4位");
-	//校验用户名
+	},"氏前は漢字のみ使用でき、2〜6文字の長さである必要があります");
+	//ユーザー名の検証
 	jQuery.validator.addMethod("isUserName",function(value,element){
 		var userName=/^[a-zA-Z0-9]{2,13}$/;
 		return this.optional(element) || (userName).test(value);
-	},'请输入数字或者字母,不包含特殊字符');
+	},'数字またはアルファベットを入力してください。特殊文字は含まれていません');
 	
-	//校验身份证
+	//身分証明書の検証
 	jQuery.validator.addMethod("isIdentity",function(value,element){
 		var id= /^(\d{15}$|^\d{18}$|^\d{17}(\d|X))$/;
 		return this.optional(element) || (id.test(value));
-	},"请输入正确的15或18位身份证号,末尾若为X请大写");
-	//校验二代身份证
+	},"正しい15桁または18桁の身分証明書番号を入力してください。Xで終わる場合は大文字にしてください。");
+	//二代身份証明書（18桁）の検証
 	jQuery.validator.addMethod("isIdentity18",function(value,element){
 		var id= /^(^\d{17}(\d|X))$/;
 		return this.optional(element) || (id.test(value));
-	},"请输入正确的18位身份证号，末尾若为X请大写");
-	//校验出生日期
+	},"正しい18桁の身分証明書番号を入力してください。Xで終わる場合は大文字にしてください。");
+	//生年月日の検証
 	jQuery.validator.addMethod("isBirth",function(value,element){
 		var birth = /^(19|20)\d{2}-(1[0-2]|0?[1-9])-(0?[1-9]|[1-2][0-9]|3[0-1])$/;
 		return this.optional(element) || (birth).test(value);
-	},"出生日期格式示例2000-01-01");
-	//校验IP地址
+	},"生年月日の形式は、2000-01-01のように入力してください。");
+	//IPアドレスの検証
 	jQuery.validator.addMethod("isIp",function(value,element){
 		var ip = /^(?:(?:2[0-4][0-9]\.)|(?:25[0-5]\.)|(?:1[0-9][0-9]\.)|(?:[1-9][0-9]\.)|(?:[0-9]\.)){3}(?:(?:2[0-4][0-9])|(?:25[0-5])|(?:1[0-9][0-9])|(?:[1-9][0-9])|(?:[0-9]))$/;
 		return this.optional(element) || (ip).test(value);
-	},"IP地址格式示例127.0.0.1");
+	},"IPアドレスの形式は、127.0.0.1のように入力してください。");
 	jQuery.validator.addMethod("notEqual", function(value, element, param) {
         return value != param;
-    }, $.validator.format("输入值不允许为{0}"));
+    }, $.validator.format("入力値は{0}であってはいけません。"));
 	jQuery.validator.addMethod("gt", function(value, element, param) {
         return value > param;
-    }, $.validator.format("输入值必须大于{0}"));
-	//校验新旧密码是否相同
+    }, $.validator.format("入力値は{0}より大きくなければなりません。"));
+	//校验新密码和确认密码是否相同
 	jQuery.validator.addMethod("isdiff",function(){
 		var p1=$("#pwdOld").val();
 		var p2=$("#pwdNew").val();
@@ -63,7 +63,7 @@ $(document).ready(function(){
 			 return true;
 		}
 		});
-	//校验新密码和确认密码是否相同
+	//新しいパスワードと確認用パスワードが同じであるかどうかを検証する
 	jQuery.validator.addMethod("issame",function(){
 		var p3=$("#confirm_password").val();
 		var p4=$("#pwdNew").val();
@@ -73,7 +73,7 @@ $(document).ready(function(){
 			 return false;
 		}
 		});
-	//校验基础信息表单
+	//基本情報フォームを検証する
 	$("#basicInfoForm").validate({
 		errorElement:'span',
 		errorClass:'help-block error-mes',
@@ -95,22 +95,22 @@ $(document).ready(function(){
 		},
 		messages:{
 			name:{
-				required:"请输入中文姓名",
-				isName:"姓名只能为汉字"
+				required:"氏名を入力してください",
+				isName:"氏名漢字のみが使用可能です"
 			},
 			sex:{
-				required:"请输入性别"
+				required:"性別を入力してください"
 			},
 			birth:{
-				required:"请输入出生年月"
+				required:"生年月日を入力してください"
 			},
             mobile:{
-				required:"请输入手机号",
-				isPhone:"请填写正确的11位手机号"
+				required:"携帯電話番号を入力してください",
+				isPhone:"正しい11桁の携帯電話番号を入力してください"
 			},
 			email:{
-				required:"请输入邮箱",
-				email:"请填写正确的邮箱格式"
+				required:"メールアドレスを入力してください",
+				email:"正しいメールアドレスの形式で入力してください"
 			}
 		},
 	
@@ -133,11 +133,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	//校验修改密码表单
+	//パスワード修正フォームを検証
 	$("#modifyPwd").validate({
 		onfocusout: function(element) { $(element).valid()},
-		 debug:false, //表示校验通过后是否直接提交表单
-		 onkeyup:false, //表示按键松开时候监听验证
+		 debug:false, //バリデーションが通過した後、直接フォームを送信するかどうかを表示
+		 onkeyup:false, //キーが離れたときにバリデーションをリッスンするかどうかを表示
 		rules:{
 			pwdOld:{
 				required:true,
@@ -158,19 +158,19 @@ $(document).ready(function(){
 		   },
 		messages:{
 			 	pwdOld : {
-					 required:'必填',
-					 minlength:$.validator.format('密码长度要大于6')
+					 required:'必須項目',
+					 minlength:$.validator.format('パスワードは6文字以上である必要があります')
 				},
             	pwdNew:{
-				   required:'必填',
-				   minlength:$.validator.format('密码长度要大于6'),
-				   isdiff:'原密码与新密码不能重复',
+				   required:'必須項目',
+				   minlength:$.validator.format('パスワードは6文字以上である必要があります'),
+				   isdiff:'元のパスワードと新しいパスワードは同じにできません',
 				  
 			   },
 				confirm_password:{
-				   required:'必填',
-				   minlength:$.validator.format('密码长度要大于6'),
-				   issame:'新密码要与确认新密码一致',
+				   required:'必須項目',
+				   minlength:$.validator.format('パスワードは6文字以上である必要があります'),
+				   issame:'新しいパスワードと確認用パスワードが一致する必要があります',
 				}
 		
 		},

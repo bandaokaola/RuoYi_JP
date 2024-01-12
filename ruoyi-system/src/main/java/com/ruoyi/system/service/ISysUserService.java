@@ -5,210 +5,210 @@ import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.system.domain.SysUserRole;
 
 /**
- * 用户 业务层
+ * ユーザーサービス
  * 
  * @author ruoyi
  */
 public interface ISysUserService
 {
     /**
-     * 根据条件分页查询用户列表
+     * 条件に基づいてユーザーリストをページ分割で取得する
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ユーザー情報
+     * @return ユーザー情報のリスト
      */
     public List<SysUser> selectUserList(SysUser user);
 
     /**
-     * 根据条件分页查询已分配用户角色列表
+     * 条件に基づいて割り当て済みユーザーロールのリストをページ分割で取得する
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ユーザー情報
+     * @return ユーザー情報のリスト
      */
     public List<SysUser> selectAllocatedList(SysUser user);
 
     /**
-     * 根据条件分页查询未分配用户角色列表
+     * 条件に基づいて未割り当てユーザーロールのリストをページ分割で取得する
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ーザー情報
+     * @return ユーザー情報のリスト
      */
     public List<SysUser> selectUnallocatedList(SysUser user);
 
     /**
-     * 通过用户名查询用户
+     * ユーザー名を使用してユーザーを検索する
      * 
-     * @param userName 用户名
-     * @return 用户对象信息
+     * @param userName ユーザー名
+     * @return ユーザーオブジェクト情報
      */
     public SysUser selectUserByLoginName(String userName);
 
     /**
-     * 通过手机号码查询用户
+     * 電話番号を使用してユーザーを検索する
      * 
-     * @param phoneNumber 手机号码
-     * @return 用户对象信息
+     * @param phoneNumber 電話番号
+     * @return ユーザーオブジェクト情報
      */
     public SysUser selectUserByPhoneNumber(String phoneNumber);
 
     /**
-     * 通过邮箱查询用户
+     * メールアドレスを使用してユーザーを検索する
      * 
-     * @param email 邮箱
-     * @return 用户对象信息
+     * @param email メールアドレス
+     * @return ユーザーオブジェクト情報
      */
     public SysUser selectUserByEmail(String email);
 
     /**
-     * 通过用户ID查询用户
+     * ユーザーIDを使用してユーザーを検索する
      * 
-     * @param userId 用户ID
-     * @return 用户对象信息
+     * @param userId ユーザーID
+     * @return ユーザーオブジェクト情報
      */
     public SysUser selectUserById(Long userId);
 
     /**
-     * 通过用户ID查询用户和角色关联
+     * ユーザーIDを使用してユーザーと関連するロールのリストを検索する
      * 
-     * @param userId 用户ID
-     * @return 用户和角色关联列表
+     * @param userId ユーザーID
+     * @return ユーザーとロールの関連リスト
      */
     public List<SysUserRole> selectUserRoleByUserId(Long userId);
 
     /**
-     * 通过用户ID删除用户
+     * ユーザーIDを使用してユーザーを削除する
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     public int deleteUserById(Long userId);
 
     /**
-     * 批量删除用户信息
+     * ユーザー情報のバッチ削除
      * 
-     * @param ids 需要删除的数据ID
+     * @param ids 削除するデータID
      * @return 结果
-     * @throws Exception 异常
+     * @throws Exception 例外
      */
     public int deleteUserByIds(String ids);
 
     /**
-     * 保存用户信息
+     * ユーザー情報を保存する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public int insertUser(SysUser user);
 
     /**
-     * 注册用户信息
+     * ユーザー情報を登録する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public boolean registerUser(SysUser user);
 
     /**
-     * 保存用户信息
+     * ユーザー情報を更新する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public int updateUser(SysUser user);
 
     /**
-     * 修改用户详细信息
+     * ユーザー詳細情報を更新する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public int updateUserInfo(SysUser user);
 
     /**
-     * 用户授权角色
+     * ユーザーにロールを承認する
      * 
-     * @param userId 用户ID
-     * @param roleIds 角色组
+     * @param userId ユーザーID
+     * @param roleIds ロールグループ
      */
     public void insertUserAuth(Long userId, Long[] roleIds);
 
     /**
-     * 修改用户密码信息
+     * ユーザーのパスワード情報を変更する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public int resetUserPwd(SysUser user);
 
     /**
-     * 校验用户名称是否唯一
+     * ユーザー名が一意かどうかを確認する
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public boolean checkLoginNameUnique(SysUser user);
 
     /**
-     * 校验手机号码是否唯一
+     * 電話番号が一意かどうかを確認する
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public boolean checkPhoneUnique(SysUser user);
 
     /**
-     * 校验email是否唯一
+     * メールアドレスが一意かどうかを確認する
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public boolean checkEmailUnique(SysUser user);
 
     /**
-     * 校验用户是否允许操作
+     * ユーザーが操作を許可されているかどうかを確認する
      * 
-     * @param user 用户信息
+     * @param user ユーザー情報
      */
     public void checkUserAllowed(SysUser user);
 
     /**
-     * 校验用户是否有数据权限
+     * ユーザーがデータ権限を持っているかどうかを確認する
      * 
-     * @param userId 用户id
+     * @param userId ユーザーID
      */
     public void checkUserDataScope(Long userId);
 
     /**
-     * 根据用户ID查询用户所属角色组
+     * ユーザーIDに基づいてユーザーが所属するロールグループを検索する
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     public String selectUserRoleGroup(Long userId);
 
     /**
-     * 根据用户ID查询用户所属岗位组
+     * ユーザーIDに基づいてユーザーが所属するポストグループを検索する
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     public String selectUserPostGroup(Long userId);
 
     /**
-     * 导入用户数据
+     * ユーザーデータのインポート
      * 
-     * @param userList 用户数据列表
-     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @param operName 操作用户
-     * @return 结果
+     * @param userList ユーザーデータリスト
+     * @param isUpdateSupport 既に存在する場合、データを更新するかどうか
+     * @param operName 操作ユーザー
+     * @return 結果
      */
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
 
     /**
-     * 用户状态修改
+     * ユーザー状態の変更
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     public int changeStatus(SysUser user);
 }

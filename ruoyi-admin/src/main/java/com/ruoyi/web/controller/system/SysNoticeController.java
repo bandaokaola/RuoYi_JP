@@ -20,7 +20,7 @@ import com.ruoyi.system.domain.SysNotice;
 import com.ruoyi.system.service.ISysNoticeService;
 
 /**
- * 公告 信息操作处理
+ * お知らせ処理
  * 
  * @author ruoyi
  */
@@ -41,7 +41,7 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 查询公告列表
+     * お知らせリストを検索
      */
     @RequiresPermissions("system:notice:list")
     @PostMapping("/list")
@@ -54,7 +54,7 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 新增公告
+     * 新規お知らせ
      */
     @GetMapping("/add")
     public String add()
@@ -63,10 +63,10 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 新增保存公告
+     * 新規保存お知らせ
      */
     @RequiresPermissions("system:notice:add")
-    @Log(title = "通知公告", businessType = BusinessType.INSERT)
+    @Log(title = "お知らせ", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysNotice notice)
@@ -76,7 +76,7 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 修改公告
+     * お知らせ編集
      */
     @RequiresPermissions("system:notice:edit")
     @GetMapping("/edit/{noticeId}")
@@ -87,10 +87,10 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 修改保存公告
+     * 編集保存お知らせ
      */
     @RequiresPermissions("system:notice:edit")
-    @Log(title = "通知公告", businessType = BusinessType.UPDATE)
+    @Log(title = "お知らせ", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysNotice notice)
@@ -100,10 +100,10 @@ public class SysNoticeController extends BaseController
     }
 
     /**
-     * 删除公告
+     * お知らせ削除
      */
     @RequiresPermissions("system:notice:remove")
-    @Log(title = "通知公告", businessType = BusinessType.DELETE)
+    @Log(title = "お知らせ", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
