@@ -3,7 +3,9 @@ package com.ruoyi.web.core.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import com.ruoyi.common.config.RuoYiConfig;
+
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -14,19 +16,19 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * Swagger2的接口配置
- * 
+ * Swagger2のインターフェース設定
+ *
  * @author ruoyi
  */
 @Configuration
 public class SwaggerConfig
 {
-    /** 是否开启swagger */
+    /** Swaggerの有効化 */
     @Value("${swagger.enabled}")
     private boolean enabled;
-    
+
     /**
-     * 创建API
+     * APIの作成
      */
     @Bean
     public Docket createRestApi()
@@ -55,13 +57,13 @@ public class SwaggerConfig
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("标题：若依管理系统_接口文档")
+                .title("タイトル: 若依管理システム_インターフェースドキュメント")
                 // 描述
-                .description("描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...")
+                .description("日中ソフト株式会社グループ傘下の企業の従業員情報を管理するために使用され、具体的には「システム管理、システム監視、システムツール」モジュールなどが含まれています。")
                 // 作者信息
                 .contact(new Contact(RuoYiConfig.getName(), null, null))
                 // 版本
-                .version("版本号:" + RuoYiConfig.getVersion())
+                .version("バージョン：" + RuoYiConfig.getVersion())
                 .build();
     }
 }
