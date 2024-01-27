@@ -9,131 +9,131 @@ import com.ruoyi.common.core.domain.entity.SysRole;
 import com.ruoyi.common.core.domain.entity.SysUser;
 
 /**
- * 菜单 业务层
+ * メニューのビジネスロジック層
  * 
  * @author ruoyi
  */
 public interface ISysMenuService
 {
     /**
-     * 根据用户ID查询菜单
+     * ユーザーIDに基づいてメニューを取得
      * 
-     * @param user 用户信息
-     * @return 菜单列表
+     * @param user ユーザー情報
+     * @return メニューリスト
      */
     public List<SysMenu> selectMenusByUser(SysUser user);
 
     /**
-     * 查询系统菜单列表
+     * システムメニューリストを取得
      * 
-     * @param menu 菜单信息
-     * @param userId 用户ID
-     * @return 菜单列表
+     * @param menu メニュー情報
+     * @param userId ユーザーID
+     * @return メニューリスト
      */
     public List<SysMenu> selectMenuList(SysMenu menu, Long userId);
 
     /**
-     * 查询菜单集合
+     * メニューのコレクションを取得
      * 
-     * @param userId 用户ID
-     * @return 所有菜单信息
+     * @param userId ユーザーID
+     * @return すべてのメニュー情報
      */
     public List<SysMenu> selectMenuAll(Long userId);
 
     /**
-     * 根据用户ID查询权限
+     * ユーザーIDに基づいて権限を取得
      * 
-     * @param userId 用户ID
-     * @return 权限列表
+     * @param userId ユーザーID
+     * @return 権限リスト
      */
     public Set<String> selectPermsByUserId(Long userId);
 
     /**
-     * 根据角色ID查询权限
+     * ロールIDに基づいて権限を取得
      * 
-     * @param roleId 角色ID
-     * @return 权限列表
+     * @param roleId ロールID
+     * @return 権限リスト
      */
     public Set<String> selectPermsByRoleId(Long roleId);
 
     /**
-     * 根据角色ID查询菜单
+     * ロールIDに基づいてメニューを取得
      * 
-     * @param role 角色对象
-     * @param userId 用户ID
-     * @return 菜单列表
+     * @param role ロールオブジェクト
+     * @param userId ユーザーID
+     * @return メニューリスト
      */
     public List<Ztree> roleMenuTreeData(SysRole role, Long userId);
 
     /**
-     * 查询所有菜单信息
+     * すべてのメニュー情報を取得
      * 
-     * @param userId 用户ID
-     * @return 菜单列表
+     * @param userId ユーザーID
+     * @return メニューリスト
      */
     public List<Ztree> menuTreeData(Long userId);
 
     /**
-     * 查询系统所有权限
+     * システムのすべての権限を取得
      * 
-     * @param userId 用户ID
-     * @return 权限列表
+     * @param userId ユーザーID
+     * @return 権限リスト
      */
     public Map<String, String> selectPermsAll(Long userId);
 
     /**
-     * 删除菜单管理信息
+     * メニュー管理情報を削除
      * 
-     * @param menuId 菜单ID
-     * @return 结果
+     * @param menuId メニューID
+     * @return 結果
      */
     public int deleteMenuById(Long menuId);
 
     /**
-     * 根据菜单ID查询信息
+     * メニューIDに基づいて情報を取得
      * 
-     * @param menuId 菜单ID
-     * @return 菜单信息
+     * @param menuId メニューID
+     * @return メニュー情報
      */
     public SysMenu selectMenuById(Long menuId);
 
     /**
-     * 查询菜单数量
+     * メニューの数を取得
      * 
-     * @param parentId 菜单父ID
-     * @return 结果
+     * @param parentId メニュー親ID
+     * @return 結果
      */
     public int selectCountMenuByParentId(Long parentId);
 
     /**
-     * 查询菜单使用数量
+     * メニュー使用数を取得
      * 
-     * @param menuId 菜单ID
-     * @return 结果
+     * @param menuId メニューID
+     * @return 結果
      */
     public int selectCountRoleMenuByMenuId(Long menuId);
 
     /**
-     * 新增保存菜单信息
+     * メニュー情報を新規保存
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu メニュー情報
+     * @return 結果
      */
     public int insertMenu(SysMenu menu);
 
     /**
-     * 修改保存菜单信息
+     * メニュー情報を変更保存
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu メニュー情報
+     * @return 結果
      */
     public int updateMenu(SysMenu menu);
 
     /**
-     * 校验菜单名称是否唯一
+     * メニュー名が一意かどうかを確認
      * 
-     * @param menu 菜单信息
-     * @return 结果
+     * @param menu メニュー情報
+     * @return 結果
      */
     public boolean checkMenuNameUnique(SysMenu menu);
 }
