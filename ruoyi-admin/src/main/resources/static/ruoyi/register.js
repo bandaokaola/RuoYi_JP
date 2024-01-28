@@ -28,7 +28,7 @@ function register() {
         },
         success: function(r) {
             if (r.code == web_status.SUCCESS) {
-                layer.alert("<font color='red'>おめでとうございます、アカウント " + username + " の登録が完了しました。</font>", {
+                layer.alert("<font color='red'>アカウント " + username + " の登録が完了しました。</font>", {
                     icon: 1,
                     title: "システムメッセージ"
                 },
