@@ -6,102 +6,102 @@ import com.ruoyi.common.core.domain.entity.SysDictData;
 import com.ruoyi.common.core.domain.entity.SysDictType;
 
 /**
- * 字典 业务层
+ * 辞書 サービス層
  * 
  * @author ruoyi
  */
 public interface ISysDictTypeService
 {
     /**
-     * 根据条件分页查询字典类型
+     * 条件に基づいてページ分割して辞書タイプをクエリする
      * 
-     * @param dictType 字典类型信息
-     * @return 字典类型集合信息
+     * @param dictType 辞書タイプ情報
+     * @return 辞書タイプのコレクション情報
      */
     public List<SysDictType> selectDictTypeList(SysDictType dictType);
 
     /**
-     * 根据所有字典类型
+     * すべての辞書タイプをクエリする
      * 
-     * @return 字典类型集合信息
+     * @return 辞書タイプのコレクション情報
      */
     public List<SysDictType> selectDictTypeAll();
 
     /**
-     * 根据字典类型查询字典数据
+     * 辞書タイプに基づいて辞書データをクエリする
      * 
-     * @param dictType 字典类型
-     * @return 字典数据集合信息
+     * @param dictType 辞書タイプ
+     * @return 辞書データのコレクション情報
      */
     public List<SysDictData> selectDictDataByType(String dictType);
 
     /**
-     * 根据字典类型ID查询信息
+     * 辞書タイプIDに基づいて情報をクエリする
      * 
-     * @param dictId 字典类型ID
-     * @return 字典类型
+     * @param dictId 辞書タイプID
+     * @return 辞書タイプ
      */
     public SysDictType selectDictTypeById(Long dictId);
 
     /**
-     * 根据字典类型查询信息
+     * 辞書タイプに基づいて情報をクエリする
      * 
-     * @param dictType 字典类型
-     * @return 字典类型
+     * @param dictType 辞書タイプ
+     * @return 辞書タイプ
      */
     public SysDictType selectDictTypeByType(String dictType);
 
     /**
-     * 批量删除字典类型
+     * 辞書タイプを一括削除する
      * 
-     * @param ids 需要删除的数据
+     * @param ids 削除するデータ
      */
     public void deleteDictTypeByIds(String ids);
 
     /**
-     * 加载字典缓存数据
+     * 辞書キャッシュデータをロードする
      */
     public void loadingDictCache();
 
     /**
-     * 清空字典缓存数据
+     * 辞書キャッシュデータをクリアする
      */
     public void clearDictCache();
 
     /**
-     * 重置字典缓存数据
+     * 辞書キャッシュデータをリセットする
      */
     public void resetDictCache();
 
     /**
-     * 新增保存字典类型信息
+     * 新しい辞書タイプ情報を保存する
      * 
-     * @param dictType 字典类型信息
-     * @return 结果
+     * @param dictType 辞書タイプ情報
+     * @return 結果
      */
     public int insertDictType(SysDictType dictType);
 
     /**
-     * 修改保存字典类型信息
+     * 辞書タイプ情報を更新する
      * 
-     * @param dictType 字典类型信息
-     * @return 结果
+     * @param dictType 辞書タイプ情報
+     * @return 結果
      */
     public int updateDictType(SysDictType dictType);
 
     /**
-     * 校验字典类型称是否唯一
+     * 辞書タイプ名が一意かどうかを検証する
      * 
-     * @param dictType 字典类型
-     * @return 结果
+     * @param dictType 辞書タイプ
+     * @return 結果
      */
     public boolean checkDictTypeUnique(SysDictType dictType);
 
     /**
-     * 查询字典类型树
+     * 辞書タイプツリーをクエリする
      * 
-     * @param dictType 字典类型
-     * @return 所有字典类型
+     * @param dictType 辞書タイプ
+     * @return すべての辞書タイプ
      */
     public List<Ztree> selectDictTree(SysDictType dictType);
 }

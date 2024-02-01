@@ -10,7 +10,7 @@ import com.ruoyi.system.mapper.SysDictDataMapper;
 import com.ruoyi.system.service.ISysDictDataService;
 
 /**
- * 字典 业务层处理
+ * 辞書サービス
  * 
  * @author ruoyi
  */
@@ -21,10 +21,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     private SysDictDataMapper dictDataMapper;
 
     /**
-     * 根据条件分页查询字典数据
+     * 条件に基づいて辞書データをページネーションで検索します。
      * 
-     * @param dictData 字典数据信息
-     * @return 字典数据集合信息
+     * @param dictData 辞書データ情報
+     * @return 辞書データのコレクション情報
      */
     @Override
     public List<SysDictData> selectDictDataList(SysDictData dictData)
@@ -33,11 +33,11 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     }
 
     /**
-     * 根据字典类型和字典键值查询字典数据信息
+     * 辞書タイプおよび辞書キー値に基づいて辞書データ情報を検索します。
      * 
-     * @param dictType 字典类型
-     * @param dictValue 字典键值
-     * @return 字典标签
+     * @param dictType 辞書タイプ
+     * @param dictValue 辞書キー値
+     * @return 辞書ラベル
      */
     @Override
     public String selectDictLabel(String dictType, String dictValue)
@@ -46,10 +46,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     }
 
     /**
-     * 根据字典数据ID查询信息
+     * 辞書データIDに基づいて情報を検索します。
      * 
-     * @param dictCode 字典数据ID
-     * @return 字典数据
+     * @param dictCode 辞書データID
+     * @return 辞書データ
      */
     @Override
     public SysDictData selectDictDataById(Long dictCode)
@@ -58,9 +58,9 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     }
 
     /**
-     * 批量删除字典数据
+     * バッチで辞書データを削除します。
      * 
-     * @param ids 需要删除的数据
+     * @param ids 削除するデータ
      */
     @Override
     public void deleteDictDataByIds(String ids)
@@ -76,10 +76,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     }
 
     /**
-     * 新增保存字典数据信息
+     * 新しい辞書データ情報を保存します。
      * 
-     * @param data 字典数据信息
-     * @return 结果
+     * @param dictData 辞書データ情報
+     * @return 結果
      */
     @Override
     public int insertDictData(SysDictData data)
@@ -94,10 +94,10 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     }
 
     /**
-     * 修改保存字典数据信息
+     * 辞書データ情報を変更して保存します。
      * 
-     * @param data 字典数据信息
-     * @return 结果
+     * @param dictData 辞書データ情報
+     * @return 結果
      */
     @Override
     public int updateDictData(SysDictData data)
