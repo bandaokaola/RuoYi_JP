@@ -9,7 +9,7 @@ import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 字典数据表 sys_dict_data
+ * 辞書データテーブル sys_dict_data
  * 
  * @author ruoyi
  */
@@ -17,39 +17,39 @@ public class SysDictData extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 字典编码 */
-    @Excel(name = "字典编码", cellType = ColumnType.NUMERIC)
+    /** 辞書コード */
+    @Excel(name = "辞書コード", cellType = ColumnType.NUMERIC)
     private Long dictCode;
 
-    /** 字典排序 */
-    @Excel(name = "字典排序", cellType = ColumnType.NUMERIC)
+    /** 辞書順 */
+    @Excel(name = "辞書順", cellType = ColumnType.NUMERIC)
     private Long dictSort;
 
-    /** 字典标签 */
-    @Excel(name = "字典标签")
+    /** 辞書ラベル */
+    @Excel(name = "辞書ラベル")
     private String dictLabel;
 
-    /** 字典键值 */
-    @Excel(name = "字典键值")
+    /** 辞書キー */
+    @Excel(name = "辞書キー")
     private String dictValue;
 
-    /** 字典类型 */
-    @Excel(name = "字典类型")
+    /** 辞書タイプ */
+    @Excel(name = "辞書タイプ")
     private String dictType;
 
-    /** 样式属性（其他样式扩展） */
-    @Excel(name = "字典样式")
+    /** スタイル属性（その他のスタイルの拡張 */
+    @Excel(name = "スタイル属性（その他のスタイルの拡張")
     private String cssClass;
 
-    /** 表格字典样式 */
+    /** テーブル辞書スタイル */
     private String listClass;
 
-    /** 是否默认（Y是 N否） */
-    @Excel(name = "是否默认", readConverterExp = "Y=是,N=否")
+    /** デフォルトかどうか（Yはい、Nいいえ */
+    @Excel(name = "デフォルトかどうか", readConverterExp = "Y=はい,N=いいえ")
     private String isDefault;
 
-    /** 状态（0正常 1停用） */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
+    /** 状態（0は正常、1は停止） */
+    @Excel(name = "状態", readConverterExp = "0=正常,1=停止")
     private String status;
 
     public Long getDictCode()
@@ -72,8 +72,8 @@ public class SysDictData extends BaseEntity
         this.dictSort = dictSort;
     }
 
-    @NotBlank(message = "字典标签不能为空")
-    @Size(min = 0, max = 100, message = "字典标签长度不能超过100个字符")
+    @NotBlank(message = "辞書ラベルは必須です")
+    @Size(min = 0, max = 100, message = "辞書ラベルの長さは100文字を超えてはいけません")
     public String getDictLabel()
     {
         return dictLabel;
@@ -84,8 +84,8 @@ public class SysDictData extends BaseEntity
         this.dictLabel = dictLabel;
     }
 
-    @NotBlank(message = "字典键值不能为空")
-    @Size(min = 0, max = 100, message = "字典键值长度不能超过100个字符")
+    @NotBlank(message = "辞書キー値は必須です")
+    @Size(min = 0, max = 100, message = "辞書キーの長さは100文字を超えてはいけません")
     public String getDictValue()
     {
         return dictValue;
@@ -96,8 +96,8 @@ public class SysDictData extends BaseEntity
         this.dictValue = dictValue;
     }
 
-    @NotBlank(message = "字典类型不能为空")
-    @Size(min = 0, max = 100, message = "字典类型长度不能超过100个字符")
+    @NotBlank(message = "辞書タイプは必須です")
+    @Size(min = 0, max = 100, message = "辞書タイプの長さは100文字を超えてはいけません")
     public String getDictType()
     {
         return dictType;
@@ -108,7 +108,7 @@ public class SysDictData extends BaseEntity
         this.dictType = dictType;
     }
 
-    @Size(min = 0, max = 100, message = "样式属性长度不能超过100个字符")
+    @Size(min = 0, max = 100, message = "スタイル属性の長さは100文字を超えてはいけません")
     public String getCssClass()
     {
         return cssClass;
