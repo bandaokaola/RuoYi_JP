@@ -22,7 +22,7 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.service.ISysDictTypeService;
 
 /**
- * 数据字典信息
+ * データ辞書情報コントローラ
  * 
  * @author ruoyi
  */
@@ -52,7 +52,7 @@ public class SysDictTypeController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.EXPORT)
+    @Log(title = "データ辞書タイプ", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -61,11 +61,11 @@ public class SysDictTypeController extends BaseController
 
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
         ExcelUtil<SysDictType> util = new ExcelUtil<SysDictType>(SysDictType.class);
-        return util.exportExcel(list, "字典类型");
+        return util.exportExcel(list, "データ辞書タイプ");
     }
 
     /**
-     * 新增字典类型
+     * 新しいデータ辞書タイプ
      */
     @GetMapping("/add")
     public String add()
@@ -74,9 +74,9 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * 新しいデータ辞書タイプの保存
      */
-    @Log(title = "字典类型", businessType = BusinessType.INSERT)
+    @Log(title = "データ辞書タイプ", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -84,14 +84,14 @@ public class SysDictTypeController extends BaseController
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {
-            return error("新增字典'" + dict.getDictName() + "'失败，字典类型已存在");
+        	return error("新しいデータ辞書'" + dict.getDictName() + "'の追加に失敗しました。データ辞書タイプは既に存在します");
         }
         dict.setCreateBy(getLoginName());
         return toAjax(dictTypeService.insertDictType(dict));
     }
 
     /**
-     * 修改字典类型
+     * データ辞書タイプの編集
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictId}")
@@ -102,9 +102,9 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * データ辞書タイプの保存
      */
-    @Log(title = "字典类型", businessType = BusinessType.UPDATE)
+    @Log(title = "データ辞書タイプ", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -112,13 +112,13 @@ public class SysDictTypeController extends BaseController
     {
         if (!dictTypeService.checkDictTypeUnique(dict))
         {
-            return error("修改字典'" + dict.getDictName() + "'失败，字典类型已存在");
+        	return error("データ辞書'" + dict.getDictName() + "'の編集に失敗しました。データ辞書タイプは既に存在します");
         }
         dict.setUpdateBy(getLoginName());
         return toAjax(dictTypeService.updateDictType(dict));
     }
 
-    @Log(title = "字典类型", businessType = BusinessType.DELETE)
+    @Log(title = "データ辞書タイプ", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody
@@ -129,7 +129,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 刷新字典缓存
+     * データ辞書のキャッシュをリフレッシュ
      */
     @RequiresPermissions("system:dict:remove")
     @Log(title = "字典类型", businessType = BusinessType.CLEAN)
@@ -142,7 +142,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 查询字典详细
+     * データ辞書の詳細を検索
      */
     @RequiresPermissions("system:dict:list")
     @GetMapping("/detail/{dictId}")
@@ -154,7 +154,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 校验字典类型
+     * データ辞書タイプの検証
      */
     @PostMapping("/checkDictTypeUnique")
     @ResponseBody
@@ -164,7 +164,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 选择字典树
+     * データ辞書ツリーの選択
      */
     @GetMapping("/selectDictTree/{columnId}/{dictType}")
     public String selectDeptTree(@PathVariable("columnId") Long columnId, @PathVariable("dictType") String dictType,
@@ -176,7 +176,7 @@ public class SysDictTypeController extends BaseController
     }
 
     /**
-     * 加载字典列表树
+     * データ辞書リストツリーをロード
      */
     @GetMapping("/treeData")
     @ResponseBody

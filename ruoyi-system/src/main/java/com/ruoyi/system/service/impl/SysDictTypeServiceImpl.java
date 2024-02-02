@@ -22,7 +22,7 @@ import com.ruoyi.system.mapper.SysDictTypeMapper;
 import com.ruoyi.system.service.ISysDictTypeService;
 
 /**
- * 辞書 サービス層
+ * 辞書 サービス層実装
  * 
  * @author ruoyi
  */
