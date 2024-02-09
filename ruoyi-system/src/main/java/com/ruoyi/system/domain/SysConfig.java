@@ -8,7 +8,7 @@ import com.ruoyi.common.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 参数配置表 sys_config
+ * パラメーター設定テーブル sys_config
  * 
  * @author ruoyi
  */
@@ -16,24 +16,24 @@ public class SysConfig extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 参数主键 */
-    @Excel(name = "参数主键", cellType = ColumnType.NUMERIC)
+    /** パラメーター主キー */
+    @Excel(name = "パラメーター主キー", cellType = ColumnType.NUMERIC)
     private Long configId;
 
-    /** 参数名称 */
-    @Excel(name = "参数名称")
+    /** パラメーター名 */
+    @Excel(name = "パラメーター名")
     private String configName;
 
-    /** 参数键名 */
-    @Excel(name = "参数键名")
+    /** パラメーターキー */
+    @Excel(name = "パラメーターキー")
     private String configKey;
 
-    /** 参数键值 */
-    @Excel(name = "参数键值")
+    /** パラメーターバリュー */
+    @Excel(name = "パラメーターバリュー")
     private String configValue;
 
-    /** 系统内置（Y是 N否） */
-    @Excel(name = "系统内置", readConverterExp = "Y=是,N=否")
+    /** システム組み込み（Y: はい, N: いいえ） */
+    @Excel(name = "システム組み込み", readConverterExp = "Y: はい, N: いいえ")
     private String configType;
 
     public Long getConfigId()
@@ -46,8 +46,8 @@ public class SysConfig extends BaseEntity
         this.configId = configId;
     }
 
-    @NotBlank(message = "参数名称不能为空")
-    @Size(min = 0, max = 100, message = "参数名称不能超过100个字符")
+    @NotBlank(message = "パラメーター名は必須です")
+    @Size(min = 0, max = 100, message = "パラメーター名は100文字以内で入力してください")
     public String getConfigName()
     {
         return configName;
@@ -58,8 +58,8 @@ public class SysConfig extends BaseEntity
         this.configName = configName;
     }
 
-    @NotBlank(message = "参数键名长度不能为空")
-    @Size(min = 0, max = 100, message = "参数键名长度不能超过100个字符")
+    @NotBlank(message = "パラメーターキーは必須です")
+    @Size(min = 0, max = 100, message = "パラメーターキーは100文字以内で入力してください")
     public String getConfigKey()
     {
         return configKey;
@@ -70,8 +70,8 @@ public class SysConfig extends BaseEntity
         this.configKey = configKey;
     }
 
-    @NotBlank(message = "参数键值不能为空")
-    @Size(min = 0, max = 500, message = "参数键值长度不能超过500个字符")
+    @NotBlank(message = "パラメーター値は必須です")
+    @Size(min = 0, max = 500, message = "パラメーター値は500文字以内で入力してください")
     public String getConfigValue()
     {
         return configValue;

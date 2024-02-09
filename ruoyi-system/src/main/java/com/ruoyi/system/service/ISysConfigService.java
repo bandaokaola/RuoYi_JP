@@ -4,79 +4,79 @@ import java.util.List;
 import com.ruoyi.system.domain.SysConfig;
 
 /**
- * 参数配置 服务层
+ * パラメーター設定 サービス層
  * 
  * @author ruoyi
  */
 public interface ISysConfigService
 {
     /**
-     * 查询参数配置信息
+     * パラメーター設定情報を取得
      * 
-     * @param configId 参数配置ID
-     * @return 参数配置信息
+     * @param configId パラメーター設定ID
+     * @return パラメーター設定情報
      */
     public SysConfig selectConfigById(Long configId);
 
     /**
-     * 根据键名查询参数配置信息
+     * キーに基づいてパラメーター設定情報を取得
      * 
-     * @param configKey 参数键名
-     * @return 参数键值
+     * @param configKey パラメーターのキー名
+     * @return パラメーターのキー値
      */
     public String selectConfigByKey(String configKey);
 
     /**
-     * 查询参数配置列表
+     * パラメーター設定リストを取得
      * 
-     * @param config 参数配置信息
-     * @return 参数配置集合
+     * @param config パラメーター設定情報
+     * @return パラメーター設定のコレクション
      */
     public List<SysConfig> selectConfigList(SysConfig config);
 
     /**
-     * 新增参数配置
+     * パラメーター設定を新規追加
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config パラメーター設定情報
+     * @return 結果
      */
     public int insertConfig(SysConfig config);
 
     /**
-     * 修改参数配置
+     * パラメーター設定を編集
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config パラメーター設定情報
+     * @return 結果
      */
     public int updateConfig(SysConfig config);
 
     /**
-     * 批量删除参数配置信息
+     * パラメーター設定情報を複数削除
      * 
-     * @param ids 需要删除的数据ID
+     * @param ids 削除するデータID
      */
     public void deleteConfigByIds(String ids);
 
     /**
-     * 加载参数缓存数据
+     * パラメーターキャッシュデータを読み込む
      */
     public void loadingConfigCache();
 
     /**
-     * 清空参数缓存数据
+     * パラメーターキャッシュデータをクリア
      */
     public void clearConfigCache();
 
     /**
-     * 重置参数缓存数据
+     * パラメーターキャッシュデータをリセット
      */
     public void resetConfigCache();
 
     /**
-     * 校验参数键名是否唯一
+     * パラメーターキーの一意性を検証
      * 
-     * @param config 参数信息
-     * @return 结果
+     * @param config パラメーター情報
+     * @return 結果
      */
     public boolean checkConfigKeyUnique(SysConfig config);
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('参数列表')" />
+	<th:block th:include="include :: header('パラメーターリスト')" />
 </head>
 <body class="gray-bg">
      <div class="container-div">
@@ -11,26 +11,26 @@
 					<div class="select-list">
 						<ul>
 							<li>
-								参数名称：<input type="text" name="configName"/>
+								パラメーター名：<input type="text" name="configName"/>
 							</li>
 							<li>
-								参数键名：<input type="text" name="configKey"/>
+								パラメーターキー：<input type="text" name="configKey"/>
 							</li>
 							<li>
-								系统内置：<select name="configType" th:with="type=${@dict.getType('sys_yes_no')}">
-									<option value="">所有</option>
+								システム組み込み：<select name="configType" th:with="type=${@dict.getType('sys_yes_no')}">
+									<option value="">すべて</option>
 									<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
 								</select>
 							</li>
 							<li class="select-time">
-								<label>创建时间： </label>
-								<input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+								<label>作成日時： </label>
+								<input type="text" class="time-input" id="startTime" placeholder="開始時間" name="params[beginTime]"/>
 								<span>-</span>
-								<input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+								<input type="text" class="time-input" id="endTime" placeholder="終了時間" name="params[endTime]"/>
 							</li>
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
-								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;検索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;リセット</a>
 							</li>
 						</ul>
 					</div>
@@ -39,19 +39,19 @@
 			
 	        <div class="btn-group-sm" id="toolbar" role="group">
 		        <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:config:add">
-		            <i class="fa fa-plus"></i> 新增
+		            <i class="fa fa-plus"></i> 新規追加
 		        </a>
 		        <a class="btn btn-primary single disabled" onclick="$.operate.edit()" shiro:hasPermission="system:config:edit">
-		            <i class="fa fa-edit"></i> 修改
+		            <i class="fa fa-edit"></i> 修正
 		        </a>
 		        <a class="btn btn-danger multiple disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:config:remove">
-		            <i class="fa fa-remove"></i> 删除
+		            <i class="fa fa-remove"></i> 削除
 		        </a>
 		        <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:config:export">
-		            <i class="fa fa-download"></i> 导出
+		            <i class="fa fa-download"></i> エクスポート
 		        </a>
 		        <a class="btn btn-danger" onclick="refreshCache()" shiro:hasPermission="system:config:remove">
-		            <i class="fa fa-refresh"></i> 刷新缓存
+		            <i class="fa fa-refresh"></i> キャッシュリフレッシュ
 		        </a>
 	        </div>
 	        <div class="col-sm-12 select-table table-striped">
@@ -75,31 +75,31 @@
                 exportUrl: prefix + "/export",
                 sortName: "configId",
 		        sortOrder: "asc",
-                modalName: "参数",
+                modalName: "パラメーター",
                 columns: [{
                     checkbox: true
                 },
                 {
                     field: 'configId',
-                    title: '参数主键'
+                    title: 'パラメーター主キー'
                 },
                 {
                     field: 'configName',
-                    title: '参数名称',
+                    title: 'パラメーター名',
                     formatter: function(value, row, index) {
                         return $.table.tooltip(value);
                     }
                 },
                 {
                     field: 'configKey',
-                    title: '参数键名',
+                    title: 'パラメーターキー',
                     formatter: function(value, row, index) {
                         return $.table.tooltip(value);
                     }
                 },
                 {
                     field: 'configValue',
-                    title: '参数键值',
+                    title: 'パラメーターバリュー',
                     align: 'center',
                     formatter: function(value, row, index) {
                         return $.table.tooltip(value, 10, "open");
@@ -107,7 +107,7 @@
                 },
                 {
                     field: 'configType',
-                    title: '系统内置',
+                    title: 'システム組み込み',
                     align: 'center',
                     formatter: function(value, row, index) {
                         return $.table.selectDictLabel(datas, value);
@@ -115,7 +115,7 @@
                 },
                 {
                     field: 'remark',
-                    title: '备注',
+                    title: '備考',
                     align: 'center',
                     formatter: function(value, row, index) {
                         return $.table.tooltip(value, 10, "open");
@@ -123,7 +123,7 @@
                 },
                 {
                     field: 'createTime',
-                    title: '创建时间'
+                    title: '作成時間'
                 },
                 {
                     title: '操作',
@@ -139,7 +139,7 @@
             $.table.init(options);
         });
         
-        /** 刷新参数缓存 */
+        /** パラメーターキャッシュをリフレッシュ */
         function refreshCache() {
             $.operate.get(prefix + "/refreshCache");
         }
