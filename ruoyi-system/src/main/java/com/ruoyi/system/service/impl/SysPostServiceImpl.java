@@ -13,7 +13,7 @@ import com.ruoyi.system.mapper.SysUserPostMapper;
 import com.ruoyi.system.service.ISysPostService;
 
 /**
- * 岗位信息 服务层处理
+ * 職位情報サービス層の実装
  * 
  * @author ruoyi
  */
@@ -27,10 +27,10 @@ public class SysPostServiceImpl implements ISysPostService
     private SysUserPostMapper userPostMapper;
 
     /**
-     * 查询岗位信息集合
+     * 職位情報のリストを検索します。
      * 
-     * @param post 岗位信息
-     * @return 岗位信息集合
+     * @param post 職位情報
+     * @return 職位情報のリスト
      */
     @Override
     public List<SysPost> selectPostList(SysPost post)
@@ -39,9 +39,9 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 查询所有岗位
+     * すべての職位を検索します。
      * 
-     * @return 岗位列表
+     * @return 職位のリスト
      */
     @Override
     public List<SysPost> selectPostAll()
@@ -50,10 +50,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 根据用户ID查询岗位
+     * ユーザーIDに基づいて職位を検索します。
      * 
-     * @param userId 用户ID
-     * @return 岗位列表
+     * @param userId ユーザーID
+     * @return 職位のリスト
      */
     @Override
     public List<SysPost> selectPostsByUserId(Long userId)
@@ -75,10 +75,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 通过岗位ID查询岗位信息
+     * 職位IDに基づいて職位情報を検索します。
      * 
-     * @param postId 岗位ID
-     * @return 角色对象信息
+     * @param postId 職位ID
+     * @return 職位の情報
      */
     @Override
     public SysPost selectPostById(Long postId)
@@ -87,10 +87,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 批量删除岗位信息
+     * 職位情報を一括削除します。
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 削除するデータのID
+     * @return 結果
      */
     @Override
     public int deletePostByIds(String ids)
@@ -108,10 +108,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 新增保存岗位信息
+     * 職位情報を新規保存します。
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 職位情報
+     * @return 結果
      */
     @Override
     public int insertPost(SysPost post)
@@ -120,10 +120,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 修改保存岗位信息
+     * 職位情報を変更保存します。
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 職位情報
+     * @return 結果
      */
     @Override
     public int updatePost(SysPost post)
@@ -132,10 +132,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 通过岗位ID查询岗位使用数量
+     * 職位IDに基づいて職位の使用数を検索します。
      * 
-     * @param postId 岗位ID
-     * @return 结果
+     * @param postId 職位ID
+     * @return 結果
      */
     @Override
     public int countUserPostById(Long postId)
@@ -144,10 +144,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 校验岗位名称是否唯一
+     * 職位名称が唯一かどうかを検証します。
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 職位情報
+     * @return 結果
      */
     @Override
     public boolean checkPostNameUnique(SysPost post)
@@ -162,10 +162,10 @@ public class SysPostServiceImpl implements ISysPostService
     }
 
     /**
-     * 校验岗位编码是否唯一
+     * 職位コードが唯一かどうかを検証します。
      * 
-     * @param post 岗位信息
-     * @return 结果
+     * @param post 職位情報
+     * @return 結果
      */
     @Override
     public boolean checkPostCodeUnique(SysPost post)

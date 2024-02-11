@@ -33,7 +33,7 @@ import com.ruoyi.system.service.ISysConfigService;
 import com.ruoyi.system.service.ISysUserService;
 
 /**
- * 用户 业务层处理
+ * ユーザーサービスの実装
  * 
  * @author ruoyi
  */
@@ -64,10 +64,10 @@ public class SysUserServiceImpl implements ISysUserService
     protected Validator validator;
 
     /**
-     * 根据条件分页查询用户列表
+     * 条件に基づいてユーザーリストをページングで取得
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ユーザー情報
+     * @return ユーザー情報リスト
      */
     @Override
     @DataScope(deptAlias = "d", userAlias = "u")
@@ -77,10 +77,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 根据条件分页查询已分配用户角色列表
+     * 条件に基づいて分配済みのユーザーの役割リストをページングで取得
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ユーザー情報
+     * @return ユーザー情報リスト
      */
     @Override
     @DataScope(deptAlias = "d", userAlias = "u")
@@ -90,10 +90,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 根据条件分页查询未分配用户角色列表
+     * 条件に基づいて未分配のユーザーの役割リストをページングで取得
      * 
-     * @param user 用户信息
-     * @return 用户信息集合信息
+     * @param user ユーザー情報
+     * @return ユーザー情報リスト
      */
     @Override
     @DataScope(deptAlias = "d", userAlias = "u")
@@ -103,10 +103,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过用户名查询用户
+     * ユーザー名でユーザーを検索
      * 
-     * @param userName 用户名
-     * @return 用户对象信息
+     * @param userName ユーザー名
+     * @return ユーザーオブジェクト情報
      */
     @Override
     public SysUser selectUserByLoginName(String userName)
@@ -115,10 +115,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过手机号码查询用户
+     * 電話番号でユーザーを検索
      * 
-     * @param phoneNumber 手机号码
-     * @return 用户对象信息
+     * @param phoneNumber 電話番号
+     * @return ユーザーオブジェクト情報
      */
     @Override
     public SysUser selectUserByPhoneNumber(String phoneNumber)
@@ -127,10 +127,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过邮箱查询用户
+     * メールアドレスでユーザーを検索
      * 
-     * @param email 邮箱
-     * @return 用户对象信息
+     * @param email メールアドレス
+     * @return ユーザーオブジェクト情報
      */
     @Override
     public SysUser selectUserByEmail(String email)
@@ -139,10 +139,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过用户ID查询用户
+     * ユーザーIDでユーザーを検索
      * 
-     * @param userId 用户ID
-     * @return 用户对象信息
+     * @param userId ユーザーID
+     * @return ユーザーオブジェクト情報
      */
     @Override
     public SysUser selectUserById(Long userId)
@@ -151,10 +151,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过用户ID查询用户和角色关联
+     * ユーザーIDでユーザーと役割の関連を検索
      * 
-     * @param userId 用户ID
-     * @return 用户和角色关联列表
+     * @param userId ユーザーID
+     * @return ユーザーと役割の関連リスト
      */
     @Override
     public List<SysUserRole> selectUserRoleByUserId(Long userId)
@@ -163,27 +163,27 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 通过用户ID删除用户
+     * ユーザーIDでユーザーを削除
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     @Override
     @Transactional
     public int deleteUserById(Long userId)
     {
-        // 删除用户与角色关联
+        // ユーザーと役割の関連を削除
         userRoleMapper.deleteUserRoleByUserId(userId);
-        // 删除用户与岗位表
+        // ユーザーとポジションの関連を削除
         userPostMapper.deleteUserPostByUserId(userId);
         return userMapper.deleteUserById(userId);
     }
 
     /**
-     * 批量删除用户信息
+     * ユーザー情報をバッチで削除
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 削除するデータID
+     * @return 結果
      */
     @Override
     @Transactional
@@ -195,37 +195,37 @@ public class SysUserServiceImpl implements ISysUserService
             checkUserAllowed(new SysUser(userId));
             checkUserDataScope(userId);
         }
-        // 删除用户与角色关联
+        // ユーザーと役割の関連を削除
         userRoleMapper.deleteUserRole(userIds);
-        // 删除用户与岗位关联
+        // ユーザーとポジションの関連を削除
         userPostMapper.deleteUserPost(userIds);
         return userMapper.deleteUserByIds(userIds);
     }
 
     /**
-     * 新增保存用户信息
+     * ユーザー情報を新規保存
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     @Transactional
     public int insertUser(SysUser user)
     {
-        // 新增用户信息
+        // ユーザー情報を新規で追加
         int rows = userMapper.insertUser(user);
-        // 新增用户岗位关联
+        // ユーザーとポジションの関連を新規で追加
         insertUserPost(user);
-        // 新增用户与角色管理
+        // ユーザーと役割の関連を新規で追加
         insertUserRole(user.getUserId(), user.getRoleIds());
         return rows;
     }
 
     /**
-     * 注册用户信息
+     * ユーザー情報を登録
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     public boolean registerUser(SysUser user)
@@ -235,32 +235,32 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 修改保存用户信息
+     * ユーザー情報を更新保存
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     @Transactional
     public int updateUser(SysUser user)
     {
         Long userId = user.getUserId();
-        // 删除用户与角色关联
+        // ユーザーと役割の関連を削除
         userRoleMapper.deleteUserRoleByUserId(userId);
-        // 新增用户与角色管理
+        // ユーザーと役割の関連を新規で追加
         insertUserRole(user.getUserId(), user.getRoleIds());
-        // 删除用户与岗位关联
+        // ユーザーとポジションの関連を削除
         userPostMapper.deleteUserPostByUserId(userId);
-        // 新增用户与岗位管理
+        // ユーザーとポジションの関連を新規で追加
         insertUserPost(user);
         return userMapper.updateUser(user);
     }
 
     /**
-     * 修改用户个人详细信息
+     * ユーザーの個人情報を更新
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     public int updateUserInfo(SysUser user)
@@ -269,10 +269,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 用户授权角色
+     * ユーザーに役割を付与
      * 
-     * @param userId 用户ID
-     * @param roleIds 角色组
+     * @param userId ユーザーID
+     * @param roleIds 役割グループ
      */
     @Override
     @Transactional
@@ -283,10 +283,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 修改用户密码
+     * ユーザーのパスワードをリセット
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     public int resetUserPwd(SysUser user)
@@ -295,16 +295,16 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 新增用户角色信息
+     * ユーザー役割情報を新規保存
      * 
-     * @param userId 用户ID
-     * @param roleIds 角色组
+     * @param userId ユーザーID
+     * @param roleIds 役割グループ
      */
     public void insertUserRole(Long userId, Long[] roleIds)
     {
         if (StringUtils.isNotNull(roleIds))
         {
-            // 新增用户与角色管理
+            // ユーザーと役割の関連を新規で追加
             List<SysUserRole> list = new ArrayList<SysUserRole>();
             for (Long roleId : roleIds)
             {
@@ -321,16 +321,16 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 新增用户岗位信息
+     * ユーザーポジション情報を新規保存
      * 
-     * @param user 用户对象
+     * @param user ユーザーオブジェクト
      */
     public void insertUserPost(SysUser user)
     {
         Long[] posts = user.getPostIds();
         if (StringUtils.isNotNull(posts))
         {
-            // 新增用户与岗位管理
+            // ユーザーとポジションの関連を新規で追加
             List<SysUserPost> list = new ArrayList<SysUserPost>();
             for (Long postId : posts)
             {
@@ -347,10 +347,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 校验用户名称是否唯一
+     * ユーザー名の一意性を検証
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     public boolean checkLoginNameUnique(SysUser user)
@@ -365,9 +365,9 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 校验手机号码是否唯一
+     * 電話番号の一意性を検証
      *
-     * @param user 用户信息
+     * @param user ユーザー情報
      * @return
      */
     @Override
@@ -383,9 +383,9 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 校验email是否唯一
+     * メールアドレスの一意性を検証
      *
-     * @param user 用户信息
+     * @param user ユーザー情報
      * @return
      */
     @Override
@@ -401,23 +401,23 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 校验用户是否允许操作
+     * ユーザーの許可された操作かを検証
      * 
-     * @param user 用户信息
+     * @param user ユーザー情報
      */
     @Override
     public void checkUserAllowed(SysUser user)
     {
         if (StringUtils.isNotNull(user.getUserId()) && user.isAdmin())
         {
-            throw new ServiceException("不允许操作超级管理员用户");
+            throw new ServiceException("管理者ユーザーの操作は許可されていません");
         }
     }
 
     /**
-     * 校验用户是否有数据权限
+     * ユーザーがデータ権限を持っているかを検証
      * 
-     * @param userId 用户id
+     * @param userId ユーザーID
      */
     @Override
     public void checkUserDataScope(Long userId)
@@ -429,16 +429,16 @@ public class SysUserServiceImpl implements ISysUserService
             List<SysUser> users = SpringUtils.getAopProxy(this).selectUserList(user);
             if (StringUtils.isEmpty(users))
             {
-                throw new ServiceException("没有权限访问用户数据！");
+                throw new ServiceException("ユーザーデータにアクセスする権限がありません！");
             }
         }
     }
 
     /**
-     * 查询用户所属角色组
+     * ユーザーの所属する役割グループを検索
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     @Override
     public String selectUserRoleGroup(Long userId)
@@ -452,10 +452,10 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 查询用户所属岗位组
+     * ユーザーの所属するポジショングループを検索
      * 
-     * @param userId 用户ID
-     * @return 结果
+     * @param userId ユーザーID
+     * @return 結果
      */
     @Override
     public String selectUserPostGroup(Long userId)
@@ -469,19 +469,19 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
-     * 导入用户数据
+     * ユーザーデータのインポート
      * 
-     * @param userList 用户数据列表
-     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @param operName 操作用户
-     * @return 结果
+     * @param userList ユーザーデータリスト
+     * @param isUpdateSupport 既に存在する場合、データを更新するかどうか
+     * @param operName 操作ユーザー
+     * @return 結果
      */
     @Override
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName)
     {
         if (StringUtils.isNull(userList) || userList.size() == 0)
         {
-            throw new ServiceException("导入用户数据不能为空！");
+            throw new ServiceException("インポートするユーザーデータがありません！");
         }
         int successNum = 0;
         int failureNum = 0;
@@ -492,7 +492,7 @@ public class SysUserServiceImpl implements ISysUserService
         {
             try
             {
-                // 验证是否存在这个用户
+            	// ユーザーが存在するかどうかを検証
                 SysUser u = userMapper.selectUserByLoginName(user.getLoginName());
                 if (StringUtils.isNull(u))
                 {
@@ -501,7 +501,7 @@ public class SysUserServiceImpl implements ISysUserService
                     user.setCreateBy(operName);
                     userMapper.insertUser(user);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 导入成功");
+                    successMsg.append("<br/>" + successNum + "、アカウント " + user.getLoginName() + " が正常にインポートされました");
                 }
                 else if (isUpdateSupport)
                 {
@@ -512,39 +512,39 @@ public class SysUserServiceImpl implements ISysUserService
                     user.setUpdateBy(operName);
                     userMapper.updateUser(user);
                     successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 更新成功");
+                    successMsg.append("<br/>" + successNum + "、アカウント " + user.getLoginName() + " が正常に更新されました");
                 }
                 else
                 {
                     failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getLoginName() + " 已存在");
+                    failureMsg.append("<br/>" + failureNum + "、アカウント " + user.getLoginName() + " は既に存在しています");
                 }
             }
             catch (Exception e)
             {
                 failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
+                String msg = "<br/>" + failureNum + "、アカウント " + user.getLoginName() + " のインポートに失敗しました：";
                 failureMsg.append(msg + e.getMessage());
                 log.error(msg, e);
             }
         }
         if (failureNum > 0)
         {
-            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
+        	failureMsg.insert(0, "インポートに失敗しました！合計 " + failureNum + " 件のデータが正しくありません。エラーは以下の通りです：");
             throw new ServiceException(failureMsg.toString());
         }
         else
         {
-            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+        	successMsg.insert(0, "データはすべて正常にインポートされました！合計 " + successNum + " 件のデータが以下の通りです：");
         }
         return successMsg.toString();
     }
 
     /**
-     * 用户状态修改
+     * ユーザーのステータスを変更
      * 
-     * @param user 用户信息
-     * @return 结果
+     * @param user ユーザー情報
+     * @return 結果
      */
     @Override
     public int changeStatus(SysUser user)

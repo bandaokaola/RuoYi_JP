@@ -82,7 +82,7 @@
     // when page switch the datetimepicker div will be removed also.
     this.container = options.container || 'body';
 
-    this.language = options.language || this.element.data('date-language') || 'zh-cn';
+    this.language = options.language || this.element.data('date-language') || 'ja-jp';
     this.language = this.language in dates ? this.language : this.language.split('-')[0]; // fr-CA fallback to fr
     this.language = this.language in dates ? this.language : 'en';
     this.isRTL = dates[this.language].rtl || false;
@@ -1494,6 +1494,17 @@
   };
   $.fn.datetimepicker.Constructor = Datetimepicker;
   var dates = $.fn.datetimepicker.dates = {
+  'ja-jp': {
+      days:        ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"],
+      daysShort:   ["日", "月", "火", "水", "木", "金", "土", "日"],
+      daysMin:     ["日", "月", "火", "水", "木", "金", "土", "日"],
+      months:      ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+      monthsShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+      meridiem:    ["午前", "午後"],
+      suffix:      ["st", "nd", "rd", "th"],
+      today:       "今日",
+      clear:       "クリア"
+    },
   'zh-cn': {
       days:        ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
       daysShort:   ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
@@ -1868,7 +1879,7 @@
                 '</tr>' +
       '</thead>',
     contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
-    footTemplate: '<tfoot>' + 
+    footTemplate: '<tfoot>' +
                     '<tr><th colspan="7" class="today"></th></tr>' +
                     '<tr><th colspan="7" class="clear"></th></tr>' +
                   '</tfoot>'

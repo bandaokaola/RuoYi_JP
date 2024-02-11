@@ -1,6 +1,7 @@
 package com.ruoyi.framework.web.exception;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.exception.DemoModeException;
 import com.ruoyi.common.exception.ServiceException;
@@ -19,7 +21,7 @@ import com.ruoyi.common.utils.security.PermissionUtils;
 
 /**
  * 全局异常处理器
- * 
+ *
  * @author ruoyi
  */
 @RestControllerAdvice
@@ -34,7 +36,7 @@ public class GlobalExceptionHandler
     public Object handleAuthorizationException(AuthorizationException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',权限校验失败'{}'", requestURI, e.getMessage());
+        log.error("リクエストアドレス：'{}'、権限検証が：'{}'失敗しました。", requestURI, e.getMessage());
         if (ServletUtils.isAjaxRequest(request))
         {
             return AjaxResult.error(PermissionUtils.getMsg(e.getMessage()));
@@ -53,7 +55,7 @@ public class GlobalExceptionHandler
             HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',不支持'{}'请求", requestURI, e.getMethod());
+        log.error("リクエストアドレス：'{}'、リクエスト：'{}'がサポートされていません。", requestURI, e.getMethod());
         return AjaxResult.error(e.getMessage());
     }
 
@@ -64,7 +66,7 @@ public class GlobalExceptionHandler
     public AjaxResult handleRuntimeException(RuntimeException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生未知异常.", requestURI, e);
+        log.error("リクエストアドレス：'{}'、未知異常が発生しました。", requestURI, e);
         return AjaxResult.error(e.getMessage());
     }
 
@@ -75,7 +77,7 @@ public class GlobalExceptionHandler
     public AjaxResult handleException(Exception e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生系统异常.", requestURI, e);
+        log.error("リクエストアドレス：'{}'、システム異常が発生しました。", requestURI, e);
         return AjaxResult.error(e.getMessage());
     }
 
@@ -103,8 +105,8 @@ public class GlobalExceptionHandler
     public AjaxResult handleMissingPathVariableException(MissingPathVariableException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求路径中缺少必需的路径变量'{}',发生系统异常.", requestURI, e);
-        return AjaxResult.error(String.format("请求路径中缺少必需的路径变量[%s]", e.getVariableName()));
+        log.error("リクエストパスに必要なパス変数：'{}'が不足しています。システム異常が発生しました。", requestURI, e);
+        return AjaxResult.error(String.format("リクエストパスに必要なパス変数：[%s]が不足しています。", e.getVariableName()));
     }
 
     /**
@@ -115,8 +117,8 @@ public class GlobalExceptionHandler
             HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求参数类型不匹配'{}',发生系统异常.", requestURI, e);
-        return AjaxResult.error(String.format("请求参数类型不匹配，参数[%s]要求类型为：'%s'，但输入值为：'%s'", e.getName(), e.getRequiredType().getName(), e.getValue()));
+        log.error("リクエストパラメータのタイプ：'{}'が一致していません。システム異常が発生しました。", requestURI, e);
+        return AjaxResult.error(String.format("リクエストパラメータのタイプが一致していません。パラメータ：[%s]。リクエストのタイプは：'%s'、入力値は：'%s'です。", e.getName(), e.getRequiredType().getName(), e.getValue()));
     }
 
     /**
@@ -136,6 +138,6 @@ public class GlobalExceptionHandler
     @ExceptionHandler(DemoModeException.class)
     public AjaxResult handleDemoModeException(DemoModeException e)
     {
-        return AjaxResult.error("演示模式，不允许操作");
+        return AjaxResult.error("デモモードです、ご操作は許可されていません。");
     }
 }

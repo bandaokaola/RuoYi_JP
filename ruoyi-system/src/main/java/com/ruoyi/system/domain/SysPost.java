@@ -20,23 +20,23 @@ public class SysPost extends BaseEntity
     @Excel(name = "岗位序号", cellType = ColumnType.NUMERIC)
     private Long postId;
 
-    /** 岗位编码 */
-    @Excel(name = "岗位编码")
+    /** 岗位コード */
+    @Excel(name = "岗位コード")
     private String postCode;
 
-    /** 岗位名称 */
-    @Excel(name = "岗位名称")
+    /** 岗位名 */
+    @Excel(name = "岗位名")
     private String postName;
 
-    /** 岗位排序 */
-    @Excel(name = "岗位排序", cellType = ColumnType.NUMERIC)
+    /** 岗位順 */
+    @Excel(name = "岗位順", cellType = ColumnType.NUMERIC)
     private String postSort;
 
-    /** 状态（0正常 1停用） */
-    @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
+    /** 状態（0正常 1停用）　*/
+    @Excel(name = "状態", readConverterExp = "0=正常,1=停用")
     private String status;
 
-    /** 用户是否存在此岗位标识 默认不存在 */
+    /** ユーザーがこの岗位に存在するかどうかのフラグ デフォルトは存在しない */
     private boolean flag = false;
 
     public Long getPostId()
@@ -49,8 +49,8 @@ public class SysPost extends BaseEntity
         this.postId = postId;
     }
 
-    @NotBlank(message = "岗位编码不能为空")
-    @Size(min = 0, max = 64, message = "岗位编码长度不能超过64个字符")
+    @NotBlank(message = "岗位コードは必須です")
+    @Size(min = 0, max = 64, message = "岗位コードの長さは64文字を超えてはいけません")
     public String getPostCode()
     {
         return postCode;
@@ -61,8 +61,8 @@ public class SysPost extends BaseEntity
         this.postCode = postCode;
     }
 
-    @NotBlank(message = "岗位名称不能为空")
-    @Size(min = 0, max = 50, message = "岗位名称长度不能超过50个字符")
+    @NotBlank(message = "岗位名は必須です")
+    @Size(min = 0, max = 50, message = "岗位名の長さは50文字を超えてはいけません")
     public String getPostName()
     {
         return postName;
@@ -73,7 +73,7 @@ public class SysPost extends BaseEntity
         this.postName = postName;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "表示順は必須です")
     public String getPostSort()
     {
         return postSort;

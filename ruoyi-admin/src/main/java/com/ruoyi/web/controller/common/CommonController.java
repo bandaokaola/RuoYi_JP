@@ -2,10 +2,8 @@ package com.ruoyi.web.controller.common;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.ruoyi.common.config.RuoYiConfig;
 import com.ruoyi.common.config.ServerConfig;
 import com.ruoyi.common.constant.Constants;
@@ -26,8 +23,8 @@ import com.ruoyi.common.utils.file.FileUploadUtils;
 import com.ruoyi.common.utils.file.FileUtils;
 
 /**
- * 通用请求处理
- *
+ * 共通リクエスト処理
+ * 
  * @author ruoyi
  */
 @Controller
@@ -42,10 +39,10 @@ public class CommonController
     private static final String FILE_DELIMETER = ",";
 
     /**
-     * 通用下载请求
-     *
-     * @param fileName 文件名称
-     * @param delete 是否删除
+     * 通用のダウンロードリクエスト
+     * 
+     * @param fileName ファイル名
+     * @param delete 削除するかどうか
      */
     @GetMapping("/download")
     public void fileDownload(String fileName, Boolean delete, HttpServletResponse response, HttpServletRequest request)
@@ -54,7 +51,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(fileName))
             {
-                throw new Exception(StringUtils.format("ファイル名({})が無効で、ダウンロードは許可されません。", fileName));
+                throw new Exception(StringUtils.format("ファイル名({})が不正なため、ダウンロードできません。", fileName));
             }
             String realFileName = System.currentTimeMillis() + fileName.substring(fileName.indexOf("_") + 1);
             String filePath = RuoYiConfig.getDownloadPath() + fileName;
@@ -69,12 +66,12 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("ファイルのダウンロードに失敗しました。", e);
+            log.error("ファイルのダウンロードに失敗しました", e);
         }
     }
 
     /**
-     * 通用上传请求（单个）
+     * 通用の単一ファイルアップロードリクエスト
      */
     @PostMapping("/upload")
     @ResponseBody
@@ -82,9 +79,9 @@ public class CommonController
     {
         try
         {
-            // 上传文件路径
+            // アップロードファイルのパス
             String filePath = RuoYiConfig.getUploadPath();
-            // 上传并返回新文件名称
+            // アップロードして新しいファイル名を取得
             String fileName = FileUploadUtils.upload(filePath, file);
             String url = serverConfig.getUrl() + fileName;
             AjaxResult ajax = AjaxResult.success();
@@ -101,7 +98,7 @@ public class CommonController
     }
 
     /**
-     * 通用上传请求（多个）
+     * 通用の複数ファイルアップロードリクエスト
      */
     @PostMapping("/uploads")
     @ResponseBody
@@ -109,7 +106,7 @@ public class CommonController
     {
         try
         {
-            // 上传文件路径
+            // アップロードファイルのパス
             String filePath = RuoYiConfig.getUploadPath();
             List<String> urls = new ArrayList<String>();
             List<String> fileNames = new ArrayList<String>();
@@ -117,7 +114,7 @@ public class CommonController
             List<String> originalFilenames = new ArrayList<String>();
             for (MultipartFile file : files)
             {
-                // 上传并返回新文件名称
+                // アップロードして新しいファイル名を取得
                 String fileName = FileUploadUtils.upload(filePath, file);
                 String url = serverConfig.getUrl() + fileName;
                 urls.add(url);
@@ -139,7 +136,7 @@ public class CommonController
     }
 
     /**
-     * 本地资源通用下载
+     * ローカルリソースの通常のダウンロード
      */
     @GetMapping("/download/resource")
     public void resourceDownload(String resource, HttpServletRequest request, HttpServletResponse response)
@@ -149,7 +146,7 @@ public class CommonController
         {
             if (!FileUtils.checkAllowDownload(resource))
             {
-                throw new Exception(StringUtils.format("リソースファイル({})が無効で、ダウンロードは許可されません。", resource));
+                throw new Exception(StringUtils.format("リソースファイル({})が不正なため、ダウンロードできません。", resource));
             }
             // 本地资源路径
             String localPath = RuoYiConfig.getProfile();
@@ -163,7 +160,7 @@ public class CommonController
         }
         catch (Exception e)
         {
-            log.error("ファイルのダウンロードに失敗しました。", e);
+            log.error("ファイルのダウンロードに失敗しました", e);
         }
     }
 }

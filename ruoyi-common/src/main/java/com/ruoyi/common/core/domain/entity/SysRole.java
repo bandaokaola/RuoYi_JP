@@ -9,7 +9,7 @@ import com.ruoyi.common.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 角色表 sys_role
+ * ロールテーブル sys_role
  * 
  * @author ruoyi
  */
@@ -17,43 +17,43 @@ public class SysRole extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 角色ID */
-    @Excel(name = "角色序号", cellType = ColumnType.NUMERIC)
+    /** ロールID */
+    @Excel(name = "ロールID", cellType = ColumnType.NUMERIC)
     private Long roleId;
 
-    /** 角色名称 */
-    @Excel(name = "角色名称")
+    /** ロール名 */
+    @Excel(name = "ロール名")
     private String roleName;
 
-    /** 角色权限 */
-    @Excel(name = "角色权限")
+    /** ロール権限 */
+    @Excel(name = "ロール権限")
     private String roleKey;
 
-    /** 角色排序 */
-    @Excel(name = "角色排序", cellType = ColumnType.NUMERIC)
+    /** ロール並び替え */
+    @Excel(name = "ロール並び替え", cellType = ColumnType.NUMERIC)
     private String roleSort;
 
-    /** 数据范围（1：所有数据权限；2：自定义数据权限；3：本部门数据权限；4：本部门及以下数据权限；5：仅本人数据权限） */
-    @Excel(name = "数据范围", readConverterExp = "1=所有数据权限,2=自定义数据权限,3=本部门数据权限,4=本部门及以下数据权限,5=仅本人数据权限")
+    /** データ範囲（1：全データ権限；2：カスタムデータ権限；3：本部門データ権限；4：本部門および以下のデータ権限；5：個人のみデータ権限）  */
+    @Excel(name = "データ範囲", readConverterExp = "1=全データ権限,2=カスタムデータ権限,3=本部門データ権限,4=本部門および以下のデータ権限,5=個人のみデータ権限")
     private String dataScope;
 
-    /** 角色状态（0正常 1停用） */
-    @Excel(name = "角色状态", readConverterExp = "0=正常,1=停用")
+    /** ロール状態（0正常 1停用） */
+    @Excel(name = "ロール状態", readConverterExp = "0=正常,1=停用")
     private String status;
 
-    /** 删除标志（0代表存在 2代表删除） */
+    /** 削除フラグ（0は存在 2は削除） */
     private String delFlag;
 
-    /** 用户是否存在此角色标识 默认不存在 */
+    /** ユーザーがこのロールを持っているかどうかを示すデフォルトは存在しない */
     private boolean flag = false;
 
-    /** 菜单组 */
+    /** メニューグループ */
     private Long[] menuIds;
 
-    /** 部门组（数据权限） */
+    /** 部門グループ（データ権限） */
     private Long[] deptIds;
 
-    /** 角色菜单权限 */
+    /** ロールメニュー権限 */
     private Set<String> permissions;
 
     public SysRole()
@@ -96,8 +96,8 @@ public class SysRole extends BaseEntity
         this.dataScope = dataScope;
     }
 
-    @NotBlank(message = "角色名称不能为空")
-    @Size(min = 0, max = 30, message = "角色名称长度不能超过30个字符")
+    @NotBlank(message = "ロール名は必須です")
+    @Size(min = 0, max = 30, message = "ロール名は30文字を超えてはいけません")
     public String getRoleName()
     {
         return roleName;
@@ -108,8 +108,8 @@ public class SysRole extends BaseEntity
         this.roleName = roleName;
     }
 
-    @NotBlank(message = "权限字符不能为空")
-    @Size(min = 0, max = 100, message = "权限字符长度不能超过100个字符")
+    @NotBlank(message = "権限文字は必須です")
+    @Size(min = 0, max = 100, message = "権限文字は100文字を超えてはいけません")
     public String getRoleKey()
     {
         return roleKey;
@@ -120,7 +120,7 @@ public class SysRole extends BaseEntity
         this.roleKey = roleKey;
     }
 
-    @NotBlank(message = "显示顺序不能为空")
+    @NotBlank(message = "表示順は必須です")
     public String getRoleSort()
     {
         return roleSort;

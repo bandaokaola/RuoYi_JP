@@ -15,7 +15,7 @@ import com.ruoyi.system.mapper.SysConfigMapper;
 import com.ruoyi.system.service.ISysConfigService;
 
 /**
- * 参数配置 服务层实现
+ * パラメーター設定 サービス層実装
  * 
  * @author ruoyi
  */
@@ -26,7 +26,7 @@ public class SysConfigServiceImpl implements ISysConfigService
     private SysConfigMapper configMapper;
 
     /**
-     * 项目启动时，初始化参数到缓存
+     * プロジェクト起動時に、パラメーターをキャッシュに初期化します。
      */
     @PostConstruct
     public void init()
@@ -35,10 +35,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 查询参数配置信息
+     * パラメーター設定情報を取得
      * 
-     * @param configId 参数配置ID
-     * @return 参数配置信息
+     * @param configId パラメーター設定ID
+     * @return パラメーター設定情報
      */
     @Override
     public SysConfig selectConfigById(Long configId)
@@ -49,10 +49,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 根据键名查询参数配置信息
+     * キーに基づいてパラメーター設定情報を取得
      * 
-     * @param configKey 参数key
-     * @return 参数键值
+     * @param configKey パラメーターのキー名
+     * @return パラメーターのキー値
      */
     @Override
     public String selectConfigByKey(String configKey)
@@ -74,10 +74,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 查询参数配置列表
+     * パラメーター設定リストを取得
      * 
-     * @param config 参数配置信息
-     * @return 参数配置集合
+     * @param config パラメーター設定情報
+     * @return パラメーター設定のコレクション
      */
     @Override
     public List<SysConfig> selectConfigList(SysConfig config)
@@ -86,10 +86,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 新增参数配置
+     * パラメーター設定を新規追加
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config パラメーター設定情報
+     * @return 結果
      */
     @Override
     public int insertConfig(SysConfig config)
@@ -103,10 +103,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 修改参数配置
+     * パラメーター設定を編集
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config パラメーター設定情報
+     * @return 結果
      */
     @Override
     public int updateConfig(SysConfig config)
@@ -126,9 +126,9 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 批量删除参数配置对象
+     * パラメーター設定情報を複数削除
      * 
-     * @param ids 需要删除的数据ID
+     * @param ids 削除するデータID
      */
     @Override
     public void deleteConfigByIds(String ids)
@@ -139,7 +139,7 @@ public class SysConfigServiceImpl implements ISysConfigService
             SysConfig config = selectConfigById(configId);
             if (StringUtils.equals(UserConstants.YES, config.getConfigType()))
             {
-                throw new ServiceException(String.format("内置参数【%1$s】不能删除 ", config.getConfigKey()));
+            	throw new ServiceException(String.format("内部パラメーター【%1$s】は削除できません ", config.getConfigKey()));
             }
             configMapper.deleteConfigById(configId);
             CacheUtils.remove(getCacheName(), getCacheKey(config.getConfigKey()));
@@ -147,7 +147,7 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 加载参数缓存数据
+     * パラメーターキャッシュデータを読み込む
      */
     @Override
     public void loadingConfigCache()
@@ -160,7 +160,7 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 清空参数缓存数据
+     * パラメーターキャッシュデータをクリア
      */
     @Override
     public void clearConfigCache()
@@ -169,7 +169,7 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 重置参数缓存数据
+     * パラメーターキャッシュデータをリセット
      */
     @Override
     public void resetConfigCache()
@@ -179,10 +179,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 校验参数键名是否唯一
+     * パラメーターキーの一意性を検証
      * 
-     * @param config 参数配置信息
-     * @return 结果
+     * @param config パラメーター情報
+     * @return 結果
      */
     @Override
     public boolean checkConfigKeyUnique(SysConfig config)
@@ -197,9 +197,9 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 获取cache name
+     * キャッシュ名を取得します。
      * 
-     * @return 缓存名
+     * @return キャッシュ名
      */
     private String getCacheName()
     {
@@ -207,10 +207,10 @@ public class SysConfigServiceImpl implements ISysConfigService
     }
 
     /**
-     * 设置cache key
+     * キャッシュキーを設定します。
      * 
-     * @param configKey 参数键
-     * @return 缓存键key
+     * @param configKey パラメーターのキー
+     * @return キャッシュキー
      */
     private String getCacheKey(String configKey)
     {

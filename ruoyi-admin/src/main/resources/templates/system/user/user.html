@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<th:block th:include="include :: header('ユーザーリスト')" />
+	<th:block th:include="include :: header('ユーザー管理')" />
 	<th:block th:include="include :: layout-latest-css" />
 	<th:block th:include="include :: ztree-css" />
 </head>
 <body class="gray-bg">
-<!--  
+ 
 	<div class="ui-layout-west">
 		<div class="box box-main">
 			<div class="box-header">
@@ -25,7 +25,6 @@
 			</div>
 		</div>
 	</div>
-	-->
 	<div class="ui-layout-center">
 		<div class="container-div">
 			<div class="row">
@@ -181,8 +180,8 @@
 		                	actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i>削除</a> ');
 		                	var more = [];
 		                    more.push("<a class='btn btn-default btn-xs " + resetPwdFlag + "' href='javascript:void(0)' onclick='resetPwd(" + row.userId + ")'><i class='fa fa-key'></i>パスワードをリセット</a> ");
-		                    more.push("<a class='btn btn-default btn-xs " + editFlag + "' href='javascript:void(0)' onclick='authRole(" + row.userId + ")'><i class='fa fa-check-square-o'></i>役割を割り当てる</a>");
-		                    actions.push('<a tabindex="0" class="btn btn-info btn-xs" role="button" data-container="body" data-placement="left" data-toggle="popover" data-html="true" data-trigger="hover" data-content="' + more.join('') + '"><i class="fa fa-chevron-circle-right"></i>その他の操作</a>');
+		                    more.push("<a class='btn btn-default btn-xs " + editFlag + "' href='javascript:void(0)' onclick='authRole(" + row.userId + ")'><i class='fa fa-check-square-o'></i>ロールを割り当てる</a>");
+		                    actions.push('<a tabindex="0" class="btn btn-info btn-xs" role="button" data-container="body" data-placement="left" data-toggle="popover" data-html="true" data-trigger="hover" data-content="' + more.join('') + '"><i class="fa fa-chevron-circle-right"></i>その他操作</a>');
 		                    return actions.join('');
 		            	} else {
 		                    return "";

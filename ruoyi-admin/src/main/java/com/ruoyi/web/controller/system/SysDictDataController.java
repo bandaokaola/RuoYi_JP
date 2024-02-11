@@ -21,7 +21,7 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.service.ISysDictDataService;
 
 /**
- * 数据字典信息
+ * データ辞書情報
  * 
  * @author ruoyi
  */
@@ -51,7 +51,7 @@ public class SysDictDataController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.EXPORT)
+    @Log(title = "辞書データ", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:dict:export")
     @PostMapping("/export")
     @ResponseBody
@@ -59,11 +59,11 @@ public class SysDictDataController extends BaseController
     {
         List<SysDictData> list = dictDataService.selectDictDataList(dictData);
         ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
-        return util.exportExcel(list, "字典数据");
+        return util.exportExcel(list, "辞書データ");
     }
 
     /**
-     * 新增字典类型
+     * 辞書タイプの追加
      */
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, ModelMap mmap)
@@ -73,9 +73,9 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 新增保存字典类型
+     * 辞書タイプの追加保存
      */
-    @Log(title = "字典数据", businessType = BusinessType.INSERT)
+    @Log(title = "辞書データ", businessType = BusinessType.INSERT)
     @RequiresPermissions("system:dict:add")
     @PostMapping("/add")
     @ResponseBody
@@ -86,7 +86,7 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 修改字典类型
+     * 辞書タイプの編集
      */
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictCode}")
@@ -97,9 +97,9 @@ public class SysDictDataController extends BaseController
     }
 
     /**
-     * 修改保存字典类型
+     * 辞書タイプの編集保存
      */
-    @Log(title = "字典数据", businessType = BusinessType.UPDATE)
+    @Log(title = "辞書データ", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:dict:edit")
     @PostMapping("/edit")
     @ResponseBody
@@ -109,7 +109,7 @@ public class SysDictDataController extends BaseController
         return toAjax(dictDataService.updateDictData(dict));
     }
 
-    @Log(title = "字典数据", businessType = BusinessType.DELETE)
+    @Log(title = "辞書データ", businessType = BusinessType.DELETE)
     @RequiresPermissions("system:dict:remove")
     @PostMapping("/remove")
     @ResponseBody

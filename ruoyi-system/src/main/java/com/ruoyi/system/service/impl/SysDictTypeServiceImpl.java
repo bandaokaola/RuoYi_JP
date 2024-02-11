@@ -22,7 +22,7 @@ import com.ruoyi.system.mapper.SysDictTypeMapper;
 import com.ruoyi.system.service.ISysDictTypeService;
 
 /**
- * 字典 业务层处理
+ * 辞書 サービス層実装
  * 
  * @author ruoyi
  */
@@ -45,10 +45,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 根据条件分页查询字典类型
+     * 条件に基づいてページ分割して辞書タイプをクエリする
      * 
-     * @param dictType 字典类型信息
-     * @return 字典类型集合信息
+     * @param dictType 辞書タイプ情報
+     * @return 辞書タイプのコレクション情報
      */
     @Override
     public List<SysDictType> selectDictTypeList(SysDictType dictType)
@@ -57,9 +57,9 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 根据所有字典类型
+     * すべての辞書タイプをクエリする
      * 
-     * @return 字典类型集合信息
+     * @return 辞書タイプのコレクション情報
      */
     @Override
     public List<SysDictType> selectDictTypeAll()
@@ -68,10 +68,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 根据字典类型查询字典数据
+     * 辞書タイプに基づいて辞書データをクエリする
      * 
-     * @param dictType 字典类型
-     * @return 字典数据集合信息
+     * @param dictType 辞書タイプ
+     * @return 辞書データのコレクション情報
      */
     @Override
     public List<SysDictData> selectDictDataByType(String dictType)
@@ -91,10 +91,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 根据字典类型ID查询信息
+     * 辞書タイプIDに基づいて情報をクエリする
      * 
-     * @param dictId 字典类型ID
-     * @return 字典类型
+     * @param dictId 辞書タイプID
+     * @return 辞書タイプ
      */
     @Override
     public SysDictType selectDictTypeById(Long dictId)
@@ -103,10 +103,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 根据字典类型查询信息
+     * 辞書タイプに基づいて情報をクエリする
      * 
-     * @param dictType 字典类型
-     * @return 字典类型
+     * @param dictType 辞書タイプ
+     * @return 辞書タイプ
      */
     @Override
     public SysDictType selectDictTypeByType(String dictType)
@@ -115,9 +115,9 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 批量删除字典类型
+     * 辞書タイプを一括削除する
      * 
-     * @param ids 需要删除的数据
+     * @param ids 削除するデータ
      */
     @Override
     public void deleteDictTypeByIds(String ids)
@@ -136,7 +136,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 加载字典缓存数据
+     * 辞書キャッシュデータをロードする
      */
     @Override
     public void loadingDictCache()
@@ -151,7 +151,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 清空字典缓存数据
+     * 辞書キャッシュデータをクリアする
      */
     @Override
     public void clearDictCache()
@@ -160,7 +160,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 重置字典缓存数据
+     * 辞書キャッシュデータをリセットする
      */
     @Override
     public void resetDictCache()
@@ -170,10 +170,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 新增保存字典类型信息
+     * 新しい辞書タイプ情報を保存する
      * 
-     * @param dict 字典类型信息
-     * @return 结果
+     * @param dictType 辞書タイプ情報
+     * @return 結果
      */
     @Override
     public int insertDictType(SysDictType dict)
@@ -187,10 +187,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 修改保存字典类型信息
+     * 辞書タイプ情報を更新する
      * 
-     * @param dict 字典类型信息
-     * @return 结果
+     * @param dictType 辞書タイプ情報
+     * @return 結果
      */
     @Override
     @Transactional
@@ -208,10 +208,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 校验字典类型称是否唯一
+     * 辞書タイプ名が一意かどうかを検証する
      * 
-     * @param dict 字典类型
-     * @return 结果
+     * @param dictType 辞書タイプ
+     * @return 結果
      */
     @Override
     public boolean checkDictTypeUnique(SysDictType dict)
@@ -226,10 +226,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     }
 
     /**
-     * 查询字典类型树
+     * 辞書タイプツリーをクエリする
      * 
-     * @param dictType 字典类型
-     * @return 所有字典类型
+     * @param dictType 辞書タイプ
+     * @return すべての辞書タイプ
      */
     @Override
     public List<Ztree> selectDictTree(SysDictType dictType)

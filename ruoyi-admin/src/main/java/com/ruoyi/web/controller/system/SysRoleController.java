@@ -27,7 +27,7 @@ import com.ruoyi.system.service.ISysRoleService;
 import com.ruoyi.system.service.ISysUserService;
 
 /**
- * 角色信息
+ * ロール情報
  * 
  * @author ruoyi
  */
@@ -63,7 +63,7 @@ public class SysRoleController extends BaseController
         return getDataTable(list);
     }
 
-    @Log(title = "角色管理", businessType = BusinessType.EXPORT)
+    @Log(title = "ロール管理", businessType = BusinessType.EXPORT)
     @RequiresPermissions("system:role:export")
     @PostMapping("/export")
     @ResponseBody
@@ -71,11 +71,11 @@ public class SysRoleController extends BaseController
     {
         List<SysRole> list = roleService.selectRoleList(role);
         ExcelUtil<SysRole> util = new ExcelUtil<SysRole>(SysRole.class);
-        return util.exportExcel(list, "角色数据");
+        return util.exportExcel(list, "ロールデータ");
     }
 
     /**
-     * 新增角色
+     * 新規ロール
      */
     @GetMapping("/add")
     public String add()
@@ -84,21 +84,21 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 新增保存角色
+     * 新規保存ロール
      */
     @RequiresPermissions("system:role:add")
-    @Log(title = "角色管理", businessType = BusinessType.INSERT)
+    @Log(title = "ロール管理", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysRole role)
     {
         if (!roleService.checkRoleNameUnique(role))
         {
-            return error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
+            return error("新規ロール'" + role.getRoleName() + "'失敗、ロール名は既に存在します");
         }
         else if (!roleService.checkRoleKeyUnique(role))
         {
-            return error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
+            return error("新規ロール'" + role.getRoleName() + "'失敗、ロール権限は既に存在します");
         }
         role.setCreateBy(getLoginName());
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
@@ -107,7 +107,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 修改角色
+     * ロール編集
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/edit/{roleId}")
@@ -119,10 +119,10 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 修改保存角色
+     * 編集保存ロール
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "ロール管理", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysRole role)
@@ -131,11 +131,11 @@ public class SysRoleController extends BaseController
         roleService.checkRoleDataScope(role.getRoleId());
         if (!roleService.checkRoleNameUnique(role))
         {
-            return error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");
+            return error("ロール編集'" + role.getRoleName() + "'失敗、ロール名は既に存在します");
         }
         else if (!roleService.checkRoleKeyUnique(role))
         {
-            return error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
+            return error("ロール編集'" + role.getRoleName() + "'失敗、ロール名は既に存在します");
         }
         role.setUpdateBy(getLoginName());
         AuthorizationUtils.clearAllCachedAuthorizationInfo();
@@ -143,7 +143,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 角色分配数据权限
+     * ロールにデータ権限を割り当てる
      */
     @GetMapping("/authDataScope/{roleId}")
     public String authDataScope(@PathVariable("roleId") Long roleId, ModelMap mmap)
@@ -153,10 +153,10 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 保存角色分配数据权限
+     * ロールのデータ権限を保存
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "ロール管理", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
     @ResponseBody
     public AjaxResult authDataScopeSave(SysRole role)
@@ -173,7 +173,7 @@ public class SysRoleController extends BaseController
     }
 
     @RequiresPermissions("system:role:remove")
-    @Log(title = "角色管理", businessType = BusinessType.DELETE)
+    @Log(title = "ロール管理", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -182,7 +182,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 校验角色名称
+     * ロール名の一意性を確認
      */
     @PostMapping("/checkRoleNameUnique")
     @ResponseBody
@@ -192,7 +192,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 校验角色权限
+     * ロール権限の一意性を確認
      */
     @PostMapping("/checkRoleKeyUnique")
     @ResponseBody
@@ -202,7 +202,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 选择菜单树
+     * メニューのツリーを選択
      */
     @GetMapping("/selectMenuTree")
     public String selectMenuTree()
@@ -211,9 +211,9 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 角色状态修改
+     * ロールステータスの変更
      */
-    @Log(title = "角色管理", businessType = BusinessType.UPDATE)
+    @Log(title = "ロール管理", businessType = BusinessType.UPDATE)
     @RequiresPermissions("system:role:edit")
     @PostMapping("/changeStatus")
     @ResponseBody
@@ -225,7 +225,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 分配用户
+     * ユーザーの割り当て
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/authUser/{roleId}")
@@ -236,7 +236,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 查询已分配用户角色列表
+     * 割り当てられたユーザーロールのリストを検索
      */
     @RequiresPermissions("system:role:list")
     @PostMapping("/authUser/allocatedList")
@@ -249,10 +249,10 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 取消授权
+     * 認証をキャンセル
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "ロール管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancel")
     @ResponseBody
     public AjaxResult cancelAuthUser(SysUserRole userRole)
@@ -261,10 +261,10 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 批量取消授权
+     * バッチで認証をキャンセル
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "ロール管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/cancelAll")
     @ResponseBody
     public AjaxResult cancelAuthUserAll(Long roleId, String userIds)
@@ -273,7 +273,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 选择用户
+     * ユーザーの選択
      */
     @GetMapping("/authUser/selectUser/{roleId}")
     public String selectUser(@PathVariable("roleId") Long roleId, ModelMap mmap)
@@ -283,7 +283,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 查询未分配用户角色列表
+     * 未割り当てのユーザーロールリストを検索
      */
     @RequiresPermissions("system:role:list")
     @PostMapping("/authUser/unallocatedList")
@@ -296,10 +296,10 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 批量选择用户授权
+     * バッチでユーザーに対して認証を選択
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "角色管理", businessType = BusinessType.GRANT)
+    @Log(title = "ロール管理", businessType = BusinessType.GRANT)
     @PostMapping("/authUser/selectAll")
     @ResponseBody
     public AjaxResult selectAuthUserAll(Long roleId, String userIds)
@@ -309,7 +309,7 @@ public class SysRoleController extends BaseController
     }
 
     /**
-     * 加载角色部门（数据权限）列表树
+     * ロール部門（データ権限）リストツリーを読み込む
      */
     @RequiresPermissions("system:role:edit")
     @GetMapping("/deptTreeData")

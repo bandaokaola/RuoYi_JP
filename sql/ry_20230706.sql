@@ -9,7 +9,7 @@ create table sys_dept (
   dept_name         varchar(30)     default ''                 comment '部門名',
   order_num         int(4)          default 0                  comment '表示順序',
   leader            varchar(20)     default null               comment '責任者',
-  phone             varchar(11)     default null               comment '電話番号',
+  phone             varchar(20)     default null               comment '電話番号',
   email             varchar(50)     default null               comment 'メール',
   status            char(1)         default '0'                comment '部門の状態（0正常 1停止）',
   del_flag          char(1)         default '0'                comment '削除フラグ（0存在 2削除）',
@@ -23,16 +23,16 @@ create table sys_dept (
 -- ----------------------------
 -- 初期化-部門テーブルデータ
 -- ----------------------------
-insert into sys_dept values(100,  0,   '0',          '若依科技',   0, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(101,  100, '0,100',      '深圳総公司', 1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(102,  100, '0,100',      '長沙分公司', 2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(103,  101, '0,100,101',  '研發部門',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(104,  101, '0,100,101',  '市場部門',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(105,  101, '0,100,101',  'テスト部門',   3, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(106,  101, '0,100,101',  '財務部門',   4, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(107,  101, '0,100,101',  '運用部門',   5, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(108,  102, '0,100,102',  '市場部門',   1, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
-insert into sys_dept values(109,  102, '0,100,102',  '財務部門',   2, '若依', '15888888888', 'ry@qq.com', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(100,  0,   '0',          '株式会社日中ソフト',   0, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(101,  100, '0,100',      '東京支社', 1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(102,  100, '0,100',      '上海支社', 2, '旭本软件（上海）有限公司', '86-21-51504181', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(103,  101, '0,100,101',  '研究開発部門',   1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(104,  101, '0,100,101',  '営業部門',   2, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(105,  101, '0,100,101',  'QA部門',   3, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(106,  101, '0,100,101',  '労務部門',   4, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(107,  101, '0,100,101',  '保守部門',   5, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(108,  102, '0,100,102',  '営業部門',   1, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
+insert into sys_dept values(109,  102, '0,100,102',  '労務部門',   2, '株式会社日中ソフト', '045-264-8957', 'info@ncsoft.ne.jp', '0', '0', 'admin', sysdate(), '', null);
 
 
 -- ----------------------------
@@ -100,16 +100,16 @@ insert into sys_post values(4, 'user', '一般社員',  4, '0', 'admin', sysdate
 
 
 -- ----------------------------
--- 4、役割情報テーブル
+-- 4、ロール情報テーブル
 -- ----------------------------
 drop table if exists sys_role;
 create table sys_role (
-  role_id           bigint(20)      not null auto_increment    comment '役割ID',
-  role_name         varchar(30)     not null                   comment '役割名',
-  role_key          varchar(100)    not null                   comment '役割の権限文字列',
+  role_id           bigint(20)      not null auto_increment    comment 'ロールID',
+  role_name         varchar(30)     not null                   comment 'ロール名',
+  role_key          varchar(100)    not null                   comment 'ロールの権限文字列',
   role_sort         int(4)          not null                   comment '表示順序',
   data_scope        char(1)         default '1'                comment 'データ範囲（1：全データ権限 2：カスタムデータ権限 3：自部門データ権限 4：自部門以下データ権限）',
-  status            char(1)         not null                   comment '役割の状態（0正常 1停止）',
+  status            char(1)         not null                   comment 'ロールの状態（0正常 1停止）',
   del_flag          char(1)         default '0'                comment '削除フラグ（0存在 2削除）',
   create_by         varchar(64)     default ''                 comment '作成者',
   create_time       datetime                                   comment '作成時間',
@@ -117,13 +117,13 @@ create table sys_role (
   update_time       datetime                                   comment '更新時間',
   remark            varchar(500)    default null               comment '備考',
   primary key (role_id)
-) engine=innodb auto_increment=100 comment = '役割情報テーブル';
+) engine=innodb auto_increment=100 comment = 'ロール情報テーブル';
 
 -- ----------------------------
--- 初期化-役割情報テーブルデータ
+-- 初期化-ロール情報テーブルデータ
 -- ----------------------------
 insert into sys_role values('1', 'スーパー管理者', 'admin',  1, 1, '0', '0', 'admin', sysdate(), '', null, 'スーパー管理者');
-insert into sys_role values('2', '通常の役割',   'common', 2, 2, '0', '0', 'admin', sysdate(), '', null, '通常の役割');
+insert into sys_role values('2', '通常のロール',   'common', 2, 2, '0', '0', 'admin', sysdate(), '', null, '通常のロール');
 
 
 -- ----------------------------
@@ -160,7 +160,7 @@ insert into sys_menu values('3', 'システムツール', '0', '3', '#', '', 'M'
 insert into sys_menu values('4', '若依情報管理システム', '0', '4','https://github.com/bandaokaola/RuoYi_JP', 'menuBlank', 'C', '0', '1', '', 'fa fa-location-arrow', 'admin', sysdate(), '', null, '若依情報管理システムアドレス');
 -- 二次メニュー
 insert into sys_menu values('100', 'ユーザー管理', '1', '1', '/system/user', '', 'C', '0', '1', 'system:user:view', 'fa fa-user-o', 'admin', sysdate(), '', null, 'ユーザー管理メニュー');
-insert into sys_menu values('101', '役割管理', '1', '2', '/system/role', '', 'C', '0', '1', 'system:role:view', 'fa fa-user-secret', 'admin', sysdate(), '', null, '役割管理メニュー');
+insert into sys_menu values('101', 'ロール管理', '1', '2', '/system/role', '', 'C', '0', '1', 'system:role:view', 'fa fa-user-secret', 'admin', sysdate(), '', null, 'ロール管理メニュー');
 insert into sys_menu values('102', 'メニュー管理', '1', '3', '/system/menu', '', 'C', '0', '1', 'system:menu:view', 'fa fa-th-list', 'admin', sysdate(), '', null, 'メニュー管理メニュー');
 insert into sys_menu values('103', '部門管理', '1', '4', '/system/dept', '', 'C', '0', '1', 'system:dept:view', 'fa fa-outdent', 'admin', sysdate(), '', null, '部門管理メニュー');
 insert into sys_menu values('104', '職位管理', '1', '5', '/system/post', '', 'C', '0', '1', 'system:post:view', 'fa fa-address-card-o', 'admin', sysdate(), '', null, '職位管理メニュー');
@@ -187,12 +187,12 @@ insert into sys_menu values('1003', 'ユーザー削除', '100', '4', '#', '', '
 insert into sys_menu values('1004', 'ユーザーエクスポート', '100', '5', '#', '', 'F', '0', '1', 'system:user:export', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1005', 'ユーザーインポート', '100', '6', '#', '', 'F', '0', '1', 'system:user:import', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1006', 'パスワードリセット', '100', '7', '#', '', 'F', '0', '1', 'system:user:resetPwd', '#', 'admin', sysdate(), '', null, '');
--- 役割管理ボタン
-insert into sys_menu values('1007', '役割検索', '101', '1', '#', '', 'F', '0', '1', 'system:role:list', '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1008', '役割追加', '101', '2', '#', '', 'F', '0', '1', 'system:role:add', '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1009', '役割修正', '101', '3', '#', '', 'F', '0', '1', 'system:role:edit', '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1010', '役割削除', '101', '4', '#', '', 'F', '0', '1', 'system:role:remove', '#', 'admin', sysdate(), '', null, '');
-insert into sys_menu values('1011', '役割エクスポート', '101', '5', '#', '', 'F', '0', '1', 'system:role:export', '#', 'admin', sysdate(), '', null, '');
+-- ロール管理ボタン
+insert into sys_menu values('1007', 'ロール検索', '101', '1', '#', '', 'F', '0', '1', 'system:role:list', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1008', 'ロール追加', '101', '2', '#', '', 'F', '0', '1', 'system:role:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1009', 'ロール修正', '101', '3', '#', '', 'F', '0', '1', 'system:role:edit', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1010', 'ロール削除', '101', '4', '#', '', 'F', '0', '1', 'system:role:remove', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1011', 'ロールエクスポート', '101', '5', '#', '', 'F', '0', '1', 'system:role:export', '#', 'admin', sysdate(), '', null, '');
 -- メニュー管理ボタン
 insert into sys_menu values('1012', 'メニュー検索', '102', '1', '#', '', 'F', '0', '1', 'system:menu:list', '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1013', 'メニュー追加', '102', '2', '#', '', 'F', '0', '1', 'system:menu:add', '#', 'admin', sysdate(), '', null, '');
