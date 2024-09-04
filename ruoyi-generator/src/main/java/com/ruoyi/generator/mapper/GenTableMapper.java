@@ -4,88 +4,88 @@ import java.util.List;
 import com.ruoyi.generator.domain.GenTable;
 
 /**
- * 业务 数据层
+ * ビジネス データ層
  * 
  * @author ruoyi
  */
 public interface GenTableMapper
 {
     /**
-     * 查询业务列表
+     * ビジネスリストを取得
      * 
-     * @param genTable 业务信息
-     * @return 业务集合
+     * @param genTable ビジネス情報
+     * @return ビジネス集合
      */
     public List<GenTable> selectGenTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * データベースリストを取得
      * 
-     * @param genTable 业务信息
-     * @return 数据库表集合
+     * @param genTable ビジネス情報
+     * @return データベーステーブルの集合
      */
     public List<GenTable> selectDbTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * データベースリストを取得
      * 
-     * @param tableNames 表名称组
-     * @return 数据库表集合
+     * @param tableNames テーブル名の配列
+     * @return データベーステーブルの集合
      */
     public List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
-     * 查询所有表信息
+     * 全てのテーブル情報を取得
      * 
-     * @return 表信息集合
+     * @return テーブル情報の集合
      */
     public List<GenTable> selectGenTableAll();
 
     /**
-     * 查询表ID业务信息
+     * テーブルIDによるビジネス情報を取得
      * 
-     * @param id 业务ID
-     * @return 业务信息
+     * @param id ビジネスID
+     * @return ビジネス情報
      */
     public GenTable selectGenTableById(Long id);
 
     /**
-     * 查询表名称业务信息
+     * テーブル名によるビジネス情報を取得
      * 
-     * @param tableName 表名称
-     * @return 业务信息
+     * @param tableName テーブル名
+     * @return ビジネス情報
      */
     public GenTable selectGenTableByName(String tableName);
 
     /**
-     * 新增业务
+     * ビジネスを追加
      * 
-     * @param genTable 业务信息
-     * @return 结果
+     * @param genTable ビジネス情報
+     * @return 結果
      */
     public int insertGenTable(GenTable genTable);
 
     /**
-     * 修改业务
+     * ビジネスを更新
      * 
-     * @param genTable 业务信息
-     * @return 结果
+     * @param genTable ビジネス情報
+     * @return 結果
      */
     public int updateGenTable(GenTable genTable);
 
     /**
-     * 批量删除业务
+     * ビジネスを一括削除
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 削除するデータのID
+     * @return 結果
      */
     public int deleteGenTableByIds(Long[] ids);
 
     /**
-     * 创建表
+     * テーブルを作成
      *
      * @param sql
-     * @return 结果
+     * @return 結果
      */
     public int createTable(String sql);
 }

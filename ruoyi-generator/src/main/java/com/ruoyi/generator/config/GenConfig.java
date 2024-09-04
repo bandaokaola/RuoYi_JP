@@ -6,7 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
- * 读取代码生成相关配置
+ * 生成コードに関連する設定を読み込む
  * 
  * @author ruoyi
  */
@@ -18,13 +18,13 @@ public class GenConfig
     /** 作者 */
     public static String author;
 
-    /** 生成包路径 */
+    /** 生成パッケージのパス */
     public static String packageName;
 
-    /** 自动去除表前缀，默认是false */
+    /** テーブルのプレフィックスを自動的に削除するか、デフォルトはfalse */
     public static boolean autoRemovePre;
 
-    /** 表前缀(类名不会包含表前缀) */
+    /** テーブルプレフィックス（クラス名にはテーブルプレフィックスが含まれない） */
     public static String tablePrefix;
 
     public static String getAuthor()

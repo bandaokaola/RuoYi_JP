@@ -14,22 +14,22 @@ import com.ruoyi.generator.domain.GenTableColumn;
 
 public class VelocityUtils
 {
-    /** 项目空间路径 */
+	/** プロジェクトのJavaパス */
     private static final String PROJECT_PATH = "main/java";
 
-    /** mybatis空间路径 */
+    /** MyBatisのパス */
     private static final String MYBATIS_PATH = "main/resources/mapper";
 
-    /** html空间路径 */
+    /** HTMLテンプレートのパス */
     private static final String TEMPLATES_PATH = "main/resources/templates";
     
-    /** 默认上级菜单，系统工具 */
+    /** デフォルトの親メニューID（システムツール） */
     private static final String DEFAULT_PARENT_MENU_ID = "3";
 
     /**
-     * 设置模板变量信息
+     * テンプレート変数情報を設定します
      * 
-     * @return 模板列表
+     * @return VelocityContextのテンプレートリスト
      */
     public static VelocityContext prepareContext(GenTable genTable)
     {
@@ -117,9 +117,9 @@ public class VelocityUtils
     }
 
     /**
-     * 获取模板信息
+     * テンプレートリストを取得します
      * 
-     * @return 模板列表
+     * @return テンプレートリスト
      */
     public static List<String> getTemplateList(String tplCategory)
     {
@@ -151,19 +151,19 @@ public class VelocityUtils
     }
 
     /**
-     * 获取文件名
+     * ファイル名を取得します
      */
     public static String getFileName(String template, GenTable genTable)
     {
-        // 文件名称
+    	// ファイル名
         String fileName = "";
-        // 包路径
+        // パッケージパス
         String packageName = genTable.getPackageName();
-        // 模块名
+        // モジュール名
         String moduleName = genTable.getModuleName();
-        // 大写类名
+        // 大文字クラス名
         String className = genTable.getClassName();
-        // 业务名称
+        // ビジネス名
         String businessName = genTable.getBusinessName();
 
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
@@ -226,9 +226,9 @@ public class VelocityUtils
     }
 
     /**
-     * 获取项目文件路径
+     * プロジェクトのファイルパスを取得します
      * 
-     * @return 路径
+     * @return パス
      */
     public static String getProjectPath()
     {
@@ -241,10 +241,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取包前缀
+     * パッケージのプレフィックスを取得します
      * 
-     * @param packageName 包名称
-     * @return 包前缀名称
+     * @param packageName パッケージ名
+     * @return パッケージプレフィックス名
      */
     public static String getPackagePrefix(String packageName)
     {
@@ -253,10 +253,10 @@ public class VelocityUtils
     }
 
     /**
-     * 根据列类型获取导入包
+     * 列の種類に基づいてインポートパッケージを取得します
      * 
-     * @param genTable 业务表对象
-     * @return 返回需要导入的包列表
+     * @param genTable ビジネステーブルオブジェクト
+     * @return 必要なインポートパッケージのリスト
      */
     public static HashSet<String> getImportList(GenTable genTable)
     {
@@ -283,11 +283,11 @@ public class VelocityUtils
     }
 
     /**
-     * 获取权限前缀
+     * 権限プレフィックスを取得します
      * 
-     * @param moduleName 模块名称
-     * @param businessName 业务名称
-     * @return 返回权限前缀
+     * @param moduleName モジュール名
+     * @param businessName ビジネス名
+     * @return 権限プレフィックス
      */
     public static String getPermissionPrefix(String moduleName, String businessName)
     {
@@ -295,10 +295,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取上级菜单ID字段
+     * 親メニューIDフィールドを取得します
      * 
-     * @param paramsObj 生成其他选项
-     * @return 上级菜单ID字段
+     * @param paramsObj 他のオプションを生成
+     * @return 親メニューIDフィールド
      */
     public static String getParentMenuId(JSONObject paramsObj)
     {
@@ -311,10 +311,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取树编码
+     * ツリーコードを取得します
      * 
-     * @param paramsObj 生成其他选项
-     * @return 树编码
+     * @param paramsObj 他のオプションを生成
+     * @return ツリーコード
      */
     public static String getTreecode(JSONObject paramsObj)
     {
@@ -326,10 +326,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取树父编码
+     * ツリー親コードを取得します
      * 
-     * @param paramsObj 生成其他选项
-     * @return 树父编码
+     * @param paramsObj 他のオプションを生成
+     * @return ツリー親コード
      */
     public static String getTreeParentCode(JSONObject paramsObj)
     {
@@ -341,10 +341,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取树名称
+     * ツリー名を取得します
      * 
-     * @param paramsObj 生成其他选项
-     * @return 树名称
+     * @param paramsObj 他のオプションを生成
+     * @return ツリー名
      */
     public static String getTreeName(JSONObject paramsObj)
     {
@@ -356,10 +356,10 @@ public class VelocityUtils
     }
 
     /**
-     * 获取需要在哪一列上面显示展开按钮
+     * 展開ボタンを表示する列を取得します
      * 
-     * @param genTable 业务表对象
-     * @return 展开按钮列序号
+     * @param genTable ビジネステーブルオブジェクト
+     * @return 展開ボタン列のインデックス
      */
     public static int getExpandColumn(GenTable genTable)
     {

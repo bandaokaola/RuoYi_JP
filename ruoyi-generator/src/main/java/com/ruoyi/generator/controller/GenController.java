@@ -38,7 +38,7 @@ import com.ruoyi.generator.service.IGenTableColumnService;
 import com.ruoyi.generator.service.IGenTableService;
 
 /**
- * 代码生成 操作处理
+ * コード生成 操作処理
  * 
  * @author ruoyi
  */
@@ -62,7 +62,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询代码生成列表
+     * コード生成リストの取得
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/list")
@@ -75,7 +75,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询数据库列表
+     * データベースリストの取得
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/db/list")
@@ -88,7 +88,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 查询数据表字段列表
+     * データテーブルフィールドリストの取得
      */
     @RequiresPermissions("tool:gen:list")
     @PostMapping("/column/list")
@@ -103,7 +103,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 导入表结构
+     * テーブル構造のインポート
      */
     @RequiresPermissions("tool:gen:list")
     @GetMapping("/importTable")
@@ -113,7 +113,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 创建表结构
+     * テーブル構造の作成
      */
     @GetMapping("/createTable")
     public String createTable()
@@ -122,7 +122,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 导入表结构（保存）
+     * テーブル構造のインポート（保存）
      */
     @RequiresPermissions("tool:gen:list")
     @Log(title = "代码生成", businessType = BusinessType.IMPORT)
@@ -139,7 +139,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 修改代码生成业务
+     * コード生成業務の修正
      */
     @RequiresPermissions("tool:gen:edit")
     @GetMapping("/edit/{tableId}")
@@ -168,10 +168,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 修改保存代码生成业务
+     * コード生成業務の修正保存
      */
     @RequiresPermissions("tool:gen:edit")
-    @Log(title = "代码生成", businessType = BusinessType.UPDATE)
+    @Log(title = "コード生成", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated GenTable genTable)
@@ -182,7 +182,7 @@ public class GenController extends BaseController
     }
 
     @RequiresPermissions("tool:gen:remove")
-    @Log(title = "代码生成", businessType = BusinessType.DELETE)
+    @Log(title = "コード生成", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids)
@@ -192,7 +192,7 @@ public class GenController extends BaseController
     }
 
     @RequiresRoles("admin")
-    @Log(title = "创建表", businessType = BusinessType.OTHER)
+    @Log(title = "テーブル作成", businessType = BusinessType.OTHER)
     @PostMapping("/createTable")
     @ResponseBody
     public AjaxResult create(String sql)
@@ -222,12 +222,12 @@ public class GenController extends BaseController
         catch (Exception e)
         {
             logger.error(e.getMessage(), e);
-            return AjaxResult.error("创建表结构异常");
+            return AjaxResult.error("テーブル構造の作成に失敗しました");
         }
     }
 
     /**
-     * 预览代码
+     * コードのプレビュー
      */
     @RequiresPermissions("tool:gen:preview")
     @GetMapping("/preview/{tableId}")
@@ -239,10 +239,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 生成代码（下载方式）
+     * コード生成（ダウンロード方式）
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "コード生成", businessType = BusinessType.GENCODE)
     @GetMapping("/download/{tableName}")
     public void download(HttpServletResponse response, @PathVariable("tableName") String tableName) throws IOException
     {
@@ -251,10 +251,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 生成代码（自定义路径）
+     * コード生成（カスタムパス）
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "コード生成", businessType = BusinessType.GENCODE)
     @GetMapping("/genCode/{tableName}")
     @ResponseBody
     public AjaxResult genCode(@PathVariable("tableName") String tableName)
@@ -264,10 +264,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 同步数据库
+     * データベースの同期
      */
     @RequiresPermissions("tool:gen:edit")
-    @Log(title = "代码生成", businessType = BusinessType.UPDATE)
+    @Log(title = "コード生成", businessType = BusinessType.UPDATE)
     @GetMapping("/synchDb/{tableName}")
     @ResponseBody
     public AjaxResult synchDb(@PathVariable("tableName") String tableName)
@@ -277,10 +277,10 @@ public class GenController extends BaseController
     }
 
     /**
-     * 批量生成代码
+     * コードの一括生成
      */
     @RequiresPermissions("tool:gen:code")
-    @Log(title = "代码生成", businessType = BusinessType.GENCODE)
+    @Log(title = "コード生成", businessType = BusinessType.GENCODE)
     @GetMapping("/batchGenCode")
     @ResponseBody
     public void batchGenCode(HttpServletResponse response, String tables) throws IOException
@@ -291,7 +291,7 @@ public class GenController extends BaseController
     }
 
     /**
-     * 生成zip文件
+     * zipファイルの生成
      */
     private void genCode(HttpServletResponse response, byte[] data) throws IOException
     {
