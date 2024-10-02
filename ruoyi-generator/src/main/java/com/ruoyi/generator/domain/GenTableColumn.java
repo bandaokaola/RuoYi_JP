@@ -5,7 +5,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 import com.ruoyi.common.utils.StringUtils;
 
 /**
- * 代码生成业务字段表 gen_table_column
+ * コード生成ビジネスフィールドテーブル gen_table_column
  * 
  * @author ruoyi
  */
@@ -13,59 +13,59 @@ public class GenTableColumn extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 编号 */
+    /** 番号 */
     private Long columnId;
 
-    /** 归属表编号 */
+    /** 所属テーブル番号 */
     private Long tableId;
 
-    /** 列名称 */
+    /** 列名 */
     private String columnName;
 
-    /** 列描述 */
+    /** 列の説明 */
     private String columnComment;
 
-    /** 列类型 */
+    /** 列タイプ */
     private String columnType;
 
-    /** JAVA类型 */
+    /** JAVAタイプ */
     private String javaType;
 
-    /** JAVA字段名 */
-    @NotBlank(message = "Java属性不能为空")
+    /** AVAフィールド名 */
+    @NotBlank(message = "Java属性は空にできません")
     private String javaField;
 
-    /** 是否主键（1是） */
+    /** 主キーかどうか（1ははい） */
     private String isPk;
 
-    /** 是否自增（1是） */
+    /** 自動増加かどうか（1ははい） */
     private String isIncrement;
 
-    /** 是否必填（1是） */
+    /** 必須かどうか（1ははい） */
     private String isRequired;
 
-    /** 是否为插入字段（1是） */
+    /** 挿入フィールドかどうか（1ははい） */
     private String isInsert;
 
-    /** 是否编辑字段（1是） */
+    /** 編集フィールドかどうか（1ははい） */
     private String isEdit;
 
-    /** 是否列表字段（1是） */
+    /** リストフィールドかどうか（1ははい） */
     private String isList;
 
-    /** 是否查询字段（1是） */
+    /** クエリフィールドかどうか（1ははい） */
     private String isQuery;
 
-    /** 查询方式（EQ等于、NE不等于、GT大于、LT小于、LIKE模糊、BETWEEN范围） */
+    /** クエリ方法（EQ等しい、NE等しくない、GTより大きい、LTより小さい、LIKEあいまい、BETWEEN範囲） */
     private String queryType;
 
-    /** 显示类型（input文本框、textarea文本域、select下拉框、checkbox复选框、radio单选框、datetime日期控件、upload上传控件、summernote富文本控件） */
+    /** 表示タイプ（inputテキストボックス、textareaテキストエリア、selectドロップダウン、checkboxチェックボックス、radioラジオボタン、datetime日付コントロール、uploadアップロードコントロール、summernoteリッチテキストコントロール） */
     private String htmlType;
 
-    /** 字典类型 */
+    /** 辞書タイプ */
     private String dictType = "";
 
-    /** 排序 */
+    /** ソート */
     private Integer sort;
 
     public void setColumnId(Long columnId)

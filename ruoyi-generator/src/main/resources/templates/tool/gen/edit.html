@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
 <head>
-	<th:block th:include="include :: header('修改生成信息')" />
+	<th:block th:include="include :: header('生成情報の修正')" />
 	<th:block th:include="include :: select2-css" />
 	<style type="text/css">
 	    .select-table table{table-layout:fixed;}.table>thead>tr>th{text-align:center;}.select-table .table td{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}.form-control{padding:3px 6px 4px;height:30px;}.icheckbox-blue{top:0px;left:6px;}.form-control.select2-hidden-accessible{position:static!important;}.select-table table label.error{position: inherit;}select + label.error{z-index:1;right:40px;}
 	</style>
 </head>
-<body class="gray-bg" style="font: 14px Helvetica Neue, Helvetica, PingFang SC, 微软雅黑, Tahoma, Arial, sans-serif !important;">
+<body class="gray-bg" style="font: 14px Helvetica Neue, Helvetica, PingFang SC, メイリオ, Tahoma, Arial, sans-serif !important;">
     <section class="section-content">
     <div class="row">
         <div class="col-xs-12">
@@ -15,32 +15,32 @@
                 <div class="ibox-content" style="border-style:none;">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li><a href="#tab-basic" data-toggle="tab" aria-expanded="false">基本信息</a></li>
-                            <li class="active"><a href="#tab-field" data-toggle="tab" aria-expanded="true">字段信息</a></li>
-                            <li><a href="#tab-gen" data-toggle="tab" aria-expanded="false">生成信息</a></li>
+                            <li><a href="#tab-basic" data-toggle="tab" aria-expanded="false">基本情報</a></li>
+                            <li class="active"><a href="#tab-field" data-toggle="tab" aria-expanded="true">フィールド情報</a></li>
+                            <li><a href="#tab-gen" data-toggle="tab" aria-expanded="false">生成情報</a></li>
                             <li class="pull-right header">
-								<i class="fa fa-code"></i> 生成配置
+								<i class="fa fa-code"></i> 生成設定
 							</li>
                         </ul>
                         <form id="form-gen-edit" class="form-horizontal" th:object="${table}">
                         <input name="tableId" type="hidden" th:field="*{tableId}" />
                         <div class="tab-content">
-                            <!-- 基本信息 -->
+                            <!-- 基本情報 -->
                             <div class="tab-pane" id="tab-basic">
 				            <div class="row mt20">
 				            	<div class="col-sm-6">
 				                    <div class="form-group">
-				                        <label class="col-sm-4 control-label is-required">表名称：</label>
+				                        <label class="col-sm-4 control-label is-required">テーブル名：</label>
 				                        <div class="col-sm-8">
-				                            <input name="tableName" class="form-control" type="text" placeholder="请输入表名称" maxlength="200" th:field="*{tableName}" required>
+				                            <input name="tableName" class="form-control" type="text" placeholder="テーブル名を入力してください" maxlength="200" th:field="*{tableName}" required>
 				                        </div>
 				                    </div>
 				                </div>
 				                <div class="col-sm-6">
 				                    <div class="form-group">
-				                        <label class="col-sm-4 control-label is-required">表描述：</label>
+				                        <label class="col-sm-4 control-label is-required">テーブルの説明：</label>
 				                        <div class="col-sm-8">
-				                            <input name="tableComment" class="form-control" type="text" placeholder="请输入表描述" maxlength="500" th:field="*{tableComment}" required>
+				                            <input name="tableComment" class="form-control" type="text" placeholder="テーブルの説明を入力してください" maxlength="500" th:field="*{tableComment}" required>
 				                        </div>
 				                    </div>
 				                </div>
@@ -48,17 +48,17 @@
 				            <div class="row">
 				                <div class="col-sm-6">
 				                    <div class="form-group">
-				                        <label class="col-sm-4 control-label is-required">实体类名称：</label>
+				                        <label class="col-sm-4 control-label is-required">エンティティクラス名：</label>
 				                        <div class="col-sm-8">
-				                            <input name="className" class="form-control" type="text" placeholder="请输入实体类名称" maxlength="100" th:field="*{className}" required>
+				                            <input name="className" class="form-control" type="text" placeholder="エンティティクラス名を入力してください" maxlength="100" th:field="*{className}" required>
 				                        </div>
 				                    </div>
 				                </div>
 				                <div class="col-sm-6">
 				                    <div class="form-group">
-				                        <label class="col-sm-4 control-label is-required">作者：</label>
+				                        <label class="col-sm-4 control-label is-required">作成者：</label>
 				                        <div class="col-sm-8">
-				                            <input name="functionAuthor" class="form-control" type="text" placeholder="请输入作者" maxlength="50" th:field="*{functionAuthor}" required>
+				                            <input name="functionAuthor" class="form-control" type="text" placeholder="作成者を入力してください" maxlength="50" th:field="*{functionAuthor}" required>
 				                        </div>
 				                    </div>
 				                </div>
@@ -66,7 +66,7 @@
 				            <div class="row">
 				                <div class="col-sm-12">
 				                    <div class="form-group">
-				                        <label class="col-xs-2 control-label">备注：</label>
+				                        <label class="col-xs-2 control-label">備考：</label>
 				                        <div class="col-xs-10">
 				                            <textarea name="remark" maxlength="500" class="form-control" rows="3"></textarea>
 				                        </div>
@@ -75,33 +75,33 @@
 				            </div>
                             </div>
                             
-                            <!-- 字段信息 -->
+                            <!-- フィールド情報 -->
                             <div class="tab-pane active" id="tab-field">
                                 <div class="select-table table-striped" style="margin-top: 0px;padding-top: 0px;padding-bottom: 0px;">
 								    <table id="bootstrap-table" data-use-row-attr-func="true" data-reorderable-rows="true"></table>
 								</div>
                             </div>
                             
-                            <!-- 生成信息 -->
+                            <!-- 生成情報 -->
                             <div class="tab-pane" id="tab-gen">
 					            <div class="row mt20">
 					            	<div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required">生成模板：</label>
+					                        <label class="col-sm-4 control-label is-required">生成テンプレート：</label>
 					                        <div class="col-sm-8">
 					                            <select class='form-control' id="tplCategory" name='tplCategory' style="width: 100%">
-												    <option value="crud" th:field="*{tplCategory}">单表（增删改查）</option>
-												    <option value="tree" th:field="*{tplCategory}">树表（增删改查）</option>
-												    <option value="sub" th:field="*{tplCategory}">主子表（增删改查）</option>
+												    <option value="crud" th:field="*{tplCategory}">単一テーブル（追加・削除・更新・検索）</option>
+												    <option value="tree" th:field="*{tplCategory}">ツリーテーブル（追加・削除・更新・検索）</option>
+												    <option value="sub" th:field="*{tplCategory}">親子テーブル（追加・削除・更新・検索）</option>
 												</select>
 					                        </div>
 					                    </div>
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="生成在哪个java包下，例如 com.ruoyi.project.system">生成包路径：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="どのJavaパッケージに生成されるか、例：com.ruoyi.project.system">生成パス：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-					                            <input name="packageName" class="form-control" type="text" placeholder="请输入生成包路径" maxlength="100" th:field="*{packageName}" required>
+					                            <input name="packageName" class="form-control" type="text" placeholder="生成パスを入力してください" maxlength="100" th:field="*{packageName}" required>
 					                        </div>
 					                    </div>
 					                </div>
@@ -109,17 +109,17 @@
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="可理解为子系统名，例如 system">生成模块名：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="サブシステム名と理解できる例：system">生成モジュール名：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-					                            <input name="moduleName" class="form-control" type="text" placeholder="请输入生成模块名" maxlength="30" th:field="*{moduleName}" required>
+					                            <input name="moduleName" class="form-control" type="text" placeholder="生成モジュール名を入力してください" maxlength="30" th:field="*{moduleName}" required>
 					                        </div>
 					                    </div>
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="可理解为功能英文名，例如 user">生成业务名：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="機能の英名と理解できる例：user">生成業務名：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-					                            <input name="businessName" class="form-control" type="text" placeholder="请输入生成业务名" maxlength="50" th:field="*{businessName}" required>
+					                            <input name="businessName" class="form-control" type="text" placeholder="生成業務名を入力してください" maxlength="50" th:field="*{businessName}" required>
 					                        </div>
 					                    </div>
 					                </div>
@@ -127,15 +127,15 @@
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="用作类描述，例如 用户">生成功能名：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="クラスの説明として使用される、例：ユーザー">生成機能名：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-					                            <input name="functionName" class="form-control" type="text" placeholder="请输入生成功能名" maxlength="50" th:field="*{functionName}" required>
+					                            <input name="functionName" class="form-control" type="text" placeholder="生成機能名を入力してください" maxlength="50" th:field="*{functionName}" required>
 					                        </div>
 					                    </div>
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="分配到指定菜单下，例如 系统管理">上级菜单：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="指定されたメニューに割り当てる、例：システム管理">親メニュー：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <input id="parentMenuId" name="params[parentMenuId]" type="hidden" th:value="*{parentMenuId}"/>
 					                            <div class="input-group">
@@ -149,10 +149,10 @@
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label" title="默认为zip压缩包下载，也可以自定义生成路径">生成代码方式：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label" title="デフォルトではzip圧縮ファイルでダウンロードされますが、カスタム生成パスも選択可能です。">生成代码方式：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
-                                                <label class="radio-box"> <input type="radio" name="genType" value="0" th:field="*{genType}" /> zip压缩包 </label> 
-                                                <label class="radio-box"> <input type="radio" name="genType" value="1" th:field="*{genType}" /> 自定义路径</label> 
+                                                <label class="radio-box"> <input type="radio" name="genType" value="0" th:field="*{genType}" /> zip圧縮ファイル </label> 
+                                                <label class="radio-box"> <input type="radio" name="genType" value="1" th:field="*{genType}" /> カスタムパス</label> 
 					                        </div>
 					                    </div>
 					                </div>
@@ -160,14 +160,14 @@
 					            <div class="hidden row" id="pathinfo">
 					                <div class="col-sm-12">
 					                    <div class="form-group">
-					                        <label class="col-xs-2 control-label" title="填写磁盘绝对路径，若不填写，则生成到当前Web项目下">生成基础路径：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-xs-2 control-label" title="絶対パスを記入してください。記入しない場合、現在のWebプロジェクトの下に生成されます。">生成基盤パス：<i class="fa fa-question-circle-o"></i></label>
 						                    <div class="col-xs-10">
 						                        <div class="input-group input-group-sm">
-						                            <input id="genPath" name="genPath" class="form-control" type="text" th:field="*{genPath}" placeholder="请输入项目路径" maxlength="200">
+						                            <input id="genPath" name="genPath" class="form-control" type="text" th:field="*{genPath}" placeholder="プロジェクトパスを入力してください" maxlength="200">
 						                            <div class="input-group-btn">
-						                               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">最近路径快速选择 <span class="caret"></span></button>
+						                               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">最近使用したパスを選択 <span class="caret"></span></button>
 															<ul class="dropdown-menu dropdown-menu-right" role="menu">
-																<li><a href="javascript:$('#genPath').val('/')"><i class="fa fa-refresh"></i>恢复默认的生成基础路径</a></li>
+																<li><a href="javascript:$('#genPath').val('/')"><i class="fa fa-refresh"></i>デフォルトの生成基盤パスに戻す</a></li>
 															</ul>
 														</div>
 													</div>
@@ -176,24 +176,24 @@
 					                </div>
 					            </div>
 					            <div class="hidden" id="subInfo">
-					            <h4 class="form-header h4">关联信息</h4>
+					            <h4 class="form-header h4">関連情報</h4>
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="关联子表的表名， 如：sys_user">关联子表的表名：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="子表のテーブル名を指定します。例：sys_user">子表のテーブル名：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <select class='type form-control' id="subTableName" name='subTableName' th:attr='data-value=*{subTableName}' style="width: 100%">
-					                                <option value="">---请选择---</option>
+					                                <option value="">---選択してください---</option>
 												</select>
 					                        </div>
 					                    </div>
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="子表关联的外键名， 如：user_id">子表关联的外键名：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="子表に関連する外部キーの名前を指定します。例：user_id">子表に関連する外部キー名：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <select class='router form-control' id="subTableFkName" name='subTableFkName' th:attr='data-value=*{subTableFkName}' style="width: 100%">
-					                                <option value="">---请选择---</option>
+					                                <option value="">---選択してください---</option>
 												</select>
 					                        </div>
 					                    </div>
@@ -201,14 +201,14 @@
 					            </div>
 					            </div>
 					            <div class="hidden" id="otherInfo">
-					            <h4 class="form-header h4">其他信息</h4>
+					            <h4 class="form-header h4">その他の情報</h4>
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
 					                        <label class="col-sm-4 control-label is-required" title="树显示的编码字段名， 如：dept_id">树编码字段：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <select class='form-control' id="treeCode" name='params[treeCode]' style="width: 100%">
-					                                <option value="">---请选择---</option>
+					                                <option value="">---選択してください---</option>
 												    <option th:each="column : ${table.columns}" th:text="${column.columnName + '：' + column.columnComment}" th:value="${column.columnName}" th:field="*{treeCode}"></option>
 												</select>
 					                        </div>
@@ -216,10 +216,10 @@
 					                </div>
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="树显示的父编码字段名， 如：parent_Id">树父编码字段：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="ツリー表示の親コードフィールド名（例：parent_Id）">ツリー親コードフィールド：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <select class='form-control' id="treeParentCode" name='params[treeParentCode]' style="width: 100%">
-												    <option value="">---请选择---</option>
+												    <option value="">---選択してください---</option>
 												    <option th:each="column : ${table.columns}" th:text="${column.columnName + '：' + column.columnComment}" th:value="${column.columnName}" th:field="*{treeParentCode}"></option>
 												</select>
 					                        </div>
@@ -229,10 +229,10 @@
 					            <div class="row">
 					                <div class="col-sm-6">
 					                    <div class="form-group">
-					                        <label class="col-sm-4 control-label is-required" title="树节点的显示名称字段名， 如：dept_name">树名称字段：<i class="fa fa-question-circle-o"></i></label>
+					                        <label class="col-sm-4 control-label is-required" title="ツリーノードの表示名称フィールド名（例：dept_name）">ツリー名称フィールド：<i class="fa fa-question-circle-o"></i></label>
 					                        <div class="col-sm-8">
 					                            <select class='form-control' id="treeName" name='params[treeName]' style="width: 100%">
-												    <option value="">---请选择---</option>
+												    <option value="">---選択してください---</option>
 												    <option th:each="column : ${table.columns}" th:text="${column.columnName + '：' + column.columnComment}" th:value="${column.columnName}" th:field="*{treeName}"></option>
 												</select>
 					                        </div>
@@ -247,8 +247,8 @@
                 </div>
                <div class="box-footer">
 			       <div class="col-sm-offset-5 col-sm-6">
-			           <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存</button>&nbsp;
-			           <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭 </button>
+			           <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保存</button>&nbsp;
+			           <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>閉じる</button>
 			       </div>
            	   </div>
             </div>
@@ -261,7 +261,7 @@
     <script th:src="@{/js/jquery.tmpl.js}"></script>
     <th:block th:include="include :: jquery-cxselect-js" />
     <script th:inline="javascript">
-	    /* 用户信息-修改 */
+	    /* ユーザー情報 - 編集 */
 	    $("#form-table-edit").validate({
 	    	rules: {
 	    	    tableName: {
@@ -271,7 +271,7 @@
 			focusCleanup: true
 		});
 	    
-	    /* 表级联信息 */
+	    /* テーブルの連携情報 */
    		var data = [[${data}]];
     	$('#subInfo').cxSelect({
     	  selects: ['type', 'router'],
@@ -301,12 +301,12 @@
 		        onLoadSuccess: onLoadSuccess,
 		        onReorderRow: onReorderRow,
 		        columns: [{
-                    title: "序号",
+                    title: "番号",
                     width: "5%",
                     formatter: function (value, row, index) {
-                    	// 编号隐藏域
+                    	// 番号の隠しフィールド
                     	var columnIdHtml = $.common.sprintf("<input type='hidden' name='columns[%s].columnId' value='%s'>", index, row.columnId);
-                    	// 排序隐藏域
+                    	// ソートの隠しフィールド
                     	var sortHtml = $.common.sprintf("<input type='hidden' name='columns[%s].sort' value='%s' id='columns_sort_%s'>", index, row.sort, row.columnId);
                     	return columnIdHtml + sortHtml + $.table.serialNumber(index);
                     },
@@ -316,7 +316,7 @@
                 },
 		        {
 		            field: 'columnName',
-		            title: '字段列名',
+		            title: 'フィールド列名',
 		            width: "10%",
 		            class: "nodrag",
 		            cellStyle: function(value, row, index) {
@@ -325,7 +325,7 @@
 		        },
 		        {
 		            field: 'columnComment',
-		            title: '字段描述',
+		            title: 'フィールド説明',
 		            width: "10%",
 		            formatter: function (value, row, index) {
 		            	var html = $.common.sprintf("<input class='form-control' type='text' name='columns[%s].columnComment' value='%s'>", index, value);
@@ -334,7 +334,7 @@
 		        },
 		        {
 		            field: 'columnType',
-		            title: '物理类型',
+		            title: '物理タイプ',
 		            width: "10%",
 		            class: "nodrag",
 		            cellStyle: function(value, row, index) {
@@ -343,7 +343,7 @@
 		        },
 		        {
 		            field: 'javaType',
-		            title: 'Java类型',
+		            title: 'Javaタイプ',
 		            width: "10%",
 		            formatter: function (value, row, index) {
 		        		var data = [{ index: index, javaType: value }];
@@ -361,7 +361,7 @@
 		        },
 		        {
 		            field: 'isInsert',
-		            title: '插入',
+		            title: '挿入',
 		            width: "5%",
 		            formatter: function (value, row, index) {
 		            	var isCheck = value == 1 ? 'checked' : '';
@@ -371,7 +371,7 @@
 		        },
 		        {
 		            field: 'isEdit',
-		            title: '编辑',
+		            title: '編集',
 		            width: "5%",
 		            formatter: function (value, row, index) {
 		            	var isCheck = value == 1 ? 'checked' : '';
@@ -381,7 +381,7 @@
 		        },
 		        {
 		            field: 'isList',
-		            title: '列表',
+		            title: 'リスト',
 		            width: "5%",
 		            formatter: function (value, row, index) {
 		            	var isCheck = value == 1 ? 'checked' : '';
@@ -391,7 +391,7 @@
 		        },
 		        {
 		            field: 'isQuery',
-		            title: '查询',
+		            title: '検索',
 		            width: "5%",
 		            formatter: function (value, row, index) {
 		            	var isCheck = value == 1 ? 'checked' : '';
@@ -401,7 +401,7 @@
 		        },
 		        {
 		            field: 'queryType',
-		            title: '查询方式',
+		            title: '検索方法',
 		            width: "10%",
 		            formatter: function (value, row, index) {
 		            	var data = [{ index: index, queryType: value }];
@@ -410,7 +410,7 @@
 		        },
 		        {
 		            field: 'isRequired',
-		            title: '必填',
+		            title: '必須',
 		            width: "5%",
 		            formatter: function (value, row, index) {
 		            	var isCheck = value == 1 ? 'checked' : '';
@@ -420,7 +420,7 @@
 		        },
 		        {
 		            field: 'htmlType',
-		            title: '显示类型',
+		            title: '表示タイプ',
 		            width: "12%",
 		            formatter: function (value, row, index) {
 		            	var data = [{ index: index, htmlType: value }];
@@ -429,7 +429,7 @@
 		        },
 		        {
 		            field: 'dictType',
-		            title: '字典类型',
+		            title: '辞書タイプ',
 		            width: "13%",
 		            formatter: function (value, row, index) {
 		        		var html = $.common.sprintf("<input class='form-control' type='text' name='columns[%s].dictType' value='%s' id='columns_dict_%s'>", index, (value === undefined ? '' : value), row.columnId);
@@ -443,7 +443,7 @@
 		    $.table.init(options);
 		});
 		
-		// 当所有数据被加载时触发处理函数
+		// すべてのデータがロードされたときに呼び出される処理
 		function onLoadSuccess(data){
 			$.fn.select2.defaults.set( "theme", "bootstrap" );
 			$("select.form-control").each(function () {
@@ -458,7 +458,7 @@
         	})
         }
 		
-		// 当拖拽结束后处理函数
+		// ドラッグ終了後に呼び出される処理
 		function onReorderRow(data) {
 	        for (var i = 0; i < data.length; i++) {
 			    $("#columns_sort_" + data[i].columnId).val(i+1);
@@ -515,12 +515,12 @@
 			}
 		}
 		
-		// 选择字典处理函数
+		// 辞書選択処理関数
 		function selectDictTree(columnId, obj) {
 			var dictType = $.common.nullToStr($(obj).parent().find("input").val());
         	var url = ctx + "system/dict/selectDictTree/" + columnId + "/" + dictType;
 			var options = {
-				title: '选择字典类型',
+				title: '辞書タイプ選択',
 				width: "380",
 				url: url,
 				callBack: doDictSubmit
@@ -528,13 +528,13 @@
 			$.modal.openOptions(options);
 		}
 		
-		// 选择菜单处理函数
+		// メニュー選択処理関数
         function selectMenuTree() {
         	var parentMenuId = $("#parentMenuId").val();
         	var menuId = parentMenuId > 0 ? parentMenuId : 1;
         	var url = ctx + "system/menu/selectMenuTree/" + menuId;
 			var options = {
-				title: '菜单选择',
+				title: 'メニュー選択',
 				width: "380",
 				url: url,
 				callBack: doMenuSubmit
@@ -561,7 +561,7 @@
 </html>
 
 
-<!-- java类型 -->
+<!-- javaタイプ -->
 <script id="javaTypeTpl" type="text/x-jquery-tmpl">
 <div>
 <select class='form-control' name='columns[${index}].javaType'>
@@ -575,7 +575,7 @@
 </div>
 </script>
 
-<!-- 查询方式 -->
+<!-- クエリタイプ -->
 <script id="queryTypeTpl" type="text/x-jquery-tmpl">
 <div>
 <select class='form-control' name='columns[${index}].queryType'>
@@ -591,18 +591,18 @@
 </div>
 </script>
 
-<!-- 显示类型 -->
+<!-- 表示タイプ -->
 <script id="htmlTypeTpl" type="text/x-jquery-tmpl">
 <div>
 <select class='form-control' name='columns[${index}].htmlType'>
-    <option value="input" {{if htmlType==="input"}}selected{{/if}}>文本框</option>
-    <option value="textarea" {{if htmlType==="textarea"}}selected{{/if}}>文本域</option>
-    <option value="select" {{if htmlType==="select"}}selected{{/if}}>下拉框</option>
-    <option value="radio" {{if htmlType==="radio"}}selected{{/if}}>单选框</option>
-    <option value="checkbox" {{if htmlType==="checkbox"}}selected{{/if}}>复选框</option>
-    <option value="summernote" {{if htmlType==="summernote"}}selected{{/if}}>富文本</option>
-    <option value="datetime" {{if htmlType==="datetime"}}selected{{/if}}>日期控件</option>
-    <option value="upload" {{if htmlType==="upload"}}selected{{/if}}>上传控件</option>
+    <option value="input" {{if htmlType==="input"}}selected{{/if}}>テキストボックス</option>
+    <option value="textarea" {{if htmlType==="textarea"}}selected{{/if}}>テキストエリア</option>
+    <option value="select" {{if htmlType==="select"}}selected{{/if}}>ドロップダウンリスト</option>
+    <option value="radio" {{if htmlType==="radio"}}selected{{/if}}>ラジオボタン</option>
+    <option value="checkbox" {{if htmlType==="checkbox"}}selected{{/if}}>チェックボックス</option>
+    <option value="summernote" {{if htmlType==="summernote"}}selected{{/if}}>リッチテキストエディタ</option>
+    <option value="datetime" {{if htmlType==="datetime"}}selected{{/if}}>日付コントロール</option>
+    <option value="upload" {{if htmlType==="upload"}}selected{{/if}}>アップロードコントロール</option>
 </select>
 </div>
 </script>

@@ -5,125 +5,125 @@ import java.util.Map;
 import com.ruoyi.generator.domain.GenTable;
 
 /**
- * 业务 服务层
+ * ビジネス サービス層
  * 
  * @author ruoyi
  */
 public interface IGenTableService
 {
     /**
-     * 查询业务列表
+     * ビジネスリストを取得
      * 
-     * @param genTable 业务信息
-     * @return 业务集合
+     * @param genTable ビジネス情報
+     * @return ビジネス集合
      */
     public List<GenTable> selectGenTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * データベースリストを取得
      * 
-     * @param genTable 业务信息
-     * @return 数据库表集合
+     * @param genTable ビジネス情報
+     * @return データベーステーブルの集合
      */
     public List<GenTable> selectDbTableList(GenTable genTable);
 
     /**
-     * 查询据库列表
+     * データベースリストを取得
      * 
-     * @param tableNames 表名称组
-     * @return 数据库表集合
+     * @param tableNames テーブル名の配列
+     * @return データベーステーブルの集合
      */
     public List<GenTable> selectDbTableListByNames(String[] tableNames);
 
     /**
-     * 查询所有表信息
+     * 全てのテーブル情報を取得
      * 
-     * @return 表信息集合
+     * @return テーブル情報の集合
      */
     public List<GenTable> selectGenTableAll();
 
     /**
-     * 查询业务信息
+     * ビジネス情報を取得
      * 
-     * @param id 业务ID
-     * @return 业务信息
+     * @param id ビジネスID
+     * @return ビジネス情報
      */
     public GenTable selectGenTableById(Long id);
 
     /**
-     * 修改业务
+     * ビジネス情報を更新
      * 
-     * @param genTable 业务信息
-     * @return 结果
+     * @param genTable ビジネス情報
+     * @return 結果
      */
     public void updateGenTable(GenTable genTable);
 
     /**
-     * 删除业务信息
+     * ビジネス情報を削除
      * 
-     * @param ids 需要删除的数据ID
-     * @return 结果
+     * @param ids 削除するデータのID
+     * @return 結果
      */
     public void deleteGenTableByIds(String ids);
 
     /**
-     * 创建表
+     * テーブルを作成
      *
-     * @param sql 创建表语句
-     * @return 结果
+     * @param sql テーブル作成のSQL文
+     * @return 結果
      */
     public boolean createTable(String sql);
 
     /**
-     * 导入表结构
+     * テーブル構造をインポート
      *
-     * @param tableList 导入表列表
-     * @param operName 操作人员
+     * @param tableList インポートするテーブルリスト
+     * @param operName 操作員
      */
     public void importGenTable(List<GenTable> tableList, String operName);
 
     /**
-     * 预览代码
+     * コードプレビュー
      * 
-     * @param tableId 表编号
-     * @return 预览数据列表
+     * @param tableId コードをプレビュー
+     * @return プレビューデータのリスト
      */
     public Map<String, String> previewCode(Long tableId);
 
     /**
-     * 生成代码（下载方式）
+     * コードを生成（ダウンロード方式）
      * 
-     * @param tableName 表名称
-     * @return 数据
+     * @param tableName テーブル名
+     * @return データ
      */
     public byte[] downloadCode(String tableName);
 
     /**
-     * 生成代码（自定义路径）
+     * コードを生成（カスタムパス）
      * 
-     * @param tableName 表名称
+     * @param tableName テーブル名
      */
     public void generatorCode(String tableName);
     
     /**
-     * 同步数据库
+     *  データベースを同期
      * 
-     * @param tableName 表名称
+     * @param tableName テーブル名
      */
     public void synchDb(String tableName);
 
     /**
-     * 批量生成代码（下载方式）
+     * コードを一括生成（ダウンロード方式）
      * 
-     * @param tableNames 表数组
-     * @return 数据
+     * @param tableNames テーブル名の配列
+     * @return データ
      */
     public byte[] downloadCode(String[] tableNames);
 
     /**
-     * 修改保存参数校验
+     * パラメータ検証を保存時に編集
      * 
-     * @param genTable 业务信息
+     * @param genTable ビジネス情報
      */
     public void validateEdit(GenTable genTable);
 }

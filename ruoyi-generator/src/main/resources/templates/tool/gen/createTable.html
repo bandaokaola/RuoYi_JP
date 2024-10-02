@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="include :: header('创建表结构')"/>
+    <th:block th:include="include :: header('テーブル構造の作成')"/>
 </head>
 <body>
 <div class="main-content">
-    <label class="col-sm-6 control-label">创建表语句(支持多个建表语句)：</label>
+    <label class="col-sm-6 control-label">テーブル作成文（複数のテーブル作成文をサポート）：</label>
     <div class="col-sm-11 col">
-        <textarea class="form-control" id="text_create" name="" placeholder="请输入文本" rows="12" type="text"></textarea>
+        <textarea class="form-control" id="text_create" name="" placeholder="テキストを入力してください"" rows="12" type="text"></textarea>
     </div>
 </div>
 <th:block th:include="include :: footer"/>
@@ -15,11 +15,11 @@
 <script type="text/javascript">
     var prefix = ctx + "tool/gen";
 
-    /* 创建表结构 */
+    /* テーブル構造の作成 */
     function submitHandler() {
         var rows = $("#text_create").val();
         if (rows.length == 0) {
-            $.modal.alertWarning("请输入建表语句");
+            $.modal.alertWarning("テーブル作成文を入力してください");
             return;
         }
         var data = {"sql": rows};

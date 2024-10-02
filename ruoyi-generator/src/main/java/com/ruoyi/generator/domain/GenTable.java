@@ -9,7 +9,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
 import com.ruoyi.common.utils.StringUtils;
 
 /**
- * 业务表 gen_table
+ * 業務表 gen_table
  * 
  * @author ruoyi
  */
@@ -17,82 +17,82 @@ public class GenTable extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 编号 */
+    /** 番号 */
     private Long tableId;
 
-    /** 表名称 */
-    @NotBlank(message = "表名称不能为空")
+    /** テーブル名 */
+    @NotBlank(message = "テーブル名は空にできません")
     private String tableName;
 
-    /** 表描述 */
-    @NotBlank(message = "表描述不能为空")
+    /** テーブル説明 */
+    @NotBlank(message = "テーブル説明は空にできません")
     private String tableComment;
 
-    /** 关联父表的表名 */
+    /** 関連する親テーブルの名前 */
     private String subTableName;
 
-    /** 本表关联父表的外键名 */
+    /** このテーブルが関連する親テーブルの外部キー名 */
     private String subTableFkName;
 
-    /** 实体类名称(首字母大写) */
-    @NotBlank(message = "实体类名称不能为空")
+    /** エンティティクラス名（頭文字大文字） */
+    @NotBlank(message = "エンティティクラス名は空にできません")
     private String className;
 
-    /** 使用的模板（crud单表操作 tree树表操作 sub主子表操作） */
+    /** 使用するテンプレート（crud単表操作、treeツリーテーブル操作、sub親子テーブル操作） */
     private String tplCategory;
 
-    /** 生成包路径 */
-    @NotBlank(message = "生成包路径不能为空")
+    /**  生成パッケージパス */
+    @NotBlank(message = "生成パッケージパスは空にできません")
     private String packageName;
 
-    /** 生成模块名 */
-    @NotBlank(message = "生成模块名不能为空")
+    /** 生成モジュール名 */
+    @NotBlank(message = "生成モジュール名は空にできません")
     private String moduleName;
 
-    /** 生成业务名 */
-    @NotBlank(message = "生成业务名不能为空")
+    /** 生成業務名 */
+    @NotBlank(message = "生成業務名は空にできません")
     private String businessName;
 
-    /** 生成功能名 */
-    @NotBlank(message = "生成功能名不能为空")
+    /** 生成機能名 */
+    @NotBlank(message = "生成機能名は空にできません")
     private String functionName;
 
-    /** 生成作者 */
-    @NotBlank(message = "作者不能为空")
+    /** 生成者 */
+    @NotBlank(message = "生成者は空にできません")
     private String functionAuthor;
 
-    /** 生成代码方式（0zip压缩包 1自定义路径） */
+    /** 生成コード方式（0：zip圧縮ファイル、1：カスタムパス） */
     private String genType;
 
-    /** 生成路径（不填默认项目路径） */
+    /** 生成パス（入力なしの場合、デフォルトはプロジェクトパス） */
     private String genPath;
 
-    /** 主键信息 */
+    /** 主キーカラム */
     private GenTableColumn pkColumn;
 
-    /** 子表信息 */
+    /** 子テーブル情報 */
     private GenTable subTable;
 
-    /** 表列信息 */
+    /** テーブルカラム情報 */
     @Valid
     private List<GenTableColumn> columns;
 
-    /** 其它生成选项 */
+    /** その他生成オプション */
     private String options;
 
-    /** 树编码字段 */
+    /** ツリーコードフィールド */
     private String treeCode;
 
-    /** 树父编码字段 */
+    /** ツリー親コードフィールド */
     private String treeParentCode;
 
-    /** 树名称字段 */
+    /** ツリー名フィールド */
     private String treeName;
 
-    /** 上级菜单ID字段 */
+    /** 上位メニューIDフィールド */
     private String parentMenuId;
 
-    /** 上级菜单名称字段 */
+    /** 上位メニュー名フィールド */
     private String parentMenuName;
 
     public Long getTableId()

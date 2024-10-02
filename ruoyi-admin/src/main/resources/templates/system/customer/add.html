@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:include="include :: header('新增お客様テーブル')" />
+</head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-customer-add">
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">お客様フルネーム：</label>
+                <div class="col-sm-8">
+                    <input name="customerName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">お客様所属会社フルネーム：</label>
+                <div class="col-sm-8">
+                    <input name="customerCompanyName" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">    
+                <label class="col-sm-3 control-label">お客様携帯：</label>
+                <div class="col-sm-8">
+                    <input name="phonenumber" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">備考：</label>
+                <div class="col-sm-8">
+                    <textarea name="remark" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <th:block th:include="include :: footer" />
+    <script th:inline="javascript">
+        var prefix = ctx + "system/customer"
+        $("#form-customer-add").validate({
+            focusCleanup: true
+        });
+
+        function submitHandler() {
+            if ($.validate.form()) {
+                $.operate.save(prefix + "/add", $('#form-customer-add').serialize());
+            }
+        }
+    </script>
+</body>
+</html>
